@@ -108,7 +108,7 @@ $filter_arr_data=$prodt_data->data->filters;
                     ?>
                       <li class="term-item ">
                         <div class="pretty p-svg p-curve">
-                             <input type="checkbox" class="aj_itemdata" name="aj_itemdata" value="{{$value_i->id}}{{ '@'.$value_item->title }}"/>
+                             <input type="checkbox" class="aj_itemdata" name="aj_itemdata" value="{{ $value_item->title }}{{'@'.$value_i->id}}"/>
                              <div class="state p-success">
                                  <!-- svg path -->
                                  <svg class="svg svg-icon" viewBox="0 0 20 20">
@@ -156,10 +156,7 @@ $filter_arr_data=$prodt_data->data->filters;
                     </div>
                 </div>
                 <br>
-
-
-
-
+                <div class="product_list_card_container">
                <!-- hedaer for product filter  -->
                   <?php
                   use GuzzleHttp\Client;
@@ -482,6 +479,7 @@ $filter_arr_data=$prodt_data->data->filters;
                 <?php
                   }
                   ?>
+                </div>
 
 
                 </div>

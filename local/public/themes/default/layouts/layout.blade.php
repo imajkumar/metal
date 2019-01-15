@@ -71,11 +71,32 @@
                         $.each($("input[name='aj_itemdata']:checked"), function(){
                           favorite_filter_val.push($(this).val());
                         });
-                       console.log(favorite_filter_val.join("#@-"));
+                        var favorite_filter=favorite_filter_val.join("i_A");
+                        console.log(favorite_filter);
+
+                       //ajax
+                        var datastring = "_token=" + CSRF_TOKEN + "&filer_items=" + favorite_filter;
+                        $.ajax({
+                        type: 'POST',
+                                url: BASE_URL + "/product_filer_ajax", //this should be url to your PHP file
+                                data:datastring,
+                                beforeSend: function(){
+                                //alert("wait");
+                                },
+                                success: function(data) {
+                                console.log(data.data);
+                                
+                              },
+                              dataType: "json"
+                        });
+                        //ajax
+
+
 
                   });
 
                   //ajitemdata
+
 
                   //product filter
 

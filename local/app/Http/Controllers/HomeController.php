@@ -28,6 +28,55 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+     public function product_filer_ajax(Request $request){
+
+          if($request->filer_items){
+            $data=explode("i_A",$request->filer_items);
+            $filter_type = array();
+            foreach ($data as $key => $value) {
+                 $data_arr=explode("@",$value);
+                   $filter_type_vale[] =array('id' =>$data_arr[1]);
+                   $filter_type = array(
+                     'id' =>$data_arr[0],
+                     'filter' =>$filter_type_vale,
+                   );
+            }
+            $filter_type_vale[] = array('id' =>'2b');
+             $filter_type[] = array(
+               'id' =>'Bakeware Type',
+               'filter' =>$filter_type_vale,
+             );
+             $client = new Client();
+             // Grab the client's handler instance.
+             $clientHandler = $client->getConfig('handler');
+             // Create a middleware that echoes parts of the request.
+             $tapMiddleware = Middleware::tap(function ($request) {
+                  $request->getHeaderLine('Content-Type');
+                 // application/json
+                  $request->getBody();
+
+             });
+             //product list
+             $response = $client->request('POST', 'http://api.metalbaba.local/customer_web/product_list', [
+               'json'    => [
+                 'API_TOKEN' => '',
+                 'category_id' => '3',
+                 'filters' => array($filter_type ),
+                 'is_gold_supplier' => '0',
+                 'is_trade_assurance' => '0',
+                 'moq' => '0',
+                 'order' => 'asc',
+                 'page' => '1',
+                 'search_keyword' => '',
+                 'sort' => '',
+           ],
+           'handler' => $tapMiddleware($clientHandler)
+       ]);
+         return $response->getBody()->getContents();
+      }
+
+
+     }
 
      public function product_seller_list(){
        echo "string";

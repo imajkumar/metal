@@ -38,6 +38,9 @@ Route::get('/product-list', 'HomeController@product_list')->name('product_list')
 Route::get('/product-list/{id}/{productname}', 'HomeController@product_list_cat')->name('product_list_cat');
 Route::get('/seller-list', 'HomeController@product_seller_list')->name('product_seller_list');
 
+Route::post('/product_filer_ajax', 'HomeController@product_filer_ajax')->name('product_filer_ajax');
+
+
 
 Route::group(['middleware' => ['auth']], function() {
 
