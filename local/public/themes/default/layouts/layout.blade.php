@@ -63,6 +63,23 @@
                 		easing: 'swing'
                 	});
 
+                  //product filter
+                //  console.log($('input[name="aj_itemdata"]:checked').serialize());
+                    $('input[type="checkbox"]').click(function(){
+                        var favorite_filter_val = [];
+
+                        $.each($("input[name='aj_itemdata']:checked"), function(){
+                          favorite_filter_val.push($(this).val());
+                        });
+                       console.log(favorite_filter_val.join("#@-"));
+
+                  });
+
+                  //ajitemdata
+
+                  //product filter
+
+
                     $.getJSON('http://api.metalbaba.local/customer_web/token', function(data) {
                       document.cookie = "X-CSRF-TOKEN="+data.data.token+"";
 

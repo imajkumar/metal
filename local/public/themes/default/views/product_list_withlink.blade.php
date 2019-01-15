@@ -105,11 +105,10 @@ $filter_arr_data=$prodt_data->data->filters;
                   <ul class="term-list">
                     <?php
                     foreach ($value_item->filter as $key_i => $value_i) {
-
                     ?>
                       <li class="term-item ">
                         <div class="pretty p-svg p-curve">
-                             <input type="checkbox" class="ajitemdata" value="{{$value_i->id}}{{ '@'.$value_item->title }}"/>
+                             <input type="checkbox" class="aj_itemdata" name="aj_itemdata" value="{{$value_i->id}}{{ '@'.$value_item->title }}"/>
                              <div class="state p-success">
                                  <!-- svg path -->
                                  <svg class="svg svg-icon" viewBox="0 0 20 20">
