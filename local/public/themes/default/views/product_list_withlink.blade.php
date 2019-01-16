@@ -41,17 +41,16 @@ span.list_attribute_itemname_a {
                   <div class="related_categorylist-items">
                     Related Category <br>
                     <?php
-
                     $link_item_parent=$prodt_data->data->parent_category->name;
                     $link_item=$prodt_data->data->main_category->name;
-                    $filter_arr=$prodt_data->data->filters;                       ?>
+                    $filter_arr=$prodt_data->data->filters;
+                    ?>
                      <div class="related_categorylist-items_val">
                       {{ $link_item_parent }}
                      </div>
                      <ul>
                        <li class="filtersin4">
                          {{$link_item}}
-
                        </li>
                      </ul>
                   </div>
@@ -60,9 +59,9 @@ span.list_attribute_itemname_a {
                   Product Feature
                   <br>
   <div class="panel-group" id="accordion">
-    <?php
-    $i=1;
-    $dit_word = array(
+<?php
+$i=1;
+$dit_word = array(
  "",
  "one",
  "two",
@@ -85,10 +84,7 @@ span.list_attribute_itemname_a {
  "nineteen",
  "twenty"
 );
-
-
 $filter_arr_data=$prodt_data->data->filters;
-
    foreach ($filter_arr_data as $key_item => $value_item) {
        $iv=$i++;           ?>
            <div class="panel panel-default" style="border:none">
@@ -128,11 +124,9 @@ $filter_arr_data=$prodt_data->data->filters;
                </div>
              </div>
            </div>
-
            <?php
    }
     ?>
-
 </div>
 </div>
 <!-- Product Feature -->
@@ -219,7 +213,6 @@ $filter_arr_data=$prodt_data->data->filters;
                                 <?php
                                 foreach ($value_data->attribute_list as $attr_key => $attr_value) {
                                    if(!empty($attr_value->value)){
-
                                     ?>
                                     <div class="list_attribute">
                                       {{$attr_value->name}}:<span class="list_attribute_itemname">{{$attr_value->value}}</span>
@@ -244,9 +237,7 @@ $filter_arr_data=$prodt_data->data->filters;
                                    </span>
                                 </div>
                               </div>
-
                               </div>
-
                               <div class="col-md-4">
                                 <div class="gold_starme_text" style="margin-top:5px;">
                                   <span>{{$value_data->seller_company}}</span><br>
@@ -260,7 +251,6 @@ $filter_arr_data=$prodt_data->data->filters;
                               </div>
                         </div>
                      </div>
-
                      <?php
                   }
                   //pagination product

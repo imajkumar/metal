@@ -4343,3 +4343,14 @@ a.btn.btn-primary.buy_leads {
     /* symbol for "collapsed" panels */
     content: "\e080";    /* adjust as needed, taken from bootstrap.css */
 }
+
+span.view_more_prices {
+ float: right;
+ color: #16426b;
+ }
+ span.view_more_prices a:hover{
+   color:#16006A;
+ }
+ span.view_more_prices a{
+   color:#16426B;
+ }

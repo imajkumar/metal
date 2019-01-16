@@ -43,42 +43,56 @@
 									 </div><!-- end col -->
 
 
+									 <?php
+									 use GuzzleHttp\Client;
+									 use GuzzleHttp\Middleware;
+									 $client = new Client();
+									 // Grab the client's handler instance.
+									 $clientHandler = $client->getConfig('handler');
+									 // Create a middleware that echoes parts of the request.
+									 $tapMiddleware = Middleware::tap(function ($request) {
+												$request->getHeaderLine('Content-Type');
+											 // application/json
+												$request->getBody();
 
+									 });
+									 //product list
+			             $response = $client->request('POST', 'http://api.metalbaba.local/customer_web/home', [
+			               'json'    => [
+			                 'API_TOKEN' =>'',
+			                 'page' => '1'
+			           	],
+			           'handler' => $tapMiddleware($clientHandler)
+			       ]);
+			        $home_data=json_decode($response->getBody()->getContents());
 
-									 <div class="col-sm-9 col-md-6">
+						  ?>
+						<div class="col-sm-9 col-md-6">
 											 <div class="row">
 													 <div class="col-sm-12">
 															 <div class="owl-carousel slider owl-theme">
-																	 <div class="item">
-																			 <figure>
-																					 <a href="javascript:void(0);">
-																							 <img src="{{ asset('local/public/themes/default/assets/core/img/slider/slider_08.jpg') }}" alt=""/>
+																 <?php
+																 foreach ($home_data->data->data[0]->card_data as $key => $value) {
+																		 ?>
+																		 <div class="item">
+																				 <figure>
+																						 <a href="javascript:void(0);">
+																								 <img src="{{ $value->image }}" alt=""/>
 
-																					 </a>
-																			 </figure>
-																	 </div><!-- end item -->
-																	 <div class="item">
-																			 <figure>
-																					 <a href="javascript:void(0);">
+																						 </a>
+																				 </figure>
+																		 </div><!-- end item -->
+																		 <?php
+																 }
+																 ?>
 
-																							 <img src="{{ asset('local/public/themes/default/assets/core/img/slider/slider_09.jpg') }}" alt=""/>
-
-																					 </a>
-																			 </figure>
-																	 </div><!-- end item -->
-																	 <div class="item">
-																			 <figure>
-																					 <a href="javascript:void(0);">
-																						  <img src="{{ asset('local/public/themes/default/assets/core/img/slider/slider_10.jpg') }}" alt=""/>
-																					 </a>
-																			 </figure>
-																	 </div><!-- end item -->
 															 </div><!-- end owl carousel -->
 													 </div><!-- end col -->
 											 </div><!-- end row -->
 											 <!--tranding product -->
 											 <div class="row">
 												 <div class="col-md-12">
+
 
 												 </div>
 											 </div>
@@ -92,89 +106,48 @@
 																	 <h6 class="text-uppercase" style="color:#FFF; text-align: center;";>Latest Prices </h6>
 															 </li>
 																 <!--sample-->
-																 <div class="demo1 demof">
+																 <div class="demo1 demof" style="min-height:300px;">
 																			 <ul style="list-style-type: none;">
-																				 <li>
-																					 <div class="card">
+																				 <?php
 
-																								 <span style="font-size:12px;">MS Billet (Mandi Gobindgarh)</span>
-																								 <br>
-																								 <span style="font-size:12px">
-																								 <i  style="color:red" class="fa fa-caret-down" aria-hidden="true"></i>
-																								 <i class="fa fa-inr" aria-hidden="true"></i>
-																								 750.99/KG<br>
-																								 MAR 28 11:14:00 AM
-																							 </span>
-
-																					 </div>
-																					 </li>
-																					 <hr>
-																					 <li>
-																						 <div class="card">
-
-																									 <span style="font-size:12px;">MS Billet (Mandi Gobindgarh)</span>
-																									 <br>
-																									 <span style="font-size:12px">
-																									 <i  style="color:green" class="fa fa-caret-up" aria-hidden="true"></i>
-																									 <i class="fa fa-inr" aria-hidden="true"></i>
-																									 750.99/KG<br>
-																									 MAR 28 11:14:00 AM
-																								 </span>
-
-																						 </div>
-																						 </li>
-																						 <hr>
-																						 <li>
-																							 <div class="card">
-
-																										 <span style="font-size:12px;">MS Billet (Mandi Gobindgarh)</span>
-																										 <br>
-																										 <span style="font-size:12px">
-																										 <i  style="color:red" class="fa fa-caret-down" aria-hidden="true"></i>
-																										 <i class="fa fa-inr" aria-hidden="true"></i>
-																										 750.99/KG<br>
-																										 MAR 28 11:14:00 AM
-																									 </span>
-
-																							 </div>
-																							 </li>
-																							 <hr>
-																							 <li>
-																								 <div class="card">
-
-																											 <span style="font-size:12px;">MS Billet (Mandi Gobindgarh)</span>
-																											 <br>
-																											 <span style="font-size:12px">
-																											 <i  style="color:red" class="fa fa-caret-down" aria-hidden="true"></i>
-																											 <i class="fa fa-inr" aria-hidden="true"></i>
-																											 750.99/KG<br>
-																											 MAR 28 11:14:00 AM
-																										 </span>
-
-																								 </div>
-																								 </li>
-																								 <hr>
-																								 <li>
-																									 <div class="card">
-
-																												 <span style="font-size:12px;">MS Billet (Mandi Gobindgarh)</span>
-																												 <br>
-																												 <span style="font-size:12px">
-																												 <i  style="color:green" class="fa fa-caret-up" aria-hidden="true"></i>
-																												 <i class="fa fa-inr" aria-hidden="true"></i>
-																												 750.99/KG<br>
-																												 MAR 28 11:14:00 AM
-																											 </span>
-
-																									 </div>
-																									 </li>
-																									 <hr>
+																				 foreach ($home_data->data->data[1]->card_data as $key_p => $value_pArr) {
 
 
 
 
-																			 </ul>
+																					// print_r($value_pArr->timestamp);
+																					 $tot=$value_pArr->timestamp;
+
+																					?>
+
+																					<li>
+
+ 																					 <div class="card">
+ 																								 <span style="font-size:12px;">{{$value_pArr->product_name}}</span>
+ 																								 <br>
+ 																								 <span style="font-size:12px">
+ 																								 <i  style="color:red" class="fa fa-caret-down" aria-hidden="true"></i>
+ 																								 <i class="fa fa-inr" aria-hidden="true"></i>
+ 																								 {{$value_pArr->price}}<br>
+																								 {{ \Carbon\Carbon::createFromTimestamp($tot)->format('F d, h:i A')}}
+
+
+ 																							 </span>
+
+ 																					 </div>
+ 																					 </li>
+ 																					 <hr>
+																					<?php
+																				}
+																				 ?>
+																			  </ul>
+																				<span class="view_more_prices">
+			 																	 <a href="{{ URL::to('/prices')}}">View All Prices</a>
+			 																 </span>
 																 </div>
+
+
+
 																 <!--sample-->
 
 													 </ul>
@@ -186,171 +159,40 @@
 										 <hr class="spacer-20 no-border">
 											 <div class="row">
 													 <div class="col-sm-12">
-															 <h6 class="ml-5 mb-20 text-uppercase"><span class="text-primary">Newest</span> Products</h6>
+															 <h6 class="ml-5 mb-20 text-uppercase"><span class="text-primary">Recommended </span> Products</h6>
 													 </div><!-- end col -->
 													 <div class="col-sm-12">
 															 <div class="owl-carousel column-5 owl-theme">
-																	 <div class="item">
-																			 <div class="thumbnail store style1">
-																					 <div class="header">
-																							 <figure class="layer">
-																									 <a href="javascript:void(0);">
-																											  <img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_03.jpg') }}" alt=""/>
+																 <?php
+																 foreach ($home_data->data->data[3]->card_data as $key => $value) {
 
-																									 </a>
-																							 </figure>
-																							 <div class="icons">
-																								 <a class="icon semi-circle" href="javascript:void(0);" data-toggle="modal" data-target=".productQuickView"><i class="fa fa-search"></i></a>
-																							 </div>
-																					 </div>
-																					 <div class="caption">
-																							 <h6 class="regular"><a href="shop-single-product-v1.html">Stainless Steel Coil Indian JSL 304 0.</a></h6>
-																							 <div class="price">
-																									 <small class="amount">304 0.60mm JSL 1000 , 1250 , 1500 mm</small><br>
-																									 <span class="amount text-primary">175.00/Kg</span>
-																							 </div>
+																			?>
+																			<div class="item">
+	 																			 <div class="thumbnail store style1">
+	 																					 <div class="header">
+	 																							 <figure class="layer">
+	 																									 <a href="javascript:void(0);">
+	 																											  <img src="{{$value->image}}" alt="{{$value->name}}"/>
 
-																					 </div><!-- end caption -->
-																			 </div><!-- end thumbnail -->
-																	 </div><!-- end item -->
-																	 <div class="item">
-																			 <div class="thumbnail store style1">
-																					 <div class="header">
-																							 <figure class="layer">
-																									 <a href="javascript:void(0);">
-																											  <img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_02.jpg') }}" alt=""/>
-																									 </a>
-																							 </figure>
-																							 <div class="icons">
+	 																									 </a>
+	 																							 </figure>
+	 																							 <div class="icons">
+	 																								 <a class="icon semi-circle" href="javascript:void(0);" data-toggle="modal" data-target=".productQuickView"><i class="fa fa-search"></i></a>
+	 																							 </div>
+	 																					 </div>
+	 																					 <div class="caption">
+	 																							 <h6 class="regular"><a href="shop-single-product-v1.html">{{$value->name}}</a></h6>
+	 																							 <div class="price">
+	 																									 <small class="amount">{{$value->detail}}</small><br>
+	 																									 <span class="amount text-primary">{{$value->price}}</span>
+	 																							 </div>
 
-																									 <a class="icon semi-circle" href="javascript:void(0);" data-toggle="modal" data-target=".productQuickView"><i class="fa fa-search"></i></a>
-																							 </div>
-
-																					 </div>
-																					 <div class="caption">
-																							 <h6 class="regular"><a href="shop-single-product-v1.html">Stainless Steel Pipes Indian SNB 202</a></h6>
-																							 <div class="price">
-																									 <small class="amount">202 0.80mm SNB All Sizes</small><br>
-																									 <span class="amount text-primary">110.00/Kg</span>
-																							 </div>
-
-																					 </div><!-- end caption -->
-																			 </div><!-- end thumbnail -->
-																	 </div><!-- end item -->
-																	 <div class="item">
-																			 <div class="thumbnail store style1">
-																					 <div class="header">
-																							 <div class="badges">
-																									 <span class="product-badge top left primary-background text-white semi-circle">Sale</span>
-																									 <span class="product-badge top right text-warning">
-																											 <i class="fa fa-star"></i>
-																											 <i class="fa fa-star"></i>
-																											 <i class="fa fa-star"></i>
-																											 <i class="fa fa-star"></i>
-																											 <i class="fa fa-star-half-o"></i>
-																									 </span>
-																							 </div>
-																							 <figure class="layer">
-																									 <a href="javascript:void(0);">
-																											 <img class="front" src="img/products/technology_03.jpg" alt="">
-																											 <img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_02.jpg') }}" alt=""/>
-
-																									 </a>
-																							 </figure>
-																							 <div class="icons">
-
-																									 <a class="icon semi-circle" href="javascript:void(0);" data-toggle="modal" data-target=".productQuickView"><i class="fa fa-search"></i></a>
-																							 </div>
-																					 </div>
-																					 <div class="caption">
-																							 <h6 class="regular"><a href="shop-single-product-v1.html">Stainless Steel Sheet 304 0.50mm</a></h6>
-																							 <div class="price">
-																									 <small class="amount">304  (Ni: 8.0% ,Cr: 18.0%) 0.50mm All Sizes</small><br>
-																									 <span class="amount text-primary"><i class="fa fa-inr" aria-hidden="true"></i> 220.00/Kg</span>
-																							 </div>
-
-																					 </div><!-- end caption -->
-																			 </div><!-- end thumbnail -->
-																	 </div><!-- end item -->
-																	 <div class="item">
-																			 <div class="thumbnail store style1">
-																					 <div class="header">
-																							 <figure class="layer">
-																									 <a href="javascript:void(0);">
-
-																											  <img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_03.jpg') }}" alt=""/>
-
-																									 </a>
-																							 </figure>
-																							 <div class="icons">
-																								 <a class="icon semi-circle" href="javascript:void(0);" data-toggle="modal" data-target=".productQuickView"><i class="fa fa-search"></i></a>
-																							 </div>
-																					 </div>
-																					 <div class="caption">
-																							 <h6 class="regular"><a href="shop-single-product-v1.html">Stainless Steel Patta - Patti 202 0.48</a></h6>
-																							 <div class="price">
-																									 <small class="amount">202 0.48mm</small><br>
-																									 <span class="amount text-primary">98.00/Kg</span>
-																							 </div>
-
-																					 </div><!-- end caption -->
-																			 </div><!-- end thumbnail -->
-																	 </div><!-- end item -->
-																	 <div class="item">
-																			 <div class="thumbnail store style1">
-																					 <div class="header">
-																							 <div class="badges">
-																									 <span class="product-badge top right danger-background text-white semi-circle">-20%</span>
-																							 </div>
-																							 <figure class="layer">
-																									 <a href="javascript:void(0);">
-
-
-																											  <img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_02.jpg') }}" alt=""/>
-																									 </a>
-																							 </figure>
-																							 <div class="icons">
-																								 <a class="icon semi-circle" href="javascript:void(0);" data-toggle="modal" data-target=".productQuickView"><i class="fa fa-search"></i></a>
-																							 </div>
-																					 </div>
-																					 <div class="caption">
-																							 <h6 class="regular"><a href="shop-single-product-v1.html">Stainless Steel Patta </a></h6>
-																							 <div class="price">
-																									 <small class="amount"> Patti 202 0.35-202</small>
-																									 <span class="amount text-primary">185/kg</span>
-																							 </div>
-
-																					 </div><!-- end caption -->
-																			 </div><!-- end thumbnail -->
-																	 </div><!-- end item -->
-																	 <div class="item">
-																			 <div class="thumbnail store style1">
-																					 <div class="header">
-																							 <div class="badges">
-																									 <span class="product-badge top right danger-background text-white semi-circle">-20%</span>
-																							 </div>
-																							 <figure class="layer">
-																									 <a href="javascript:void(0);">
-
-																											  <img src="{{ asset('local/public/themes/default/assets/core/img/products/women_03.jpg') }}" alt=""/>
-
-																									 </a>
-																							 </figure>
-																							 <div class="icons">
-																									 <a class="icon semi-circle" href="javascript:void(0);" data-toggle="modal" data-target=".productQuickView"><i class="fa fa-search"></i></a>
-																							 </div>
-																					 </div>
-																					 <div class="caption">
-																							 <h6 class="regular"><a href="shop-single-product-v1.html">Stainless Steel Strip Coil Induction L</a></h6>
-																							 <div class="price">
-																									 <small class="amount ">201 0.6 Induction 26 , 38 , 48 mm</small>
-																									 <span class="amount text-primary">117.00/Kg</span>
-																							 </div>
-
-																					 </div><!-- end caption -->
-																			 </div><!-- end thumbnail -->
-																	 </div><!-- end item -->
-
+	 																					 </div><!-- end caption -->
+	 																			 </div><!-- end thumbnail -->
+	 																	 </div><!-- end item -->
+																			<?php
+																	}
+																 ?>
 															 </div><!-- end owl carousel -->
 													 </div><!-- end col -->
 											 </div><!-- end row -->
@@ -411,208 +253,50 @@
 											 <div class="tab-content">
 													 <div role="tabpanel" class="tab-pane fade in active" id="featured">
 															 <div class="row column-4">
-																	 <div class="col-sm-6 col-md-3">
-																			 <div class="thumbnail store style1">
-																					 <div class="header">
-																							 <div class="badges">
-																									 <span class="product-badge top left primary-background text-white semi-circle">Sale</span>
-																									 <span class="product-badge top right text-warning">
-																											 <i class="fa fa-star"></i>
-																											 <i class="fa fa-star"></i>
-																											 <i class="fa fa-star"></i>
-																											 <i class="fa fa-star"></i>
-																											 <i class="fa fa-star-half-o"></i>
-																									 </span>
-																							 </div>
-																							 <figure class="layer">
-																									 <a href="javascript:void(0);">
-																										 <img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_03.jpg') }} " alt="">
+																 <?php
 
-																									 </a>
-																							 </figure>
-																							 <div class="icons">
+																	 foreach ($home_data->data->data[2]->card_data as $key => $value) {
 
-																									 <a class="icon semi-circle" href="javascript:void(0);" data-toggle="modal" data-target=".productQuickView"><i class="fa fa-search"></i></a>
-																							 </div>
-																					 </div>
-																					 <div class="caption">
-																							 <h6 class="regular"><a href="shop-single-product-v1.html">Lorem Ipsum dolor sit</a></h6>
-																							 <div class="price">
-																									 <small class="amount off"><i class="fa fa-inr" aria-hidden="true"></i> 68.99</small>
-																									 <span class="amount text-primary"><i class="fa fa-inr" aria-hidden="true"></i> 59.99</span>
-																							 </div>
+																		 ?>
+																		 <div class="col-sm-6 col-md-3">
+																				<div class="thumbnail store style1">
+																						<div class="header">
+																								<div class="badges">
 
-																					 </div><!-- end caption -->
-																			 </div><!-- end thumbnail -->
-																	 </div><!-- end col -->
+																										<span class="product-badge top right text-warning">
+																												<i class="fa fa-star"></i>
+																												<i class="fa fa-star"></i>
+																												<i class="fa fa-star"></i>
+																												<i class="fa fa-star"></i>
+																												<i class="fa fa-star-half-o"></i>
+																										</span>
+																								</div>
+																								<figure class="layer">
+																										<a href="javascript:void(0);">
+																											<img src="{{ $value->image}} " alt="{{$value->name}}">
 
-																	 <div class="col-sm-6 col-md-3">
-																			 <div class="thumbnail store style1">
-																					 <div class="header">
-																							 <div class="badges">
-																									 <span class="product-badge top right danger-background text-white semi-circle">-20%</span>
-																							 </div>
-																							 <figure class="layer">
-																									 <a href="javascript:void(0);">
-																											<img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_02.jpg') }} " alt="">
-																									 </a>
-																							 </figure>
-																							 <div class="icons">
+																										</a>
+																								</figure>
+																								<div class="icons">
 
-																									 <a class="icon semi-circle" href="javascript:void(0);" data-toggle="modal" data-target=".productQuickView"><i class="fa fa-search"></i></a>
-																							 </div>
-																					 </div>
-																					 <div class="caption">
-																							 <h6 class="regular"><a href="shop-single-product-v1.html">Lorem Ipsum dolor sit</a></h6>
-																							 <div class="price">
-																									 <small class="amount off"><i class="fa fa-inr" aria-hidden="true"></i> 68.99</small>
-																									 <span class="amount text-primary"><i class="fa fa-inr" aria-hidden="true"></i> 59.99</span>
-																							 </div>
+																										<a class="icon semi-circle" href="javascript:void(0);" data-toggle="modal" data-target=".productQuickView"><i class="fa fa-search"></i></a>
+																								</div>
+																						</div>
+																						<div class="caption">
+																								<h6 class="regular"><a href="shop-single-product-v1.html">{{$value->name}}</a></h6>
+																								<div class="price">
 
-																					 </div><!-- end caption -->
-																			 </div><!-- end thumbnail -->
-																	 </div><!-- end col -->
+																										<span class="amount text-primary"><i class="fa fa-inr" aria-hidden="true"></i>{{$value->price}}</span>
+																								</div>
 
-																	 <div class="col-sm-6 col-md-3">
-																			 <div class="thumbnail store style1">
-																					 <div class="header">
-																							 <div class="badges">
-																									 <span class="product-badge bottom left warning-background text-white semi-circle">Out of Stock</span>
-																							 </div>
-																							 <figure class="layer">
-																									 <a href="javascript:void(0);">
-																											 <img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_03.jpg') }} " alt="">
-																									 </a>
-																							 </figure>
-																					 </div>
-																					 <div class="caption">
-																							 <h6 class="regular"><a href="shop-single-product-v1.html">Lorem Ipsum dolor sit</a></h6>
-																							 <div class="price">
-																									 <small class="amount off"><i class="fa fa-inr" aria-hidden="true"></i> 68.99</small>
-																									 <span class="amount text-primary"><i class="fa fa-inr" aria-hidden="true"></i> 59.99</span>
-																							 </div>
+																						</div><!-- end caption -->
+																				</div><!-- end thumbnail -->
+																		</div><!-- end col -->
 
-																					 </div><!-- end caption -->
-																			 </div><!-- end thumbnail -->
-																	 </div><!-- end col -->
 
-																	 <div class="col-sm-6 col-md-3">
-																			 <div class="thumbnail store style1">
-																					 <div class="header">
-																							 <div class="badges">
-																									 <span class="product-badge bottom right info-background text-white semi-circle">New</span>
-																							 </div>
-																							 <figure class="layer">
-																									 <a href="javascript:void(0);">
-																											<img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_03.jpg') }} " alt="">
-																									 </a>
-																							 </figure>
-																							 <div class="icons">
-																									 <a class="icon semi-circle" href="javascript:void(0);" data-toggle="modal" data-target=".productQuickView"><i class="fa fa-search"></i></a>
-																							 </div>
-																					 </div>
-																					 <div class="caption">
-																							 <h6 class="regular"><a href="shop-single-product-v1.html">Lorem Ipsum dolor sit</a></h6>
-																							 <div class="price">
-																									 <small class="amount off"><i class="fa fa-inr" aria-hidden="true"></i> 68.99</small>
-																									 <span class="amount text-primary"><i class="fa fa-inr" aria-hidden="true"></i> 59.99</span>
-																							 </div>
-
-																					 </div><!-- end caption -->
-																			 </div><!-- end thumbnail -->
-																	 </div><!-- end col -->
-
-																	 <div class="col-sm-6 col-md-3">
-																			 <div class="thumbnail store style1">
-																					 <div class="header">
-																							 <figure class="layer">
-																									 <a href="javascript:void(0);">
-																										<img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_03.jpg') }} " alt="">
-																									 </a>
-																							 </figure>
-																							 <div class="icons">
-																									 <a class="icon semi-circle" href="javascript:void(0);" data-toggle="modal" data-target=".productQuickView"><i class="fa fa-search"></i></a>
-																							 </div>
-																					 </div>
-																					 <div class="caption">
-																							 <h6 class="regular"><a href="shop-single-product-v1.html">Lorem Ipsum dolor sit</a></h6>
-																							 <div class="price">
-																									 <small class="amount off"><i class="fa fa-inr" aria-hidden="true"></i> 68.99</small>
-																									 <span class="amount text-primary"><i class="fa fa-inr" aria-hidden="true"></i> 59.99</span>
-																							 </div>
-
-																					 </div><!-- end caption -->
-																			 </div><!-- end thumbnail -->
-																	 </div><!-- end col -->
-
-																	 <div class="col-sm-6 col-md-3">
-																			 <div class="thumbnail store style1">
-																					 <div class="header">
-																							 <figure class="layer">
-																									 <a href="javascript:void(0);">
-																											 <img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_03.jpg') }} " alt="">
-																									 </a>
-																							 </figure>
-																							 <div class="icons">
-																									 <a class="icon semi-circle" href="javascript:void(0);" data-toggle="modal" data-target=".productQuickView"><i class="fa fa-search"></i></a>
-																							 </div>
-																					 </div>
-																					 <div class="caption">
-																							 <h6 class="regular"><a href="shop-single-product-v1.html">Lorem Ipsum dolor sit</a></h6>
-																							 <div class="price">
-																									 <small class="amount off"><i class="fa fa-inr" aria-hidden="true"></i> 68.99</small>
-																									 <span class="amount text-primary"><i class="fa fa-inr" aria-hidden="true"></i> 59.99</span>
-																							 </div>
-
-																					 </div><!-- end caption -->
-																			 </div><!-- end thumbnail -->
-																	 </div><!-- end col -->
-
-																	 <div class="col-sm-6 col-md-3">
-																			 <div class="thumbnail store style1">
-																					 <div class="header">
-																							 <figure class="layer">
-																									 <a href="javascript:void(0);">
-																											 <img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_03.jpg') }} " alt="">
-																									 </a>
-																							 </figure>
-																							 <div class="icons">
-																									 <a class="icon semi-circle" href="javascript:void(0);" data-toggle="modal" data-target=".productQuickView"><i class="fa fa-search"></i></a>
-																							 </div>
-																					 </div>
-																					 <div class="caption">
-																							 <h6 class="regular"><a href="shop-single-product-v1.html">Lorem Ipsum dolor sit</a></h6>
-																							 <div class="price">
-																									 <small class="amount off"><i class="fa fa-inr" aria-hidden="true"></i> 68.99</small>
-																									 <span class="amount text-primary"><i class="fa fa-inr" aria-hidden="true"></i> 59.99</span>
-																							 </div>
-
-																					 </div><!-- end caption -->
-																			 </div><!-- end thumbnail -->
-																	 </div><!-- end col -->
-
-																	 <div class="col-sm-6 col-md-3">
-																			 <div class="thumbnail store style1">
-																					 <div class="header">
-																							 <figure class="layer">
-																									 <a href="javascript:void(0);">
-																										<img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_03.jpg') }} " alt="">
-																									 </a>
-																							 </figure>
-																							 <div class="icons">
-																									 <a class="icon semi-circle" href="javascript:void(0);" data-toggle="modal" data-target=".productQuickView"><i class="fa fa-search"></i></a>
-																							 </div>
-																					 </div>
-																					 <div class="caption">
-																							 <h6 class="regular"><a href="shop-single-product-v1.html">Lorem Ipsum dolor sit</a></h6>
-																							 <div class="price">
-																									 <small class="amount off"><i class="fa fa-inr" aria-hidden="true"></i> 68.99</small>
-																									 <span class="amount text-primary"><i class="fa fa-inr" aria-hidden="true"></i> 59.99</span>
-																							 </div>
-
-																					 </div><!-- end caption -->
-																			 </div><!-- end thumbnail -->
-																	 </div><!-- end col -->
+																		 <?php
+																	 }
+																 ?>
 															 </div><!-- end row -->
 													 </div><!-- end tab -->
 													 <div role="tabpanel" class="tab-pane fade" id="special">
