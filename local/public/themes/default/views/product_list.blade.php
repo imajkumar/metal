@@ -80,6 +80,7 @@ span.list_attribute_itemname_a {
                </div>
              </div>
              <div class="col-md-8">
+
                <!-- hedaer for product filter  -->
                 <div class="row" style="margin-top:12px;">
                     <div class="col-md-6">
@@ -98,6 +99,65 @@ span.list_attribute_itemname_a {
                     </div>
                 </div>
                 <br>
+                <style type="text/css">
+               /* .contents{margin: 20px;padding: 20px;list-style: none;background: #F9F9F9;border: 1px solid #ddd;border-radius: 5px;} */
+               .contents li{margin-bottom: 10px;}
+               .loading-div{position: absolute;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, 0.56);z-index: 999;display:none;}
+               .loading-div img {margin-top: 20%;margin-left: 50%;}
+                </style>
+                 <div class="loading-div"><img src="{{ asset('local/public/themes/default/assets/core/img/ajax-loader.gif') }}" ></div>
+                 <div id="results">
+                   <!-- content will be loaded here -->
+                   <div class="pr_display_card">
+                   <div class="row">
+                     <div class="col-md-2">
+                        <div class="pr_thumbnail">
+                          <img width="145px" src="http://res.cloudinary.com/metb/image/upload/c_fit,h_173,w_247/Stainless-Steel-Circle-2012B-AOD-027mm76204">
+                        </div>
+                     </div>
+                     <div class="col-md-7">
+                       <div class="pr_content_card">
+                        <div class="pr_title_show">
+                          <a href="#" class="title">Stainless Steel Circle 201/2B AOD 0.27mm</a>
+                        </div>
+                        <div class="pr_title_star">
+                          <i class="fa fa-star-o" title="Follow" aria-hidden="true"></i>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="pr_item_li">
+                          <ul class="list-inline">
+                            <li>
+                              Ajay:<span class="nb-bold">Kumar</span>
+                            </li>
+                              <li>Kumar:Ajay</li>
+                            </ul>
+                            <ul class="list-inline">
+                              <li>
+                                Ajay:Kumar
+                              </li>
+                                <li>Kumar:Ajay</li>
+                            </ul>
+                            <ul class="list-inline">
+                              <li class="item_w">
+                                <span>Ajay</span>(Min. Order)
+                              </li>
+                                  <span class="inr_p">125.22</span>/kg
+                            </ul>
+                        </div>
+                        </div>
+                     </div>
+                     <div class="col-md-3">
+                       ok
+                     </div>
+                   </div>
+                   </div>
+
+                   
+
+
+                   <!-- content will be loaded here -->
+                 </div>
+
                <!-- hedaer for product filter  -->
                <?php
                 //use GuzzleHttp\Client;
@@ -190,7 +250,6 @@ span.list_attribute_itemname_a {
 
 
                ?>
-
 
              </div>
         </div>

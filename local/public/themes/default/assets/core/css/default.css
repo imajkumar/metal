@@ -4354,3 +4354,81 @@ span.view_more_prices {
  span.view_more_prices a{
    color:#16426B;
  }
+
+ /* product_cardlist */
+ .pr_thumbnail {
+    padding: 13px;
+    margin-top: 6px;
+    float: left;
+    background: transparent;
+}
+ .pr_title_show .title {
+    color: #22489B;
+    font-size: 16px;
+    float: left;
+    font-weight: 600;
+    margin: 16px 0 0 32px;
+}
+.pr_title_star {
+    margin: 10px;
+    float: left;
+    /* padding: 10px; */
+    font-size: 20px;
+}
+.pr_title_star :hover {
+
+    color: blue;
+
+       -webkit-text-stroke-width: 1px;
+       -webkit-text-stroke-color: blue;
+
+}
+.pr_item_li {
+    float: left;
+    margin-left: 37px;
+}
+
+.pr_item_li ul li {
+    display: inline-block;
+    width: 180px;
+    height: 25px;
+    padding: 5px;
+
+}
+.nb-bold {
+    color: #35404f;
+    font-weight: 500;
+}
+.pr_item_li ul li .item_w {
+    display: inline-block;
+    width: 180px;
+    height: 25px;
+    padding: 5px;
+    color:red;
+
+}
+li.item_w span {
+    color: #333 !important;
+    font-weight: 600;
+    padding-right:5px;
+}
+span.inr_p {
+    color: red !important;
+    font-weight: 400;
+    padding-right:5px;
+}
+.pr_display_card {
+    margin-top: 9px;
+    border: 1px solid #f1f1f1;
+    border-radius: 5px 5px 0 5px;
+    background: #fff;
+    margin-bottom: 5px;
+    -webkit-box-shadow: 0 1px 3px -3px
+}
+
+.pr_content_card {
+    padding: 5px;
+    height: 155px;
+    /* border-radius: 97px; */
+    /* background: #FFF; */
+}

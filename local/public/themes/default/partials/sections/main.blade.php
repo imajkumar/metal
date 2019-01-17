@@ -132,12 +132,7 @@
 																										 <?php
 																									 }
 																									 ?>
-																									 
-
-
-
-
- 																								 <i class="fa fa-inr" aria-hidden="true"></i>
+																									  																								 <i class="fa fa-inr" aria-hidden="true"></i>
  																								 {{$value_pArr->price}}<br>
 																								 </span>
 																								 <span style="font-size:12px;">

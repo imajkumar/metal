@@ -62,7 +62,22 @@
                 		direction: 'up',
                 		easing: 'swing'
                 	});
+                  //ajax pagination
+                     $("#results" ).load(BASE_URL+'/api/getProductList');
+                     $("#results").on( "click", ".pagination a", function (e){
+                  		e.preventDefault();
+                  		$(".loading-div").show(); //show loading element
+                  		var page = $(this).attr("data-page"); //get page number from link
+                  		$("#results").load(BASE_URL+'/api/getProductList',{"page":page}, function(){ //get content from PHP page
+                  			$(".loading-div").hide(); //once done, hide loading element
+                  		});
 
+                  	});
+
+
+
+
+                  //ajax pagination
                   //product filter
                 //  console.log($('input[name="aj_itemdata"]:checked').serialize());
                     $('input[type="checkbox"]').click(function(){

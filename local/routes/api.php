@@ -19,5 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/login','UserController@getAPILogin')->name('getAPILogin');
+Route::get('/getProductList','HomeController@getProductList')->name('getProductList');
+Route::post('/getProductList','HomeController@getProductList')->name('getProductList');
 
 //added alpha
