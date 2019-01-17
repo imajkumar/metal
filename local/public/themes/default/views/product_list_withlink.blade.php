@@ -170,7 +170,7 @@ $filter_arr_data=$prodt_data->data->filters;
                              $request->getBody();
                             // {"foo":"bar"}
                         });
-                        $response = $client->request('POST', 'http://api.metalbaba.local/customer_web/product_list', [
+                        $response = $client->request('POST', Config::get('ayra.apiList.PRODUCT_LIST'), [
                           'json'    => [
                             'API_TOKEN' => '',
                             'category_id' => $pid,

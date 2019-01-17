@@ -1452,12 +1452,12 @@ figure {
     border-radius: 25px; }
   .btn.btn-default {
     color: #ffffff;
-    background-color: #0cd4d2;
-    border: 1px solid #0cd4d2; }
+    background-color: #0093F3;
+    border: 1px solid #0093F3; }
     .btn.btn-default:hover, .btn.btn-default:active, .btn.btn-default:focus {
       color: #ffffff;
-      background-color: #0bc6c4;
-      border: 1px solid #0bc6c4; }
+      background-color: #0093F3;
+      border: 1px solid #0093F3; }
   .btn.btn-dark {
     color: #ffffff;
     background-color: #35404f;

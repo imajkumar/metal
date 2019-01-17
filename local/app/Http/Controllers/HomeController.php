@@ -78,6 +78,12 @@ class HomeController extends Controller
 
      }
 
+
+     public function view_all_prices(){
+       $theme = Theme::uses('default')->layout('layout');
+       $data = ['info' => 'Hello World'];
+       return $theme->scope('view_all_prices', $data)->render();
+     }
      public function product_seller_list(){
        echo "string";
        die;

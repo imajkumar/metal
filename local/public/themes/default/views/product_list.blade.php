@@ -43,7 +43,7 @@ span.list_attribute_itemname_a {
                     <?php
                      use GuzzleHttp\Client;
                      $client = new Client();
-                     $response = $client->post('http://api.metalbaba.local/customer_web/product_filter');
+                     $response = $client->post(Config::get('ayra.apiList.PRODUCT_FILTER'));
                      $product_data=json_decode($response->getBody()->getContents());
                     // echo "<pre>";
 
@@ -102,7 +102,7 @@ span.list_attribute_itemname_a {
                <?php
                 //use GuzzleHttp\Client;
                 $client = new Client();
-                $response = $client->post('http://api.metalbaba.local/customer_web_api/product_list');
+                $response = $client->post(Config::get('ayra.apiList.PRODUCT_LIST'));
                 $product_data=json_decode($response->getBody()->getContents());
 
 

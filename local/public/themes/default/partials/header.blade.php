@@ -41,7 +41,7 @@
 
                                               $client = new Client();
 
-                                              $response = $client->post('http://api.metalbaba.local/customer_web_api/notification_list');
+                                              $response = $client->post(Config::get('ayra.apiList.NOTIFICATION_LIST'));
                                               $login_data=json_decode($response->getBody()->getContents());
                                               $notification_arr=$login_data->data->data;
                                               foreach ($notification_arr as $key => $value) {

@@ -57,7 +57,7 @@
 
 									 });
 									 //product list
-			             $response = $client->request('POST', 'http://api.metalbaba.local/customer_web/home', [
+			             $response = $client->request('POST', Config::get('ayra.apiList.HOME'), [
 			               'json'    => [
 			                 'API_TOKEN' =>'',
 			                 'page' => '1'
@@ -111,12 +111,7 @@
 																				 <?php
 
 																				 foreach ($home_data->data->data[1]->card_data as $key_p => $value_pArr) {
-
-
-
-
-																					// print_r($value_pArr->timestamp);
-																					 $tot=$value_pArr->timestamp;
+																					  $tot=$value_pArr->timestamp;
 
 																					?>
 
@@ -125,14 +120,32 @@
  																					 <div class="card">
  																								 <span style="font-size:12px;">{{$value_pArr->product_name}}</span>
  																								 <br>
- 																								 <span style="font-size:12px">
- 																								 <i  style="color:red" class="fa fa-caret-down" aria-hidden="true"></i>
+ 																								 <span style="font-size:12px; color:<?php  echo $value_pArr->is_incremented ==1 ? 'green':'red'?>">
+																									 <?php
+																									 if($value_pArr->is_incremented){
+																										 ?>
+																										  <i  style="color:green" class="fa fa-caret-up" aria-hidden="true"></i>
+																										 <?php
+																									 }else{
+																										 ?>
+																										  <i  style="color:red" class="fa fa-caret-down" aria-hidden="true"></i>
+																										 <?php
+																									 }
+																									 ?>
+																									 
+
+
+
+
  																								 <i class="fa fa-inr" aria-hidden="true"></i>
  																								 {{$value_pArr->price}}<br>
-																								 {{ \Carbon\Carbon::createFromTimestamp($tot)->format('F d, h:i A')}}
+																								 </span>
+																								 <span style="font-size:12px;">
+																									 {{ \Carbon\Carbon::createFromTimestamp($tot)->format('F d, h:i A')}}
+																								 </span>
 
 
- 																							 </span>
+
 
  																					 </div>
  																					 </li>

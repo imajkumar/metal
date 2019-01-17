@@ -39,6 +39,9 @@ Route::get('/product-list/{id}/{productname}', 'HomeController@product_list_cat'
 Route::get('/seller-list', 'HomeController@product_seller_list')->name('product_seller_list');
 
 Route::post('/product_filer_ajax', 'HomeController@product_filer_ajax')->name('product_filer_ajax');
+Route::get('/prices', 'HomeController@view_all_prices')->name('view_all_prices');
+
+
 
 
 
