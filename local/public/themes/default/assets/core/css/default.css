@@ -4355,16 +4355,18 @@ span.view_more_prices {
    color:#16426B;
  }
 
+
  /* product_cardlist */
  .pr_thumbnail {
     padding: 13px;
     margin-top: 6px;
     float: left;
+    min-height: 150px;
     background: transparent;
 }
  .pr_title_show .title {
     color: #22489B;
-    font-size: 16px;
+    font-size: 14px;
     float: left;
     font-weight: 600;
     margin: 16px 0 0 32px;
@@ -4376,24 +4378,19 @@ span.view_more_prices {
     font-size: 20px;
 }
 .pr_title_star :hover {
-
     color: blue;
-
        -webkit-text-stroke-width: 1px;
        -webkit-text-stroke-color: blue;
-
 }
 .pr_item_li {
     float: left;
     margin-left: 37px;
 }
-
 .pr_item_li ul li {
     display: inline-block;
     width: 180px;
-    height: 25px;
-    padding: 5px;
-
+    height: 15px;
+    padding: 0px;
 }
 .nb-bold {
     color: #35404f;
@@ -4405,7 +4402,6 @@ span.view_more_prices {
     height: 25px;
     padding: 5px;
     color:red;
-
 }
 li.item_w span {
     color: #333 !important;
@@ -4423,12 +4419,28 @@ span.inr_p {
     border-radius: 5px 5px 0 5px;
     background: #fff;
     margin-bottom: 5px;
-    -webkit-box-shadow: 0 1px 3px -3px
+    height: 201px
+    -webkit-box-shadow: 0 2px 3px -3px
 }
-
 .pr_content_card {
     padding: 5px;
     height: 155px;
-    /* border-radius: 97px; */
-    /* background: #FFF; */
+}
+span.comp_name {
+    float: left;
+    padding: 1px;
+    margin-top: 14px;
+    width: 54%;
+    font-size: 12px;
+}
+span.comp_location {
+    float: left;
+    margin: 5px;
+    font-size: 12px;
+    margin-top: 0px;
+}
+span.comp_img_tag {
+    float: right;
+    margin-right: -8px;
+    margin-top: -13px;
 }

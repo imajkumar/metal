@@ -102,7 +102,7 @@ span.list_attribute_itemname_a {
                 <style type="text/css">
                /* .contents{margin: 20px;padding: 20px;list-style: none;background: #F9F9F9;border: 1px solid #ddd;border-radius: 5px;} */
                .contents li{margin-bottom: 10px;}
-               .loading-div{position: absolute;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, 0.56);z-index: 999;display:none;}
+               .loading-div{position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: 999;display:none;}
                .loading-div img {margin-top: 20%;margin-left: 50%;}
                 </style>
                  <div class="loading-div"><img src="{{ asset('local/public/themes/default/assets/core/img/ajax-loader.gif') }}" ></div>
@@ -112,7 +112,7 @@ span.list_attribute_itemname_a {
                    <div class="row">
                      <div class="col-md-2">
                         <div class="pr_thumbnail">
-                          <img width="145px" src="http://res.cloudinary.com/metb/image/upload/c_fit,h_173,w_247/Stainless-Steel-Circle-2012B-AOD-027mm76204">
+                          <img width="145px" src="#">
                         </div>
                      </div>
                      <div class="col-md-7">
@@ -127,7 +127,7 @@ span.list_attribute_itemname_a {
                         <div class="pr_item_li">
                           <ul class="list-inline">
                             <li>
-                              Ajay:<span class="nb-bold">Kumar</span>
+                              Ajay:dd<span class="nb-bold">Kumar</span>
                             </li>
                               <li>Kumar:Ajay</li>
                             </ul>
@@ -147,109 +147,24 @@ span.list_attribute_itemname_a {
                         </div>
                      </div>
                      <div class="col-md-3">
-                       ok
+                        <span class="comp_name">Compan name</span>
+                        <span class="comp_location">location
+                        <span class="comp_img_tag">
+                          <img src="http://res.cloudinary.com/metb/image/upload/ABGLIM472338483" alt"" width="75px">
+
+                        </span>
+                        <span>
+                          <button type="button" class="btn btn-primary btn-md" name="button">PLACE ENQUIRY</button>
+                        </span>
                      </div>
                    </div>
                    </div>
-
-                   
 
 
                    <!-- content will be loaded here -->
                  </div>
 
                <!-- hedaer for product filter  -->
-               <?php
-                //use GuzzleHttp\Client;
-                $client = new Client();
-                $response = $client->post(Config::get('ayra.apiList.PRODUCT_LIST'));
-                $product_data=json_decode($response->getBody()->getContents());
-
-
-                foreach ($product_data->data->data as $key => $value) {
-                //  echo "<pre>";
-                //  print_r($value->attribute_list);
-                  ?>
-                  <div class="product_list_card" style="margin-top: 23px; ;background:#FFF;min-height:160px">
-                     <div class="row">
-                         <div class="col-md-2">
-                           <div class="img_product_list">
-                             <img  class="img-pro_1" style="margin: 20px;" src="{{$value->image_id}}" alt="" width="100%">
-                           </div>
-                         </div>
-                         <div class="col-md-6">
-                           <h2>
-                           <a data-ng-href="/product-detail/58/Stainless-Steel-Circle-201-2B-AOD-0-27mm" target="_blank" href="/product-detail/58/Stainless-Steel-Circle-201-2B-AOD-0-27mm">
-                               <span itemprop="name" style="color:#2F57AF;margin: 5px;font-size: 16px;font-weight: 600;"class="ng-binding">{{ $value->name}}</span>
-                           </a>
-
-                           </h2>
-
-
-                           <span class="starme" style="float: right; margin-top: -29px;font-size: 22px;">            <a href="" A:link { COLOR: black; TEXT-DECORATION: none; font-weight: normal }
-                             A:visited { COLOR: black; TEXT-DECORATION: none; font-weight: normal }
-                             A:active { COLOR: black; TEXT-DECORATION: none }
-                             A:hover { COLOR: blue; TEXT-DECORATION: none; font-weight: none }> <i class="fa fa-star-o" aria-hidden="true"></i></a>
-                           </span>
-                           <div class="row">
-                             <?php
-                             foreach ($value->attribute_list as $attr_key => $attr_value) {
-                               //echo "<pre>";
-                               //print_r($attr_value->value);
-
-
-                               if(!empty($attr_value->value)){
-
-                                 ?>
-                                 <div class="list_attribute">
-                                   {{$attr_value->name}}:<span class="list_attribute_itemname">{{$attr_value->value}}</span>
-                                 </div>
-                                 <?php
-                               }
-                             }
-                             ?>
-                             <?php
-                             if(!empty($value->moq)){
-                               $moq=$value->moq;
-                               ?>
-                               <div class="list_attribute_a">
-                                 <p>{{$moq}} {{$value->unit_title}} </p><span class="attr_item_m">(Min. Order)</span>
-                               </div>
-                               <?php
-                             }
-                              ?>
-
-
-                             <div class="list_attribute_a">
-                              <span class="list_attribute_itemname_a">
-                                <span style="color: #000;padding-right:4px; margin-left:5px;padding-bottom: 2px; font-size: 12px;float: left; width: 100%;"><span><i style="color:red" class="fa fa-inr" aria-hidden="true"> <strong>{{$value->price}}</strong></i> <span style="color:#ccc">/ {{$value->unit_code}}</span></span></span>
-                                </span>
-                             </div>
-
-                           </div>
-
-                           </div>
-                         <div class="col-md-4">
-                           <div class="gold_starme_text" style="margin-top:5px;">
-                             <span>{{$value->seller_company}}</span><br>
-                             <span style="margin-top:5px;">{{$value->location}} {{$value->country_name}}</span>
-                           </div>
-                           <div class="gold_starme">
-                               <img src="http://res.cloudinary.com/metb/image/upload/ABGLIM472338483" alt"" width="75px" style="float: right; margin-top: -42px;">
-                           </div>
-                           <br>
-                           <span><button style="margin-top:20px" type="button" name="button" class="btn btn-primary btn-md">PLACE ENQUIRY</button></span>
-                         </div>
-                     </div>
-                  </div>
-
-
-                  <?php
-
-                }
-
-
-               ?>
 
              </div>
         </div>

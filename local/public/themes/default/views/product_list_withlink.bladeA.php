@@ -33,6 +33,8 @@ span.list_attribute_itemname_a {
     margin-top: 5px;
 }
 </style>
+
+
 <section class="section light-backgorund">
     <div class="container">
         <div class="row">
@@ -50,13 +52,7 @@ span.list_attribute_itemname_a {
                     foreach ($filter_arr as $key => $value) {
                       // code...
                     }
-                    // echo "<pre>";
-                    // print_r($filter_arr[1]);
-                    //
-                    // foreach ($filter_arr as $key => $value) { //Bakware
-                    //
-                    // }
-                    // die;
+
 
                     //------------------------------re
 
@@ -319,3 +315,326 @@ $filter_arr_data=$prodt_data->data->filters;
         </div>
       </div>
 </section>
+
+
+
+<div class="product_list_card_container">
+<!-- hedaer for product filter  -->
+  <?php
+  use GuzzleHttp\Client;
+  use GuzzleHttp\Middleware;
+  $client = new Client();
+  if(isset($_GET["page"]))
+  {
+     if(Request::segment(1)=='product-list'){
+         $page=app('request')->input('page');
+         $pid=Request::segment(2);
+
+        $clientHandler = $client->getConfig('handler');
+        // Create a middleware that echoes parts of the request.
+        $tapMiddleware = Middleware::tap(function ($request) {
+             $request->getHeaderLine('Content-Type');
+            // application/json
+             $request->getBody();
+            // {"foo":"bar"}
+        });
+        $response = $client->request('POST', Config::get('ayra.apiList.PRODUCT_LIST'), [
+          'json'    => [
+            'API_TOKEN' => '',
+            'category_id' => $pid,
+            'filters' => '[]',
+            'is_gold_supplier' => '0',
+            'is_trade_assurance' => '0',
+            'moq' => '0',
+            'order' => 'asc',
+            'page' => $page,
+            'search_keyword' => '',
+            'sort' => '',
+      ],
+      'handler' => $tapMiddleware($clientHandler)
+  ]);
+  $pFilterData=json_decode($response->getBody()->getContents());
+
+
+  foreach ($pFilterData->data->data as $key => $value_data) {
+     ?>
+     <div class="product_list_card" style="margin-top: 23px; ;background:#FFF;min-height:160px">
+        <div class="row">
+
+            <div class="col-md-2">
+              <div class="img_product_list">
+                <img  class="img-pro_1" style="margin: 20px;" src="{{$value_data->image}}" alt="" width="100%">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h2>
+              <a data-ng-href="/product-detail/58/Stainless-Steel-Circle-201-2B-AOD-0-27mm" target="_blank" href="/product-detail/58/Stainless-Steel-Circle-201-2B-AOD-0-27mm">
+                  <span itemprop="name" style="color:#2F57AF;margin: 5px;font-size: 16px;font-weight: 600;"class="ng-binding">{{ $value_data->name}}</span>
+              </a>
+              </h2>
+              <span class="starme" style="float: right; margin-top: -29px;font-size: 22px;">            <a href="" A:link { COLOR: black; TEXT-DECORATION: none; font-weight: normal }
+                A:visited { COLOR: black; TEXT-DECORATION: none; font-weight: normal }
+                A:active { COLOR: black; TEXT-DECORATION: none }
+                A:hover { COLOR: blue; TEXT-DECORATION: none; font-weight: none }> <i class="fa fa-star-o" aria-hidden="true"></i></a>
+              </span>
+              <div class="row">
+                <?php
+                foreach ($value_data->attribute_list as $attr_key => $attr_value) {
+                   if(!empty($attr_value->value)){
+                    ?>
+                    <div class="list_attribute">
+                      {{$attr_value->name}}:<span class="list_attribute_itemname">{{$attr_value->value}}</span>
+                    </div>
+                    <?php
+                  }
+                }
+                ?>
+                <?php
+                if(!empty($value_data->moq)){
+                  $moq=$value_data->moq;
+                  ?>
+                  <div class="list_attribute_a">
+                    <p>{{$moq}} {{$value_data->unit_title}} </p><span class="attr_item_m">(Min. Order)</span>
+                  </div>
+                  <?php
+                }
+                 ?>
+                <div class="list_attribute_a">
+                 <span class="list_attribute_itemname_a">
+                   <span style="color: #000;padding-right:4px; margin-left:5px;padding-bottom: 2px; font-size: 12px;float: left; width: 100%;"><span><i style="color:red" class="fa fa-inr" aria-hidden="true"> <strong>{{$value_data->price}}</strong></i> <span style="color:#ccc">/ {{$value_data->unit_code}}</span></span></span>
+                   </span>
+                </div>
+              </div>
+              </div>
+              <div class="col-md-4">
+                <div class="gold_starme_text" style="margin-top:5px;">
+                  <span>{{$value_data->seller_company}}</span><br>
+                  <span style="margin-top:5px;">{{$value_data->location}} {{$value_data->country_name}}</span>
+                </div>
+                <div class="gold_starme">
+                    <img src="http://res.cloudinary.com/metb/image/upload/ABGLIM472338483" alt"" width="75px" style="float: right; margin-top: -42px;">
+                </div>
+                <br>
+                <span><button style="margin-top:20px" type="button" name="button" class="btn btn-primary btn-md">PLACE ENQUIRY</button></span>
+              </div>
+        </div>
+     </div>
+     <?php
+  }
+  //pagination product
+  ?>
+  <!-- paging 2 -->
+  <?php
+  $Curr_URL=url()->full();
+  $record_per_page = $pFilterData->data->per_page;
+  $page = '';
+  if(isset($_GET["page"]))
+  {
+   $page = $_GET["page"];
+
+  }
+  else
+  {
+   $page = 1;
+
+  }
+  $start_from = ($page-1)*$record_per_page;
+  $total_records = $pFilterData->data->total;
+  $total_pages = ceil($total_records/$record_per_page);
+  $start_loop = $page;
+  $difference = $total_pages - $page;
+  if($difference <= 10)
+  {
+   $start_loop = $total_pages - 10;
+  }
+  $end_loop = $start_loop + 10;
+  if($page>$total_pages){
+      ?>
+      <div class="alert alert">
+        <strong>Info!</strong> no record found!
+      </div>
+      <?php
+  }
+  ?>
+  <nav aria-label="...">
+  <ul class="pagination">
+    <?php
+    $pagiLink="";
+    if($page > 1)
+    {
+      $pagiLink .= "<li><a href='?page=1'>First</a></li>";
+      $pagiLink .= "<li><a href='?page=".($page - 1)."'><<</a></li>";
+    }
+    for($i=$start_loop; $i<=$end_loop; $i++)
+    {
+
+      if($page==$i){
+        $cls_only="<span class='sr-only'>(current)</span>";
+        $cls_active="active";
+      }else{
+        $cls_only="";
+        $cls_active="";
+      }
+     $pagiLink .= "<li class='$cls_active'><a  href='?page=".$i."'>".$i." ".$cls_only."</a></li>";
+    }
+    if($page <= $end_loop)
+    {
+     $pagiLink .= "<li><a href='?page=".($page + 1)."'>>></a></li>";
+     $pagiLink .= "<li><a href='?page=".$total_pages."'>Last</a></li>";
+    }
+    echo $pagiLink;
+    ?>
+   </ul>
+   </nav>
+    <!-- paging 2-->
+
+  <?php
+     }
+
+  }
+  else
+  {
+
+
+
+foreach ($pro_data_keyword->data->data as $key => $value_data) {
+   ?>
+   <div class="product_list_card" style="margin-top: 23px; ;background:#FFF;min-height:160px">
+      <div class="row">
+
+          <div class="col-md-2">
+            <div class="img_product_list">
+              <img  class="img-pro_1" style="margin: 20px;" src="{{$value_data->image}}" alt="" width="100%">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <h2>
+            <a data-ng-href="/product-detail/58/Stainless-Steel-Circle-201-2B-AOD-0-27mm" target="_blank" href="/product-detail/58/Stainless-Steel-Circle-201-2B-AOD-0-27mm">
+                <span itemprop="name" style="color:#2F57AF;margin: 5px;font-size: 16px;font-weight: 600;"class="ng-binding">{{ $value_data->name}}</span>
+            </a>
+            </h2>
+            <span class="starme" style="float: right; margin-top: -29px;font-size: 22px;">            <a href="" A:link { COLOR: black; TEXT-DECORATION: none; font-weight: normal }
+              A:visited { COLOR: black; TEXT-DECORATION: none; font-weight: normal }
+              A:active { COLOR: black; TEXT-DECORATION: none }
+              A:hover { COLOR: blue; TEXT-DECORATION: none; font-weight: none }> <i class="fa fa-star-o" aria-hidden="true"></i></a>
+            </span>
+            <div class="row">
+              <?php
+              foreach ($value_data->attribute_list as $attr_key => $attr_value) {
+                 if(!empty($attr_value->value)){
+
+                  ?>
+                  <div class="list_attribute">
+                    {{$attr_value->name}}:<span class="list_attribute_itemname">{{$attr_value->value}}</span>
+                  </div>
+                  <?php
+                }
+              }
+              ?>
+              <?php
+              if(!empty($value_data->moq)){
+                $moq=$value_data->moq;
+                ?>
+                <div class="list_attribute_a">
+                  <p>{{$moq}} {{$value_data->unit_title}} </p><span class="attr_item_m">(Min. Order)</span>
+                </div>
+                <?php
+              }
+               ?>
+              <div class="list_attribute_a">
+               <span class="list_attribute_itemname_a">
+                 <span style="color: #000;padding-right:4px; margin-left:5px;padding-bottom: 2px; font-size: 12px;float: left; width: 100%;"><span><i style="color:red" class="fa fa-inr" aria-hidden="true"> <strong>{{$value_data->price}}</strong></i> <span style="color:#ccc">/ {{$value_data->unit_code}}</span></span></span>
+                 </span>
+              </div>
+            </div>
+
+            </div>
+
+            <div class="col-md-4">
+              <div class="gold_starme_text" style="margin-top:5px;">
+                <span>{{$value_data->seller_company}}</span><br>
+                <span style="margin-top:5px;">{{$value_data->location}} {{$value_data->country_name}}</span>
+              </div>
+              <div class="gold_starme">
+                  <img src="http://res.cloudinary.com/metb/image/upload/ABGLIM472338483" alt"" width="75px" style="float: right; margin-top: -42px;">
+              </div>
+              <br>
+              <span><button style="margin-top:20px" type="button" name="button" class="btn btn-primary btn-md">PLACE ENQUIRY</button></span>
+            </div>
+      </div>
+   </div>
+
+   <?php
+}
+?>
+<!-- paging 2 -->
+<?php
+$Curr_URL=url()->full();
+$record_per_page = 10;
+$page = '';
+if(isset($_GET["page"]))
+{
+ $page = $_GET["page"];
+
+}
+else
+{
+ $page = 1;
+
+}
+$start_from = ($page-1)*$record_per_page;
+$total_records =$pro_data_keyword->data->total;
+$total_pages = ceil($total_records/$record_per_page);
+$start_loop = $page;
+$difference = $total_pages - $page;
+if($difference <= 10)
+{
+ $start_loop = $total_pages - 10;
+}
+$end_loop = $start_loop + 10;
+if($page>$total_pages){
+    ?>
+    <div class="alert alert">
+      <strong>Info!</strong> no record found!
+    </div>
+    <?php
+}
+
+?>
+<nav aria-label="...">
+<ul class="pagination">
+  <?php
+
+  $pagiLink="";
+  if($page > 1)
+  {
+    $pagiLink .= "<li><a href='?page=1'>First</a></li>";
+    $pagiLink .= "<li><a href='?page=".($page - 1)."'><<</a></li>";
+  }
+  for($i=$start_loop; $i<=$end_loop; $i++)
+  {
+
+    if($page==$i){
+      $cls_only="<span class='sr-only'>(current)</span>";
+      $cls_active="active";
+    }else{
+      $cls_only="";
+      $cls_active="";
+    }
+   $pagiLink .= "<li class='$cls_active'><a  href='?page=".$i."'>".$i." ".$cls_only."</a></li>";
+  }
+  if($page <= $end_loop)
+  {
+   $pagiLink .= "<li><a href='?page=".($page + 1)."'>>></a></li>";
+   $pagiLink .= "<li><a href='?page=".$total_pages."'>Last</a></li>";
+  }
+  echo $pagiLink;
+  ?>
+ </ul>
+ </nav>
+  <!-- paging 2-->
+
+<?php
+  }
+  ?>
+</div>

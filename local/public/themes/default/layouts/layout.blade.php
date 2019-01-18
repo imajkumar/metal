@@ -16,7 +16,6 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('local/public/themes/default/assets/core/css/swiper.css') }}" />
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css" />
 
-
 <!-- this is default skin you can replace that with: dark.css, yellow.css, red.css ect -->
 <link id="pagestyle" rel="stylesheet" type="text/css" href="{{ asset('local/public/themes/default/assets/core/css/default.css') }}" />
 <link id="pagestyle" rel="stylesheet" type="text/css" href="{{ asset('local/public/themes/default/assets/core/css/custom.css') }}" />
@@ -55,7 +54,6 @@
                 <script type="text/javascript" src="https://codeseven.github.io/toastr/build/toastr.min.js"></script>
                 <!-- http://api.metalbaba.local/customer_web_api/category_home_list -->
 
-
                 <script>
                 $(function(){
                 	$('.demo1').easyTicker({
@@ -63,21 +61,25 @@
                 		easing: 'swing'
                 	});
                   //ajax pagination
-                     $("#results" ).load(BASE_URL+'/api/getProductList');
+                    var txtpidID=$('#txtpidID').val();
+                    if(txtpidID>0){
+                      tpid=txtpidID;
+                    }else{
+                      tpid="";
+                    }
+
+                     $("#results" ).load(BASE_URL+'/api/getProductList?pid='+tpid);
                      $("#results").on( "click", ".pagination a", function (e){
                   		e.preventDefault();
                   		$(".loading-div").show(); //show loading element
                   		var page = $(this).attr("data-page"); //get page number from link
-                  		$("#results").load(BASE_URL+'/api/getProductList',{"page":page}, function(){ //get content from PHP page
+                  		$("#results").load(BASE_URL+'/api/getProductList',{"page":page,"pid":tpid}, function(){ //get content from PHP page
                   			$(".loading-div").hide(); //once done, hide loading element
                   		});
 
                   	});
-
-
-
-
                   //ajax pagination
+
                   //product filter
                 //  console.log($('input[name="aj_itemdata"]:checked').serialize());
                     $('input[type="checkbox"]').click(function(){

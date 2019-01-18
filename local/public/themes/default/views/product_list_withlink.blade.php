@@ -33,10 +33,16 @@ span.list_attribute_itemname_a {
     margin-top: 5px;
 }
 </style>
+<?php
+if(Request::segment(1)=='product-list'){
+    $pid=Request::segment(2);
+  }
+?>
+<input type="hidden" name="txtpidID" id="txtpidID" value="{{$pid}}">
 <section class="section light-backgorund">
     <div class="container">
         <div class="row">
-             <div class="col-md-4">
+             <div class="col-md-3">
                <div class="related_categorylist" style="background:#FFF">
                   <div class="related_categorylist-items">
                     Related Category <br>
@@ -110,7 +116,7 @@ $filter_arr_data=$prodt_data->data->filters;
                                  <svg class="svg svg-icon" viewBox="0 0 20 20">
                                      <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
                                  </svg>
-                                 <label>{{ strlen($value_i->name)>=40 ? substr($value_i->name, 0, 40)."..." : $value_i->name }}</label>
+                                 <label>{{ strlen($value_i->name)>=20 ? substr($value_i->name, 0, 20)."..." : $value_i->name }}</label>
 
                              </div>
                          </div>
@@ -132,12 +138,12 @@ $filter_arr_data=$prodt_data->data->filters;
 <!-- Product Feature -->
                </div>
              </div>
-             <div class="col-md-8">
+             <div class="col-md-9">
                <!-- hedaer for product filter  -->
                 <div class="row" style="margin-top:12px;">
                     <div class="col-md-6">
                       <div class="p_list_item_filter_layour">
-                        <a href="#" class="aj_button"><span>PRODUCTS </span></a>
+                        <a href="{{ URL::to('/product-list')}}" class="aj_button"><span>PRODUCTS </span></a>
                         <a href="{{ URL::to('/seller-list')}}" class="aj_button"><span>SUPPLIERS </span></a>
                       </div>
                     </div>
@@ -150,326 +156,74 @@ $filter_arr_data=$prodt_data->data->filters;
                     </div>
                 </div>
                 <br>
-                <div class="product_list_card_container">
-               <!-- hedaer for product filter  -->
-                  <?php
-                  use GuzzleHttp\Client;
-                  use GuzzleHttp\Middleware;
-                  $client = new Client();
-                  if(isset($_GET["page"]))
-                  {
-                     if(Request::segment(1)=='product-list'){
-                         $page=app('request')->input('page');
-                         $pid=Request::segment(2);
 
-                        $clientHandler = $client->getConfig('handler');
-                        // Create a middleware that echoes parts of the request.
-                        $tapMiddleware = Middleware::tap(function ($request) {
-                             $request->getHeaderLine('Content-Type');
-                            // application/json
-                             $request->getBody();
-                            // {"foo":"bar"}
-                        });
-                        $response = $client->request('POST', Config::get('ayra.apiList.PRODUCT_LIST'), [
-                          'json'    => [
-                            'API_TOKEN' => '',
-                            'category_id' => $pid,
-                            'filters' => '[]',
-                            'is_gold_supplier' => '0',
-                            'is_trade_assurance' => '0',
-                            'moq' => '0',
-                            'order' => 'asc',
-                            'page' => $page,
-                            'search_keyword' => '',
-                            'sort' => '',
-                      ],
-                      'handler' => $tapMiddleware($clientHandler)
-                  ]);
-                  $pFilterData=json_decode($response->getBody()->getContents());
-
-
-                  foreach ($pFilterData->data->data as $key => $value_data) {
-                     ?>
-                     <div class="product_list_card" style="margin-top: 23px; ;background:#FFF;min-height:160px">
-                        <div class="row">
-
-                            <div class="col-md-2">
-                              <div class="img_product_list">
-                                <img  class="img-pro_1" style="margin: 20px;" src="{{$value_data->image}}" alt="" width="100%">
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <h2>
-                              <a data-ng-href="/product-detail/58/Stainless-Steel-Circle-201-2B-AOD-0-27mm" target="_blank" href="/product-detail/58/Stainless-Steel-Circle-201-2B-AOD-0-27mm">
-                                  <span itemprop="name" style="color:#2F57AF;margin: 5px;font-size: 16px;font-weight: 600;"class="ng-binding">{{ $value_data->name}}</span>
-                              </a>
-                              </h2>
-                              <span class="starme" style="float: right; margin-top: -29px;font-size: 22px;">            <a href="" A:link { COLOR: black; TEXT-DECORATION: none; font-weight: normal }
-                                A:visited { COLOR: black; TEXT-DECORATION: none; font-weight: normal }
-                                A:active { COLOR: black; TEXT-DECORATION: none }
-                                A:hover { COLOR: blue; TEXT-DECORATION: none; font-weight: none }> <i class="fa fa-star-o" aria-hidden="true"></i></a>
-                              </span>
-                              <div class="row">
-                                <?php
-                                foreach ($value_data->attribute_list as $attr_key => $attr_value) {
-                                   if(!empty($attr_value->value)){
-                                    ?>
-                                    <div class="list_attribute">
-                                      {{$attr_value->name}}:<span class="list_attribute_itemname">{{$attr_value->value}}</span>
-                                    </div>
-                                    <?php
-                                  }
-                                }
-                                ?>
-                                <?php
-                                if(!empty($value_data->moq)){
-                                  $moq=$value_data->moq;
-                                  ?>
-                                  <div class="list_attribute_a">
-                                    <p>{{$moq}} {{$value_data->unit_title}} </p><span class="attr_item_m">(Min. Order)</span>
-                                  </div>
-                                  <?php
-                                }
-                                 ?>
-                                <div class="list_attribute_a">
-                                 <span class="list_attribute_itemname_a">
-                                   <span style="color: #000;padding-right:4px; margin-left:5px;padding-bottom: 2px; font-size: 12px;float: left; width: 100%;"><span><i style="color:red" class="fa fa-inr" aria-hidden="true"> <strong>{{$value_data->price}}</strong></i> <span style="color:#ccc">/ {{$value_data->unit_code}}</span></span></span>
-                                   </span>
-                                </div>
-                              </div>
-                              </div>
-                              <div class="col-md-4">
-                                <div class="gold_starme_text" style="margin-top:5px;">
-                                  <span>{{$value_data->seller_company}}</span><br>
-                                  <span style="margin-top:5px;">{{$value_data->location}} {{$value_data->country_name}}</span>
-                                </div>
-                                <div class="gold_starme">
-                                    <img src="http://res.cloudinary.com/metb/image/upload/ABGLIM472338483" alt"" width="75px" style="float: right; margin-top: -42px;">
-                                </div>
-                                <br>
-                                <span><button style="margin-top:20px" type="button" name="button" class="btn btn-primary btn-md">PLACE ENQUIRY</button></span>
-                              </div>
+                <!-- ajcode -->
+                <style type="text/css">
+               /* .contents{margin: 20px;padding: 20px;list-style: none;background: #F9F9F9;border: 1px solid #ddd;border-radius: 5px;} */
+               .contents li{margin-bottom: 10px;}
+               .loading-div{position: absolute;top: 0;left: 0;width: 100%;height: 100%;z-index: 999;display:none;}
+               .loading-div img {margin-top: 20%;margin-left: 50%;}
+                </style>
+                 <div class="loading-div"><img src="{{ asset('local/public/themes/default/assets/core/img/ajax-loader.gif') }}" ></div>
+                 <div id="results">
+                   <!-- content will be loaded here -->
+                   <div class="pr_display_card">
+                   <div class="row">
+                     <div class="col-md-2">
+                        <div class="pr_thumbnail">
+                          <img width="145px" src="#">
                         </div>
                      </div>
-                     <?php
-                  }
-                  //pagination product
-                  ?>
-                  <!-- paging 2 -->
-                  <?php
-                  $Curr_URL=url()->full();
-                  $record_per_page = $pFilterData->data->per_page;
-                  $page = '';
-                  if(isset($_GET["page"]))
-                  {
-                   $page = $_GET["page"];
+                     <div class="col-md-7">
+                       <div class="pr_content_card">
+                        <div class="pr_title_show">
+                          <a href="#" class="title">Stainless Steel Circle 201/2B AOD 0.27mm</a>
+                        </div>
+                        <div class="pr_title_star">
+                          <i class="fa fa-star-o" title="Follow" aria-hidden="true"></i>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="pr_item_li">
+                          <ul class="list-inline">
+                            <li>
+                              Ajay:dd<span class="nb-bold">Kumar</span>
+                            </li>
+                              <li>Kumar:Ajay</li>
+                            </ul>
+                            <ul class="list-inline">
+                              <li>
+                                Ajay:Kumar
+                              </li>
+                                <li>Kumar:Ajay</li>
+                            </ul>
+                            <ul class="list-inline">
+                              <li class="item_w">
+                                <span>Ajay</span>(Min. Order)
+                              </li>
+                                  <span class="inr_p">125.22</span>/kg
+                            </ul>
+                        </div>
+                        </div>
+                     </div>
+                     <div class="col-md-3">
+                        <span class="comp_name">Compan name</span>
+                        <span class="comp_location">location
+                        <span class="comp_img_tag">
+                          <img src="http://res.cloudinary.com/metb/image/upload/ABGLIM472338483" alt"" width="75px">
 
-                  }
-                  else
-                  {
-                   $page = 1;
-
-                  }
-                  $start_from = ($page-1)*$record_per_page;
-                  $total_records = $pFilterData->data->total;
-                  $total_pages = ceil($total_records/$record_per_page);
-                  $start_loop = $page;
-                  $difference = $total_pages - $page;
-                  if($difference <= 10)
-                  {
-                   $start_loop = $total_pages - 10;
-                  }
-                  $end_loop = $start_loop + 10;
-                  if($page>$total_pages){
-                      ?>
-                      <div class="alert alert">
-                        <strong>Info!</strong> no record found!
-                      </div>
-                      <?php
-                  }
-                  ?>
-                  <nav aria-label="...">
-                  <ul class="pagination">
-                    <?php
-                    $pagiLink="";
-                    if($page > 1)
-                    {
-                      $pagiLink .= "<li><a href='?page=1'>First</a></li>";
-                      $pagiLink .= "<li><a href='?page=".($page - 1)."'><<</a></li>";
-                    }
-                    for($i=$start_loop; $i<=$end_loop; $i++)
-                    {
-
-                      if($page==$i){
-                        $cls_only="<span class='sr-only'>(current)</span>";
-                        $cls_active="active";
-                      }else{
-                        $cls_only="";
-                        $cls_active="";
-                      }
-                     $pagiLink .= "<li class='$cls_active'><a  href='?page=".$i."'>".$i." ".$cls_only."</a></li>";
-                    }
-                    if($page <= $end_loop)
-                    {
-                     $pagiLink .= "<li><a href='?page=".($page + 1)."'>>></a></li>";
-                     $pagiLink .= "<li><a href='?page=".$total_pages."'>Last</a></li>";
-                    }
-                    echo $pagiLink;
-                    ?>
-                   </ul>
-                   </nav>
-                    <!-- paging 2-->
-
-                  <?php
-                     }
-
-                  }
-                  else
-                  {
-
-
-
-                foreach ($pro_data_keyword->data->data as $key => $value_data) {
-                   ?>
-                   <div class="product_list_card" style="margin-top: 23px; ;background:#FFF;min-height:160px">
-                      <div class="row">
-
-                          <div class="col-md-2">
-                            <div class="img_product_list">
-                              <img  class="img-pro_1" style="margin: 20px;" src="{{$value_data->image}}" alt="" width="100%">
-                            </div>
-                          </div>
-                          <div class="col-md-6">
-                            <h2>
-                            <a data-ng-href="/product-detail/58/Stainless-Steel-Circle-201-2B-AOD-0-27mm" target="_blank" href="/product-detail/58/Stainless-Steel-Circle-201-2B-AOD-0-27mm">
-                                <span itemprop="name" style="color:#2F57AF;margin: 5px;font-size: 16px;font-weight: 600;"class="ng-binding">{{ $value_data->name}}</span>
-                            </a>
-                            </h2>
-                            <span class="starme" style="float: right; margin-top: -29px;font-size: 22px;">            <a href="" A:link { COLOR: black; TEXT-DECORATION: none; font-weight: normal }
-                              A:visited { COLOR: black; TEXT-DECORATION: none; font-weight: normal }
-                              A:active { COLOR: black; TEXT-DECORATION: none }
-                              A:hover { COLOR: blue; TEXT-DECORATION: none; font-weight: none }> <i class="fa fa-star-o" aria-hidden="true"></i></a>
-                            </span>
-                            <div class="row">
-                              <?php
-                              foreach ($value_data->attribute_list as $attr_key => $attr_value) {
-                                 if(!empty($attr_value->value)){
-
-                                  ?>
-                                  <div class="list_attribute">
-                                    {{$attr_value->name}}:<span class="list_attribute_itemname">{{$attr_value->value}}</span>
-                                  </div>
-                                  <?php
-                                }
-                              }
-                              ?>
-                              <?php
-                              if(!empty($value_data->moq)){
-                                $moq=$value_data->moq;
-                                ?>
-                                <div class="list_attribute_a">
-                                  <p>{{$moq}} {{$value_data->unit_title}} </p><span class="attr_item_m">(Min. Order)</span>
-                                </div>
-                                <?php
-                              }
-                               ?>
-                              <div class="list_attribute_a">
-                               <span class="list_attribute_itemname_a">
-                                 <span style="color: #000;padding-right:4px; margin-left:5px;padding-bottom: 2px; font-size: 12px;float: left; width: 100%;"><span><i style="color:red" class="fa fa-inr" aria-hidden="true"> <strong>{{$value_data->price}}</strong></i> <span style="color:#ccc">/ {{$value_data->unit_code}}</span></span></span>
-                                 </span>
-                              </div>
-                            </div>
-
-                            </div>
-
-                            <div class="col-md-4">
-                              <div class="gold_starme_text" style="margin-top:5px;">
-                                <span>{{$value_data->seller_company}}</span><br>
-                                <span style="margin-top:5px;">{{$value_data->location}} {{$value_data->country_name}}</span>
-                              </div>
-                              <div class="gold_starme">
-                                  <img src="http://res.cloudinary.com/metb/image/upload/ABGLIM472338483" alt"" width="75px" style="float: right; margin-top: -42px;">
-                              </div>
-                              <br>
-                              <span><button style="margin-top:20px" type="button" name="button" class="btn btn-primary btn-md">PLACE ENQUIRY</button></span>
-                            </div>
-                      </div>
+                        </span>
+                        <span>
+                          <button type="button" class="btn btn-primary btn-md" name="button">PLACE ENQUIRY</button>
+                        </span>
+                     </div>
+                   </div>
                    </div>
 
-                   <?php
-                }
-                ?>
-                <!-- paging 2 -->
-                <?php
-                $Curr_URL=url()->full();
-                $record_per_page = 10;
-                $page = '';
-                if(isset($_GET["page"]))
-                {
-                 $page = $_GET["page"];
 
-                }
-                else
-                {
-                 $page = 1;
+                   <!-- content will be loaded here -->
+                 </div>
+                 <!-- ajcode  -->
 
-                }
-                $start_from = ($page-1)*$record_per_page;
-                $total_records =$pro_data_keyword->data->total;
-                $total_pages = ceil($total_records/$record_per_page);
-                $start_loop = $page;
-                $difference = $total_pages - $page;
-                if($difference <= 10)
-                {
-                 $start_loop = $total_pages - 10;
-                }
-                $end_loop = $start_loop + 10;
-                if($page>$total_pages){
-                    ?>
-                    <div class="alert alert">
-                      <strong>Info!</strong> no record found!
-                    </div>
-                    <?php
-                }
-
-                ?>
-                <nav aria-label="...">
-                <ul class="pagination">
-                  <?php
-
-                  $pagiLink="";
-                  if($page > 1)
-                  {
-                    $pagiLink .= "<li><a href='?page=1'>First</a></li>";
-                    $pagiLink .= "<li><a href='?page=".($page - 1)."'><<</a></li>";
-                  }
-                  for($i=$start_loop; $i<=$end_loop; $i++)
-                  {
-
-                    if($page==$i){
-                      $cls_only="<span class='sr-only'>(current)</span>";
-                      $cls_active="active";
-                    }else{
-                      $cls_only="";
-                      $cls_active="";
-                    }
-                   $pagiLink .= "<li class='$cls_active'><a  href='?page=".$i."'>".$i." ".$cls_only."</a></li>";
-                  }
-                  if($page <= $end_loop)
-                  {
-                   $pagiLink .= "<li><a href='?page=".($page + 1)."'>>></a></li>";
-                   $pagiLink .= "<li><a href='?page=".$total_pages."'>Last</a></li>";
-                  }
-                  echo $pagiLink;
-                  ?>
-                 </ul>
-                 </nav>
-                  <!-- paging 2-->
-
-                <?php
-                  }
-                  ?>
-                </div>
 
 
                 </div>
