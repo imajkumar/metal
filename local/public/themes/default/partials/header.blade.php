@@ -110,7 +110,7 @@
                                   </button>
                                   <ul class="dropdown-menu ajmenu" role="menu">
                                       <li><a href="{{ URL::to('/product-list')}}">PRODUCTS</a></li>
-                                      <li><a href="#">SUPPLIERS</a></li>
+                                      <li><a href="{{ URL::to('/seller-list')}}">SUPPLIERS</a></li>
                                       <li><a href="#">BUY LEADS</a></li>
                                   </ul>
                                   </div>

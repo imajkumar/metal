@@ -4444,3 +4444,73 @@ span.comp_img_tag {
     margin-right: -8px;
     margin-top: -13px;
 }
+/*company */
+.company_list_card {
+    padding: 8px;
+    float: left;
+    margin-left: 23px;
+}
+.sh1{
+font-size: 16px;
+font-weight: 600;
+padding-bottom: 2px;
+color: #303f9f;
+}
+.img_circle{
+  border-radius: 50%;
+  width: 65px;
+}
+.splbxinh24 {
+    font-size: 14px;
+    font-weight: 600 !important;
+    color: #212121;
+    margin-bottom: 6px;
+}
+#navcontainer ul
+{
+margin: 0;
+padding: 0;
+list-style-type: none;
+text-align: center;
+}
+
+.navcontainer_aj ul li { display: inline;}
+
+.navcontainer_aj ul li a
+{
+float: left;
+text-decoration: none;
+padding: 15px;
+color: #000;
+background-color: #FFF;
+width: 24%;
+}
+
+.navcontainer_aj ul li a:hover
+{
+color: #000;
+background-color: #FFF;
+}
+
+
+div.navcontainer_aj {
+    margin-top: -91px;
+}
+.row.mecontailer {
+    margin-left: 4px;
+    margin-left: 2px;
+    float: left;
+    margin-top: -95px;
+    width: 527px;
+}
+.aj_button_req {
+    float: left;
+    margin-left: -25px;
+    margin-top: 52px;
+    background: transparent;
+    color: #16426b;
+}
+span.ist {
+    font-size: 13px;
+}
+.round { border-radius: 50%; }

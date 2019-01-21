@@ -8,6 +8,7 @@ use Theme;
 use Auth;
 use GuzzleHttp\Client;
 use GuzzleHttp\Middleware;
+use YoHang88\LetterAvatar\LetterAvatar;
 class HomeController extends Controller
 {
     /**
@@ -66,22 +67,171 @@ class HomeController extends Controller
     }
 
 
-//this controller is used for indentify users
+
+
+//this is used to get list of selller
+
+public function getSellerList(Request $request){
+  $pid=$request->pid;
+   if(!empty($pid)){
+     $pid_val=$pid;
+   }else{
+     $pid_val="";
+   }
+
+  $filter_type=[]; //code is still need to improved
+  //Get page number from Ajax
+  if(isset($_POST["page"])){
+   $page_number = filter_var($_POST["page"], FILTER_SANITIZE_NUMBER_INT, FILTER_FLAG_STRIP_HIGH); //filter number
+   if(!is_numeric($page_number)){die('Invalid page number!');} //incase of invalid page number
+  }else{
+   $page_number = 1; //if there's no page number, set it to 1
+  }
+  $client = new Client();
+  // Grab the client's handler instance.
+  $clientHandler = $client->getConfig('handler');
+  // Create a middleware that echoes parts of the request.
+  $tapMiddleware = Middleware::tap(function ($request) {
+       $request->getHeaderLine('Content-Type');
+      // application/json
+       $request->getBody();
+
+  });
+
+
+  $response = $client->request('POST', 'http://api.metalbaba.local/customer_web/seller_list', [
+           'json'    => [
+             'API_TOKEN' => '',
+             'category_id' =>$pid_val,
+             'filters' => $filter_type,
+             'is_gold_supplier' => '0',
+             'is_trade_assurance' => '0',
+             'moq' => '0',
+             'order' => 'asc',
+             'page' => $page_number,
+             'search_keyword' => '',
+             'sort' => '',
+       ],
+       'handler' => $tapMiddleware($clientHandler)
+   ]);
+  // echo $response->getBody()->getContents();
+$data_arr=json_decode($response->getBody()->getContents());
+
+$item_per_page 		= $data_arr->data->per_page; //item to display per page
+//get total number of records from database
+
+$get_total_rows = $data_arr->data->total; //hold total records in variable
+//break records into pages
+$total_pages = ceil($get_total_rows/$item_per_page);
+//position of records
+$page_position = (($page_number-1) * $item_per_page);
+//Limit our results within a specified range.
+
+
+
+
+
+
+//Display records fetched from database.
+$html='<ul class="contents">';
+// echo "<pre>";
+foreach ($data_arr->data->data as $key => $value) {
+
+  if($value->image==""){
+    $avatar = new LetterAvatar($value->name);
+
+  }else{
+  $avatar=$value->image;
+  }
+  $html='<div class="pr_display_card">
+  <div class="row">
+
+  <div class="col-md-2">
+     <div class="pr_thumbnail">
+
+      <img width="145px" class="img_circle" src="'.$avatar.'"  >
+   </div>
+  </div>
+  <div class="col-md-8">
+    <div class="pr_content_card">
+      <div class="company_list_card">
+      <ul class="list-inline">
+         <li>
+           <span class="sh1">'.$value->name.'</span> <span> '.$value->location.'</span>
+         </li>
+     </ul>
+     <span class="splbxinh24" >Main Product</span>
+     </div>
+    </div>
+     <div class="navcontainer_aj">
+       <ul>';
+        foreach ($value->main_products as $key => $mp_value) {
+          // echo "<pre>";
+          // print_r($mp_value);
+
+          $html .='<li><a href="#">
+            <img src="'.$mp_value->image.'" width="110%" style="min-height:110px;">
+            <span class="ist">'.$mp_value->name.'</span>
+
+          </a>
+          </li>';
+        }
+
+
+
+       $html .='</ul>
+       </div>
+     </div>
+  <div class="col-md-1">
+   <span class="comp_img_tag_img">
+     <img src="'.$value->group_image.'" alt"" width="75px">
+   </span>
+     <button type="button" class="btn btn-primary btn-ms aj_button_req" name="button">View Details</button>                   </div>
+  </div>
+  </div>';
+
+  echo $html .='</ul>';
+
+
+}
+echo '<div align="center">';
+// To generate links, we call the pagination function here.
+echo $this->paginate_function($item_per_page, $page_number, $get_total_rows, $total_pages);
+echo '</div>';
+
+}
+//this is used to get list of selller
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
-     public function getProductList(Request $request){
+public function getProductList(Request $request){
+$pid=$request->pid;
+ if(!empty($pid)){
+   $pid_val=$pid;
+ }else{
+   $pid_val="";
+ }
 
-       $pid=$request->pid;
-       if(!empty($pid)){
-         $pid_val=$pid;
-       }else{
-         $pid_val="";
-       }
-
+$filter_type = array();
+if(empty($request->filer_items)){
+ $filter_type = [];
+}else{
+$data=explode("i_A",$request->filer_items);
+$filter_type = array();
+foreach ($data as $key => $value) {
+    $data_arr=explode("@",$value);
+    $filter_type_vale[] =array('id' =>$data_arr[1]);
+    $filter_type = array(
+    'id' =>$data_arr[0],
+    'filter' =>$filter_type_vale,
+    );
+  }
+}
+    //print_r($filter_type);
+      $filter_type=[]; //code is still need to improved
        //Get page number from Ajax
        if(isset($_POST["page"])){
        	$page_number = filter_var($_POST["page"], FILTER_SANITIZE_NUMBER_INT, FILTER_FLAG_STRIP_HIGH); //filter number
@@ -102,11 +252,14 @@ class HomeController extends Controller
 
        });
        //product list
+
+    //   print_r($filter_type);
+
         $response = $client->request('POST', 'http://api.metalbaba.local/customer_web/product_list', [
                  'json'    => [
                    'API_TOKEN' => '',
                    'category_id' =>$pid_val,
-                   'filters' => [],
+                   'filters' => $filter_type,
                    'is_gold_supplier' => '0',
                    'is_trade_assurance' => '0',
                    'moq' => '0',
@@ -248,11 +401,23 @@ $html='<div class="product_list_card" style="margin-top: 23px; ;background:#FFF;
                      'filter' =>$filter_type_vale,
                    );
             }
-            $filter_type_vale[] = array('id' =>'2b');
+            /*$filter_type_vale[] = array('id' =>'2b');
              $filter_type[] = array(
                'id' =>'Bakeware Type',
                'filter' =>$filter_type_vale,
              );
+             */
+
+
+
+             //Get page number from Ajax
+             if(isset($_POST["page"])){
+             	$page_number = filter_var($_POST["page"], FILTER_SANITIZE_NUMBER_INT, FILTER_FLAG_STRIP_HIGH); //filter number
+             	if(!is_numeric($page_number)){die('Invalid page number!');} //incase of invalid page number
+             }else{
+             	$page_number = 1; //if there's no page number, set it to 1
+             }
+
              $client = new Client();
              // Grab the client's handler instance.
              $clientHandler = $client->getConfig('handler');
@@ -267,19 +432,139 @@ $html='<div class="product_list_card" style="margin-top: 23px; ;background:#FFF;
              $response = $client->request('POST', 'http://api.metalbaba.local/customer_web/product_list', [
                'json'    => [
                  'API_TOKEN' => '',
-                 'category_id' => '3',
+                 'category_id' => $request->pcatID,
                  'filters' => array($filter_type ),
                  'is_gold_supplier' => '0',
                  'is_trade_assurance' => '0',
                  'moq' => '0',
                  'order' => 'asc',
-                 'page' => '1',
+                 'page' => $page_number,
                  'search_keyword' => '',
                  'sort' => '',
            ],
            'handler' => $tapMiddleware($clientHandler)
        ]);
-         return $response->getBody()->getContents();
+         // return $response->getBody()->getContents();
+         $data_arr=json_decode($response->getBody()->getContents());
+
+
+         $item_per_page 		= $data_arr->data->per_page; //item to display per page
+         //get total number of records from database
+
+         $get_total_rows = $data_arr->data->total; //hold total records in variable
+         //break records into pages
+         $total_pages = ceil($get_total_rows/$item_per_page);
+         //position of records
+         $page_position = (($page_number-1) * $item_per_page);
+         //Limit our results within a specified range.
+
+         //Display records fetched from database.
+         $html='<ul class="contents">';
+         foreach ($data_arr->data->data as $key => $value) {
+           $html .='<div class="pr_display_card">
+           <div class="row">
+             <div class="col-md-2">
+                <div class="pr_thumbnail">
+                  <img width="145px" src="'.$value->image.'">
+                </div>
+             </div>
+             <div class="col-md-7">
+               <div class="pr_content_card">
+                <div class="pr_title_show">
+                  <a href="#" class="title">'.$value->name.'</a>
+                </div>
+                <div class="pr_title_star">
+                  <i class="fa fa-star-o" title="Follow" aria-hidden="true"></i>
+                </div>
+                <div class="clearfix"></div>';
+                $html.='<div class="pr_item_li">
+                <ul class="list-inline">';
+                foreach ($value->attribute_list as $key => $value_attr) {
+                 if(!empty($value_attr->value)){
+                   $html .='<li>
+                     '.$value_attr->name.':<span class="nb-bold"> '.$value_attr->value.'</span>
+                     </li>';
+                 }
+                }
+                   $html .='</ul><ul class="list-inline">
+                      <li class="item_w">
+                        <span>'.$value->moq.' '.$value->unit_title.'</span>(Min. Order)
+                      </li>
+                          <span class="inr_p">'.$value->price.'</span>/'.$value->unit_code.'
+                    </ul>';
+                    $html .='
+                </div>
+                </div>
+             </div>
+             <div class="col-md-3">
+                <span class="comp_name">'.$value->seller_name.'</span>
+                <span class="comp_location">'.$value->location.' ,'.$value->country_name.'
+                <span class="comp_img_tag">
+                  <img src="http://res.cloudinary.com/metb/image/upload/ABGLIM472338483" alt"" width="75px">
+                </span>
+                <span>
+                  <button type="button" class="btn btn-primary btn-md" name="button">PLACE ENQUIRY</button>
+                </span>
+             </div>
+           </div>
+           </div>';
+         }
+
+         echo $html .='</ul>';
+         echo '<div align="center">';
+         // To generate links, we call the pagination function here.
+         echo $this->paginate_function($item_per_page, $page_number, $get_total_rows, $total_pages);
+         echo '</div>';
+         $html='<div class="product_list_card" style="margin-top: 23px; ;background:#FFF;min-height:160px">
+                       <div class="row">
+                           <div class="col-md-2">
+                             <div class="img_product_list">
+                               <img  class="img-pro_1" style="margin: 20px;" src="#" alt="" width="100%">
+                             </div>
+                           </div>
+                           <div class="col-md-6">
+                             <h2>
+                             <a data-ng-href="/product-detail/58/Stainless-Steel-Circle-201-2B-AOD-0-27mm" target="_blank" href="/product-detail/58/Stainless-Steel-Circle-201-2B-AOD-0-27mm">
+                                 <span itemprop="name" style="color:#2F57AF;margin: 5px;font-size: 16px;font-weight: 600;"class="ng-binding">5555</span>
+                             </a>
+                             </h2>
+                             <span class="starme" style="float: right; margin-top: -29px;font-size: 22px;">            <a href="" A:link { COLOR: black; TEXT-DECORATION: none; font-weight: normal }
+                               A:visited { COLOR: black; TEXT-DECORATION: none; font-weight: normal }
+                               A:active { COLOR: black; TEXT-DECORATION: none }
+                               A:hover { COLOR: blue; TEXT-DECORATION: none; font-weight: none }> <i class="fa fa-star-o" aria-hidden="true"></i></a>
+                             </span>
+                             <div class="row">
+                             <div class="list_attribute">
+                               333:<span class="list_attribute_itemname">333</span>
+                             </div>
+                             <div class="list_attribute_a">
+                               <p>hjhj:jkj </p><span class="attr_item_m">(Min. Order)</span>
+                             </div>
+                               <div class="list_attribute_a">
+                                <span class="list_attribute_itemname_a">
+                                  <span style="color: #000;padding-right:4px; margin-left:5px;padding-bottom: 2px; font-size: 12px;float: left; width: 100%;"><span><i style="color:red" class="fa fa-inr" aria-hidden="true"> <strong>5454</strong></i> <span style="color:#ccc">/4545</span></span></span>
+                                  </span>
+                               </div>
+                             </div>
+                             </div>
+                           <div class="col-md-4">
+                             <div class="gold_starme_text" style="margin-top:5px;">
+                               <span>4545</span><br>
+                               <span style="margin-top:5px;">454 45</span>
+                             </div>
+                             <div class="gold_starme">
+                                 <img src="http://res.cloudinary.com/metb/image/upload/ABGLIM472338483" alt"" width="75px" style="float: right; margin-top: -42px;">
+                             </div>
+                             <br>
+                             <span><button style="margin-top:20px" type="button" name="button" class="btn btn-primary btn-md">PLACE ENQUIRY</button></span>
+                           </div>
+                       </div>
+                    </div>';
+                  $html;
+
+
+         //ajcode end
+
       }
 
 
@@ -292,11 +577,10 @@ $html='<div class="product_list_card" style="margin-top: 23px; ;background:#FFF;
        return $theme->scope('view_all_prices', $data)->render();
      }
      public function product_seller_list(){
-       echo "string";
-       die;
+
        $theme = Theme::uses('default')->layout('layout');
        $data = ['info' => 'Hello World'];
-       return $theme->scope('product_list', $data)->render();
+       return $theme->scope('seller_list', $data)->render();
 
      }
      public function product_list_cat($id,$item_name){
@@ -358,21 +642,15 @@ $html='<div class="product_list_card" style="margin-top: 23px; ;background:#FFF;
          'pro_data_keyword' => $product_keyword_data,
 
      ];
-       return $theme->scope('product_list_withlink', $data)->render();
-
+      return $theme->scope('product_list_withlink', $data)->render();
      }
      public function product_list(){
        $theme = Theme::uses('default')->layout('layout');
        $data = ['info' => 'Hello World'];
        return $theme->scope('product_list', $data)->render();
-
      }
-
     public function index()
     {
-
-
-       //$users = User::role('admin')->get();
        $userRoles=[];
        if (Auth::user()) {   // Check is user logged in
         $user = auth()->user();
@@ -381,9 +659,6 @@ $html='<div class="product_list_card" style="margin-top: 23px; ;background:#FFF;
        }else{
         $user_role='GUEST';
        }
-
-
-
        switch($user_role){
         case 'Admin':
         return $this->AdminDashboard();

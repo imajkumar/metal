@@ -39,6 +39,7 @@ if(Request::segment(1)=='product-list'){
   }
 ?>
 <input type="hidden" name="txtpidID" id="txtpidID" value="{{$pid}}">
+
 <section class="section light-backgorund">
     <div class="container">
         <div class="row">
@@ -166,61 +167,7 @@ $filter_arr_data=$prodt_data->data->filters;
                 </style>
                  <div class="loading-div"><img src="{{ asset('local/public/themes/default/assets/core/img/ajax-loader.gif') }}" ></div>
                  <div id="results">
-                   <!-- content will be loaded here -->
-                   <div class="pr_display_card">
-                   <div class="row">
-                     <div class="col-md-2">
-                        <div class="pr_thumbnail">
-                          <img width="145px" src="#">
-                        </div>
-                     </div>
-                     <div class="col-md-7">
-                       <div class="pr_content_card">
-                        <div class="pr_title_show">
-                          <a href="#" class="title">Stainless Steel Circle 201/2B AOD 0.27mm</a>
-                        </div>
-                        <div class="pr_title_star">
-                          <i class="fa fa-star-o" title="Follow" aria-hidden="true"></i>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="pr_item_li">
-                          <ul class="list-inline">
-                            <li>
-                              Ajay:dd<span class="nb-bold">Kumar</span>
-                            </li>
-                              <li>Kumar:Ajay</li>
-                            </ul>
-                            <ul class="list-inline">
-                              <li>
-                                Ajay:Kumar
-                              </li>
-                                <li>Kumar:Ajay</li>
-                            </ul>
-                            <ul class="list-inline">
-                              <li class="item_w">
-                                <span>Ajay</span>(Min. Order)
-                              </li>
-                                  <span class="inr_p">125.22</span>/kg
-                            </ul>
-                        </div>
-                        </div>
-                     </div>
-                     <div class="col-md-3">
-                        <span class="comp_name">Compan name</span>
-                        <span class="comp_location">location
-                        <span class="comp_img_tag">
-                          <img src="http://res.cloudinary.com/metb/image/upload/ABGLIM472338483" alt"" width="75px">
-
-                        </span>
-                        <span>
-                          <button type="button" class="btn btn-primary btn-md" name="button">PLACE ENQUIRY</button>
-                        </span>
-                     </div>
-                   </div>
-                   </div>
-
-
-                   <!-- content will be loaded here -->
+                  
                  </div>
                  <!-- ajcode  -->
 

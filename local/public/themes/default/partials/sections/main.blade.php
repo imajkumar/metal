@@ -1,4 +1,33 @@
 <!-- start section -->
+<?php
+use GuzzleHttp\Client;
+use GuzzleHttp\Middleware;
+$client = new Client();
+// Grab the client's handler instance.
+$clientHandler = $client->getConfig('handler');
+// Create a middleware that echoes parts of the request.
+$tapMiddleware = Middleware::tap(function ($request) {
+		$request->getHeaderLine('Content-Type');
+	 // application/json
+		$request->getBody();
+
+});
+//product list
+$response = $client->request('POST', Config::get('ayra.apiList.CATEGORY_HOME_LIST'), [
+ 'json'    => [
+	 'API_TOKEN' =>'',
+	 'page' => '1'
+],
+'handler' => $tapMiddleware($clientHandler)
+]);
+$home_cat_data=json_decode($response->getBody()->getContents());
+//echo "<pre>";
+//print_r($home_cat_data->data->top_category);
+//die;
+
+?>
+
+
 			 <section class="section light-backgorund">
 					 <div class="container">
 							 <div class="row">
@@ -8,6 +37,14 @@
 															 <li class="header">
 																	 <h6 class="text-uppercase">TOP CATEGORY </h6>
 															 </li>
+
+
+															 <?php
+															 //echo "<pre>";
+															 foreach ($home_cat_data->data->top_category as $key => $value) {
+															 	  //print_r($value);
+															 }
+															 ?>
 															 <li><a href="javascript:void(0);">Alluminium</a></li>
 															 <li><a href="javascript:void(0);">Gold</a></li>
 
@@ -44,8 +81,8 @@
 
 
 									 <?php
-									 use GuzzleHttp\Client;
-									 use GuzzleHttp\Middleware;
+									// use GuzzleHttp\Client;
+									// use GuzzleHttp\Middleware;
 									 $client = new Client();
 									 // Grab the client's handler instance.
 									 $clientHandler = $client->getConfig('handler');

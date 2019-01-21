@@ -21,12 +21,11 @@
     margin-top: 2px;
 }
 .list_attribute_a p {
-  font-size: 12px;
+    font-size: 12px;
     color: #212121;
     font-weight: 600;
     padding-right: 32px;
     float: left;
-
 }
 span.list_attribute_itemname_a {
     float: left;
@@ -36,7 +35,7 @@ span.list_attribute_itemname_a {
 <section class="section light-backgorund">
     <div class="container">
         <div class="row">
-             <div class="col-md-4">
+             <div class="col-md-3">
                <div class="related_categorylist" style="background:#FFF">
                   <div class="related_categorylist-items">
                     Related Category <br>
@@ -79,13 +78,13 @@ span.list_attribute_itemname_a {
                   </div>
                </div>
              </div>
-             <div class="col-md-8">
+             <div class="col-md-9">
 
                <!-- hedaer for product filter  -->
                 <div class="row" style="margin-top:12px;">
                     <div class="col-md-6">
                       <div class="p_list_item_filter_layour">
-                        <a href="#" class="aj_button"><span>PRODUCTS </span></a>
+                        <a href="{{ URL::to('/product-list')}}" class="aj_button"><span>PRODUCTS </span></a>
                         <a href="{{ URL::to('/seller-list')}}" class="aj_button"><span>SUPPLIERS </span></a>
                       </div>
                     </div>
@@ -106,8 +105,8 @@ span.list_attribute_itemname_a {
                .loading-div img {margin-top: 20%;margin-left: 50%;}
                 </style>
                  <div class="loading-div"><img src="{{ asset('local/public/themes/default/assets/core/img/ajax-loader.gif') }}" ></div>
-                 <div id="results">
-                   
+                 <div id="results_seller">
+
                  </div>
 
                <!-- hedaer for product filter  -->

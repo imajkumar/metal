@@ -24,6 +24,9 @@ return [
         'NOTIFICATION_LIST' => env('APP_BASEURL', 'localhost').'notification_list',
         'PRODUCT_LIST' => env('APP_BASEURL', 'localhost').'product_list',
         'PRODUCT_FILTER' => env('APP_BASEURL', 'localhost').'product_filter',
+        'CATEGORY_HOME_LIST' => env('APP_BASEURL', 'localhost').'category_home_list',
+        'SELLER_LIST' => env('APP_BASEURL', 'localhost').'seller_list',
+
         'en' => 'www.domain.us'.env('APP_BASEURL', 'localhost')
         // etc
     ]

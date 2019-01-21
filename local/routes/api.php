@@ -22,4 +22,9 @@ Route::post('/login','UserController@getAPILogin')->name('getAPILogin');
 Route::get('/getProductList','HomeController@getProductList')->name('getProductList');
 Route::post('/getProductList','HomeController@getProductList')->name('getProductList');
 
+
+Route::get('/getSellerList','HomeController@getSellerList')->name('getSellerList');
+Route::post('/getSellerList','HomeController@getSellerList')->name('getSellerList');
+
+
 //added alpha

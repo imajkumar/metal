@@ -36,7 +36,14 @@ Route::get('/login/{social}/callback','Auth\LoginController@handleProviderCallba
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/product-list', 'HomeController@product_list')->name('product_list');
 Route::get('/product-list/{id}/{productname}', 'HomeController@product_list_cat')->name('product_list_cat');
+
 Route::get('/seller-list', 'HomeController@product_seller_list')->name('product_seller_list');
+Route::get('/seller-list/{id}/{productname}', 'HomeController@seller_list_cat')->name('seller_list_cat');
+
+
+
+
+
 
 Route::post('/product_filer_ajax', 'HomeController@product_filer_ajax')->name('product_filer_ajax');
 Route::get('/prices', 'HomeController@view_all_prices')->name('view_all_prices');
