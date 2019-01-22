@@ -18,7 +18,10 @@
 
 <!-- this is default skin you can replace that with: dark.css, yellow.css, red.css ect -->
 <link id="pagestyle" rel="stylesheet" type="text/css" href="{{ asset('local/public/themes/default/assets/core/css/default.css') }}" />
+
 <link id="pagestyle" rel="stylesheet" type="text/css" href="{{ asset('local/public/themes/default/assets/core/css/custom.css') }}" />
+
+
 <!-- Google fonts -->
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700" rel="stylesheet" />
@@ -48,16 +51,42 @@
                 <script type="text/javascript" src="{{ asset('local/public/themes/default/assets/core/js/pace.min.js') }}"></script>
                 <script type="text/javascript" src="{{ asset('local/public/themes/default/assets/core/js/star-rating.min.js') }}"></script>
                 <script type="text/javascript" src="{{ asset('local/public/themes/default/assets/core/js/wow.min.js') }}"></script>
-                <script type="text/javascript" src="{{ asset('local/public/themes/default/assets/core/js/swiper.min.js') }}"></script>
+
                 <script type="text/javascript" src="{{ asset('local/public/themes/default/assets/core/js/main.js') }}"></script>
                 <script type="text/javascript" src="{{ asset('local/public/themes/default/assets/core/js/jquery.easy-ticker.js') }}"></script>
                 <script type="text/javascript" src="https://codeseven.github.io/toastr/build/toastr.min.js"></script>
+                <script type="text/javascript" src="{{ asset('local/public/themes/default/assets/core/js/swiper.min.js') }}"></script>
+
+
+
+                <script>
+                var swiper = new Swiper('.swiper-container', {
+                  slidesPerView: 6,
+                  spaceBetween: 0,
+                  slidesPerGroup: 3,
+                  loop: true,
+                  loopFillGroupWithBlank: false,
+                  pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                  },
+                  navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                  },
+                });
+
+
+
+              </script>
+
                 <script>
                 $(function(){
                 	$('.demo1').easyTicker({
                 		direction: 'up',
                 		easing: 'swing'
                 	});
+
 
                   //ajax for sellers
                   var txtpidID=$('#txtpidID').val();
@@ -303,6 +332,7 @@
           var pageNum = this.id;
           $("#target-content").load("pagination.php?page=" + pageNum);
         });
+
         var owl = $('.owl-carousel');
         owl.owlCarousel({
         items:4,

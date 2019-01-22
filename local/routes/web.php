@@ -25,8 +25,7 @@ Route::get('/product-list/{id}/{productname}', 'HomeController@product_list_cat'
 Route::get('/seller-list', 'HomeController@product_seller_list')->name('product_seller_list');
 Route::get('/seller-list/{id}/{productname}', 'HomeController@seller_list_cat')->name('seller_list_cat');
 
-
-
+Route::get('/product-detail/{id}/{productname}', 'HomeController@getProductDetail')->name('getProductDetail');
 
 
 

@@ -27,214 +27,53 @@ $home_cat_data=json_decode($response->getBody()->getContents());
 			 <section class="section light-backgorund">
 					 <div class="container">
 							 <div class="row">
-								 <aside class="hsidepnl">
-            <div class="rlshimar">
-                <div class="dashmenu" id="dashmenu">
-                    <ul>
-                        <div class="menuhead1"> Top Categories</div>
-                        <!-- ngRepeat: catagories in top_categories --><li class="hmcat ng-scope" data-ng-repeat="catagories in top_categories">
-                            <a data-ng-href="/product-list/2/Stainless-Steel" href="/product-list/2/Stainless-Steel">
-                                <span class="cir hidden-xs">
-                                    <img src="http://res.cloudinary.com/metb/image/upload/c_fit,h_80,w_80/Stainless-Steel22142" data-ng-src="http://res.cloudinary.com/metb/image/upload/c_fit,h_80,w_80/Stainless-Steel22142" alt="Stainless Steel" title="Stainless Steel">
-                                </span>
-                                <span class="dashtxt ng-binding">Stainless Steel</span>
-                            </a>
-                            <ul class="hchild">
-                                <li>
-                                    <div class="menuleft">
-                                        <div class="menuhead1">Categories</div>
-                                        <!-- ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/3/Stainless-Steel-Coil" class="ng-binding" href="/product-list/3/Stainless-Steel-Coil">
-                                                Stainless Steel Coil
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/4/Stainless-Steel-Circle" class="ng-binding" href="/product-list/4/Stainless-Steel-Circle">
-                                                Stainless Steel Circle
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/5/Stainless-Steel-Flat" class="ng-binding" href="/product-list/5/Stainless-Steel-Flat">
-                                                Stainless Steel Flat
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/6/Stainless-Steel-Pipes" class="ng-binding" href="/product-list/6/Stainless-Steel-Pipes">
-                                                Stainless Steel Pipes
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/7/Stainless-Steel-Round-Bars" class="ng-binding" href="/product-list/7/Stainless-Steel-Round-Bars">
-                                                Stainless Steel Round Bars
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/8/Stainless-Steel-Square-Bar" class="ng-binding" href="/product-list/8/Stainless-Steel-Square-Bar">
-                                                Stainless Steel Square Bar
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/9/Stainless-Steel-Hex-Bar" class="ng-binding" href="/product-list/9/Stainless-Steel-Hex-Bar">
-                                                Stainless Steel Hex Bar
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/10/Stainless-Steel-Wire" class="ng-binding" href="/product-list/10/Stainless-Steel-Wire">
-                                                Stainless Steel Wire
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/11/Stainless-Steel-Sheet" class="ng-binding" href="/product-list/11/Stainless-Steel-Sheet">
-                                                Stainless Steel Sheet
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/15/Stainless-Steel-Bright-Bar" class="ng-binding" href="/product-list/15/Stainless-Steel-Bright-Bar">
-                                                Stainless Steel Bright Bar
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/16/Stainless-Steel-Patta-Patti" class="ng-binding" href="/product-list/16/Stainless-Steel-Patta-Patti">
-                                                Stainless Steel Patta-Patti
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/19/Stainless-Steel-Elbow" class="ng-binding" href="/product-list/19/Stainless-Steel-Elbow">
-                                                Stainless Steel Elbow
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/49/Stainless-Steel-Strip-Coil" class="ng-binding" href="/product-list/49/Stainless-Steel-Strip-Coil">
-                                                Stainless Steel Strip Coil
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/70/Stainless-Steel-Ring" class="ng-binding" href="/product-list/70/Stainless-Steel-Ring">
-                                                Stainless Steel Ring
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/72/Stainless-Steel-Accessories" class="ng-binding" href="/product-list/72/Stainless-Steel-Accessories">
-                                                Stainless Steel Accessories
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child -->
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="menuleft">
-                                        <img src="images/menu-add.jpg" alt="Menu Add" title="Menu Add">
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="clr"></div>
-                        </li><!-- end ngRepeat: catagories in top_categories --><li class="hmcat ng-scope" data-ng-repeat="catagories in top_categories">
-                            <a data-ng-href="/product-list/12/Metal-Scrap" href="/product-list/12/Metal-Scrap">
-                                <span class="cir hidden-xs">
-                                    <img src="http://res.cloudinary.com/metb/image/upload/c_fit,h_80,w_80/Metal-Scrap37347" data-ng-src="http://res.cloudinary.com/metb/image/upload/c_fit,h_80,w_80/Metal-Scrap37347" alt="Metal Scrap" title="Metal Scrap">
-                                </span>
-                                <span class="dashtxt ng-binding">Metal Scrap</span>
-                            </a>
-                            <ul class="hchild">
-                                <li>
-                                    <div class="menuleft">
-                                        <div class="menuhead1">Categories</div>
-                                        <!-- ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/13/Stainless-Steel-Scrap" class="ng-binding" href="/product-list/13/Stainless-Steel-Scrap">
-                                                Stainless Steel Scrap
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/45/MS-Scrap" class="ng-binding" href="/product-list/45/MS-Scrap">
-                                                MS Scrap
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/73/Aluminium-Scrap" class="ng-binding" href="/product-list/73/Aluminium-Scrap">
-                                                Aluminium Scrap
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/74/Copper-Scrap" class="ng-binding" href="/product-list/74/Copper-Scrap">
-                                                Copper Scrap
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child -->
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="menuleft">
-                                        <img src="images/menu-add.jpg" alt="Menu Add" title="Menu Add">
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="clr"></div>
-                        </li><!-- end ngRepeat: catagories in top_categories --><li class="hmcat ng-scope" data-ng-repeat="catagories in top_categories">
-                            <a data-ng-href="/product-list/23/Metal-Finished-Goods" href="/product-list/23/Metal-Finished-Goods">
-                                <span class="cir hidden-xs">
-                                    <img src="http://res.cloudinary.com/metb/image/upload/c_fit,h_80,w_80/Metal-Finished-Goods52930" data-ng-src="http://res.cloudinary.com/metb/image/upload/c_fit,h_80,w_80/Metal-Finished-Goods52930" alt="Metal Finished Goods" title="Metal Finished Goods">
-                                </span>
-                                <span class="dashtxt ng-binding">Metal Finished Goods</span>
-                            </a>
-                            <ul class="hchild">
-                                <li>
-                                    <div class="menuleft">
-                                        <div class="menuhead1">Categories</div>
-                                        <!-- ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/22/Stainless-Steel-Design-Sheets" class="ng-binding" href="/product-list/22/Stainless-Steel-Design-Sheets">
-                                                Stainless Steel Design Sheets
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/24/Utensils" class="ng-binding" href="/product-list/24/Utensils">
-                                                Utensils
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child --><p data-ng-repeat="catagory in catagories.child" class="ng-scope">
-                                            <a data-ng-href="/product-list/47/Stainless-Steel-Colour-Sheet" class="ng-binding" href="/product-list/47/Stainless-Steel-Colour-Sheet">
-                                                Stainless Steel Colour Sheet
-                                            </a>
-                                        </p><!-- end ngRepeat: catagory in catagories.child -->
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="menuleft">
-                                        <img src="images/menu-add.jpg" alt="Menu Add" title="Menu Add">
-                                    </div>
-                                </li>
-                            </ul>
-                            <div class="clr"></div>
-                        </li><!-- end ngRepeat: catagories in top_categories -->
+									 <div class="col-sm-4 col-md-3">
+											 <div class="navbar-vertical">
+													 <ul class="nav nav-stacked">
+															 <li class="header">
+																	 <h6 class="text-uppercase">TOP CATEGORY </h6>
+															 </li>
 
-                        <div class="menuhead1">Other Categories</div>
-                        <!-- ngRepeat: catagory in other_categories --><li data-ng-repeat="catagory in other_categories" class="ng-scope">
-                            <a data-ng-href="/product-list/4/Stainless-Steel-Circle" class="ng-binding" href="/product-list/4/Stainless-Steel-Circle">
-                                Stainless Steel Circle
-                            </a>
-                        </li><!-- end ngRepeat: catagory in other_categories --><li data-ng-repeat="catagory in other_categories" class="ng-scope">
-                            <a data-ng-href="/product-list/3/Stainless-Steel-Coil" class="ng-binding" href="/product-list/3/Stainless-Steel-Coil">
-                                Stainless Steel Coil
-                            </a>
-                        </li><!-- end ngRepeat: catagory in other_categories --><li data-ng-repeat="catagory in other_categories" class="ng-scope">
-                            <a data-ng-href="/product-list/13/Stainless-Steel-Scrap" class="ng-binding" href="/product-list/13/Stainless-Steel-Scrap">
-                                Stainless Steel Scrap
-                            </a>
-                        </li><!-- end ngRepeat: catagory in other_categories --><li data-ng-repeat="catagory in other_categories" class="ng-scope">
-                            <a data-ng-href="/product-list/16/Stainless-Steel-Patta-Patti" class="ng-binding" href="/product-list/16/Stainless-Steel-Patta-Patti">
-                                Stainless Steel Patta-Patti
-                            </a>
-                        </li><!-- end ngRepeat: catagory in other_categories --><li data-ng-repeat="catagory in other_categories" class="ng-scope">
-                            <a data-ng-href="/product-list/22/Stainless-Steel-Design-Sheets" class="ng-binding" href="/product-list/22/Stainless-Steel-Design-Sheets">
-                                Stainless Steel Design Sheets
-                            </a>
-                        </li><!-- end ngRepeat: catagory in other_categories -->
 
-                        <div class="menuview top-spc"><a href="/sitemap">View All Categories</a></div>
+															 <?php
+															 //echo "<pre>";
+															 foreach ($home_cat_data->data->top_category as $key => $value) {
+															 	  //print_r($value);
+															 }
+															 ?>
+															 <li><a href="javascript:void(0);">Alluminium</a></li>
+															 <li><a href="javascript:void(0);">Gold</a></li>
 
-                        <!--<div class="menuhead1">Trending Search</div>
-                       <li ><a href="#"><i class="fa fa-search dashser" aria-hidden="true"></i> SS Flat</a></li>
-                        <li ><a href="#"><i class="fa fa-search dashser" aria-hidden="true"></i> SS Circle</a></li>
-                        <li ><a href="#"><i class="fa fa-search dashser" aria-hidden="true"></i> SS Scrap</a></li>
-                        <li ><a href="#"><i class="fa fa-search dashser" aria-hidden="true"></i> SS Pipe</a></li>
-                        <li ><a href="#"><i class="fa fa-search dashser" aria-hidden="true"></i> SS Round Bar</a></li>
-                        <li ><a href="#"><i class="fa fa-search dashser" aria-hidden="true"></i> SS Wire</a></li>
-                        <li ><a href="#"><i class="fa fa-search dashser" aria-hidden="true"></i> SS Strip Coil</a></li>
-                        <li ><a href="#"><i class="fa fa-search dashser" aria-hidden="true"></i> SS Sheet</a></li>-->
-                    </ul>
-                </div>
+													 </ul>
+											 </div><!-- end navbar-vertical -->
+											 <hr class="spacer-20 no-border">
+											 <div class="navbar-vertical">
+													 <ul class="nav nav-stacked">
+															 <li class="header">
+																	 <h6 class="text-uppercase">TOP CATEGORY</h6>
+															 </li>
+															 <li><a href="javascript:void(0);">Bronze</a></li>
+															 <li><a href="javascript:void(0);">XYZ</a></li>
 
-            </div>
-            <div class="hqr top-spc4">
-                <div class="hqr1">
-                    <img src="images/metalbaba-qr-code.png" alt="Metalbaba App Link" title="">
-                </div>
-                <div class="hqr2">
-                    <p>Get Daily Market Prices on Your Mobile</p>
-                    <span>Scan to download App</span>
-                </div>
-            </div>
+													 </ul>
+											 </div><!-- end navbar-vertical -->
+											 <br>
+											 <div class="row">
+												 <div class="col-md-4">
+													 <img src="http://metalbaba.local/images/metalbaba-qr-code.png">
+												 </div>
+												 <div class="col-md-8">
+													 <span>
+														 <p>
+															 Get Daily Market Prices
+															 on Your Mobile
+															 Scan to download App
+														 </p>
+													 </span>
+												 </div>
 
-        </aside>
-									
+											 </div>
+									 </div><!-- end col -->
 
 
 									 <?php

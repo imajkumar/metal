@@ -4514,3 +4514,38 @@ span.ist {
     font-size: 13px;
 }
 .round { border-radius: 50%; }
+.pg_card {
+  margin-top: 9px;
+  border: 1px solid #f1f1f1;
+  border-radius: 5px 5px 0 5px;
+  background: #fff;
+  margin-bottom: 5px;
+  min-height: 400px;
+  height: 201px
+  -webkit-box-shadow: 0 10px 20px -20px
+}
+.product_gallery_details {
+    padding: 11px;
+}
+.pg_thumbnail {
+    padding:1px 5px 5px 11px;
+}
+.product_details_card_panel{
+  margin-top: 9px;
+  border: 1px solid #f1f1f1;
+  border-radius: 1px 1px 0 1px;
+  background: #fff;
+  margin-bottom: 5px;
+  min-height: 400px;
+  height: 201px;
+  -webkit-box-shadow: 0 10px 20px -20px
+}
+
+.product_details_sidebar {
+  margin-top: 12px;
+  border: 1px solid #f1f1f1;
+  border-radius: 1px 1px 0 1px;
+  background: #fff;
+  margin-bottom: 5px;
+  -webkit-box-shadow: 0 10px 20px -20px
+}

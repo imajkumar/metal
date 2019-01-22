@@ -20,6 +20,14 @@ class HomeController extends Controller
     {
         //$this->middleware('guest');
     }
+
+    public function getProductDetail(Request $request){
+      $theme = Theme::uses('default')->layout('layout');
+      $data = ['info' => 'Hello World'];
+      return $theme->scope('view_product_details', $data)->render();
+
+    }
+
     function paginate_function($item_per_page, $current_page, $total_records, $total_pages)
     {
         $pagination = '';
@@ -284,6 +292,11 @@ $page_position = (($page_number-1) * $item_per_page);
 //Display records fetched from database.
 $html='<ul class="contents">';
 foreach ($data_arr->data->data as $key => $value) {
+$pname=str_replace('/', '-',  $value->name);
+
+$P_URL=route('getProductDetail', ['productid' => 1, 'product_name' => str_replace(' ', '-',  $pname)]);
+
+
   $html .='<div class="pr_display_card">
   <div class="row">
     <div class="col-md-2">
@@ -294,7 +307,7 @@ foreach ($data_arr->data->data as $key => $value) {
     <div class="col-md-7">
       <div class="pr_content_card">
        <div class="pr_title_show">
-         <a href="#" class="title">'.$value->name.'</a>
+         <a href="'.$P_URL.'" class="title">'.$value->name.'</a>
        </div>
        <div class="pr_title_star">
          <i class="fa fa-star-o" title="Follow" aria-hidden="true"></i>
@@ -733,7 +746,7 @@ $html='<div class="product_list_card" style="margin-top: 23px; ;background:#FFF;
     public function AdminDashboard(){
         $theme = Theme::uses('admin')->layout('layout');
         $data = ['info' => 'Hello World'];
-        return $theme->scope('index', $data)->render();
+        //return $theme->scope('index', $data)->render();
     }
     public function UserDashboard(){
 
