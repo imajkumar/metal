@@ -10,22 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// $client = new \GuzzleHttp\Client([
-//     'headers' => [ 'Content-Type' => 'application/json' ]
-// ]);
-//
-// $response = $client->post('http://api.metalbaba.local/customer_web_api/login', [
-//     GuzzleHttp\RequestOptions::JSON => [
-//       'username' => 'ajay@yopmail.com',
-//       'password' => '123456',
-//       'type' => '2'
-//     ]
-// ]);
-// $login_data=$response->getBody()->getContents();
-// print_r($login_data);
 
-
-// die;
 
 
 Auth::routes();
@@ -46,6 +31,10 @@ Route::get('/seller-list/{id}/{productname}', 'HomeController@seller_list_cat')-
 
 
 Route::post('/product_filer_ajax', 'HomeController@product_filer_ajax')->name('product_filer_ajax');
+Route::post('/seller_filter_ajax', 'HomeController@seller_filter_ajax')->name('seller_filter_ajax');
+
+
+
 Route::get('/prices', 'HomeController@view_all_prices')->name('view_all_prices');
 
 

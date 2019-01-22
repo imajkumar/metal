@@ -21,17 +21,24 @@
     margin-top: 2px;
 }
 .list_attribute_a p {
-    font-size: 12px;
+  font-size: 12px;
     color: #212121;
     font-weight: 600;
     padding-right: 32px;
     float: left;
+
 }
 span.list_attribute_itemname_a {
     float: left;
     margin-top: 5px;
 }
 </style>
+<?php
+if(Request::segment(1)=='seller-list'){
+    $pid=Request::segment(2);
+  }
+?>
+<input type="hidden" name="txtpidID" id="txtpidID" value="{{$pid}}">
 <section class="section light-backgorund">
     <div class="container">
         <div class="row">
@@ -40,46 +47,83 @@ span.list_attribute_itemname_a {
                   <div class="related_categorylist-items">
                     Related Category <br>
                     <?php
-                     use GuzzleHttp\Client;
-                     $client = new Client();
-                     $response = $client->post(Config::get('ayra.apiList.SELLER_FILTER'));
-                     $product_data=json_decode($response->getBody()->getContents());
-
-
-                     $related_cat_data=$product_data->data->parent_category->name;
-                    // echo "<pre>";
-
-
-                     $main_category_name=$related_cat=$product_data->data->main_category->name;
-                     $main_category_child=$related_cat=$product_data->data->main_category->child;
-
-
-                     //print_r($main_category_child);
-
-                     ?>
+                    $link_item_parent=$prodt_data->data->parent_category->name;
+                    $link_item=$prodt_data->data->main_category->name;
+                    $filter_arr=$prodt_data->data->filters;
+                    ?>
                      <div class="related_categorylist-items_val">
-                      {{ $related_cat_data }}
+                      {{ $link_item_parent }}
                      </div>
-
                      <ul>
                        <li class="filtersin4">
-                         {{$main_category_name}}
-                         <ul class="filtersin_a">
-                           @foreach ($main_category_child as $value_child)
-                           <li>
-                             <a href="{{ route('seller_list_cat', [$value_child->id, preg_replace('/\s+/', '-', strtolower($value_child->meta_title))]) }}" class="filtersin_a_itme_link">{{ $value_child->name }}</>
-                           </li>
-
-                           @endforeach
-
-                         </ul>
+                         {{$link_item}}
                        </li>
                      </ul>
                   </div>
+                  <!-- Product Feature -->
+
+<?php
+
+$filterdata=$prodt_data->data->filters[0];
+
+
+if(!empty($filterdata->filter)) {
+?>
+<div class="related_categorylist-items">
+Filter
+<br>
+<div class="panel-group" id="accordion">
+
+<div class="panel panel-default" style="border:none">
+  <div class="panel-heading" style="background:transparent">
+    <h5 class="panel-title">
+      <a class="fa fa-arrow-up" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+        {{$filterdata->title}}
+      </a>
+    </h5>
+  </div>
+  <div id="collapseOne" class="panel-collapse collapse in">
+    <div class="panel-body">
+      <div id="menu1">
+       <ul class="term-list">
+         <?php
+         foreach ($filterdata->filter as $key_i => $value_i) {
+         ?>
+           <li class="term-item ">
+             <div class="pretty p-svg p-curve">
+                  <input type="checkbox" id="sellerFilter" class="seller_itemdata" name="seller_itemdata" value="{{ $value_i->id}}"/>
+                  <div class="state p-success">
+                      <!-- svg path -->
+                      <svg class="svg svg-icon" viewBox="0 0 20 20">
+                          <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
+                      </svg>
+                      <label>{{ strlen($value_i->name)>=20 ? substr($value_i->name, 0, 20)."..." : $value_i->name }}</label>
+
+                  </div>
+              </div>
+           </li>
+           <?php
+         }
+
+         ?>
+       </ul>
+       </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<?php
+}
+?>
+
+
+
+<!-- Product Feature -->
                </div>
              </div>
              <div class="col-md-9">
-
                <!-- hedaer for product filter  -->
                 <div class="row" style="margin-top:12px;">
                     <div class="col-md-6">
@@ -94,10 +138,11 @@ span.list_attribute_itemname_a {
                         <a href="#" class="btn btn-primary submit_form">SUBMIT BUYING REQUEST</a>
                       </div>
 
-
                     </div>
                 </div>
                 <br>
+
+                <!-- ajcode -->
                 <style type="text/css">
                /* .contents{margin: 20px;padding: 20px;list-style: none;background: #F9F9F9;border: 1px solid #ddd;border-radius: 5px;} */
                .contents li{margin-bottom: 10px;}
@@ -108,10 +153,12 @@ span.list_attribute_itemname_a {
                  <div id="results_seller">
 
                  </div>
+                 <!-- ajcode  -->
 
-               <!-- hedaer for product filter  -->
 
-             </div>
+
+                </div>
         </div>
       </div>
+
 </section>

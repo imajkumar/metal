@@ -57,7 +57,7 @@
                             <div class='carousel-inner'>
                                 <div class='item active'>
                                     <figure>
-                                        <img src='img/products/technology_03.jpg' alt='' />
+                                        <img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_03.jpg') }}" alt='' />
                                     </figure>
                                 </div><!-- end item -->
                                 <div class='item'>
@@ -67,17 +67,17 @@
                                 </div><!-- end item -->
                                 <div class='item'>
                                     <figure>
-                                        <img src='img/products/technology_03.jpg' alt='' />
+                                        <img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_03.jpg') }}" alt='' />
                                     </figure>
                                 </div><!-- end item -->
                                 <div class='item'>
                                     <figure>
-                                        <img src='img/products/technology_03.jpg' alt='' />
+                                        <img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_03.jpg') }}" alt='' />
                                     </figure>
                                 </div><!-- end item -->
                                 <div class='item'>
                                     <figure>
-                                        <img src='img/products/technology_03.jpg' alt=''/>
+                                        <img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_03.jpg') }}" alt=''/>
                                     </figure>
                                 </div><!-- end item -->
 
@@ -92,12 +92,12 @@
 
                             <!-- thumbs -->
                             <ol class='carousel-indicators mCustomScrollbar meartlab'>
-                                <li data-target='.product-slider' data-slide-to='0' class='active'><img src='img/products/technology_03.jpg' alt='' /></li>
-                                <li data-target='.product-slider' data-slide-to='1'><img src='img/products/technology_03.jpg' alt='' /></li>
-                                <li data-target='.product-slider' data-slide-to='2'><img src='img/products/technology_03.jpg' alt='' /></li>
-                                <li data-target='.product-slider' data-slide-to='3'><img src='img/products/technology_03.jpg' alt='' /></li>
-                                <li data-target='.product-slider' data-slide-to='4'><img src='img/products/technology_03.jpg' alt='' /></li>
-                                <li data-target='.product-slider' data-slide-to='5'><img src='img/products/technology_03.jpg' alt='' /></li>
+                                <li data-target='.product-slider' data-slide-to='0' class='active'><img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_03.jpg') }}" alt='' /></li>
+                                <li data-target='.product-slider' data-slide-to='1'><img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_03.jpg') }}" alt='' /></li>
+                                <li data-target='.product-slider' data-slide-to='2'><img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_03.jpg') }}" alt='' /></li>
+                                <li data-target='.product-slider' data-slide-to='3'><img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_03.jpg') }}" alt='' /></li>
+                                <li data-target='.product-slider' data-slide-to='4'><img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_03.jpg') }}" alt='' /></li>
+                                <li data-target='.product-slider' data-slide-to='5'><img src="{{ asset('local/public/themes/default/assets/core/img/products/technology_03.jpg') }}" alt='' /></li>
                             </ol><!-- end carousel-indicators -->
                         </div><!-- end carousel -->
                     </div><!-- end col -->

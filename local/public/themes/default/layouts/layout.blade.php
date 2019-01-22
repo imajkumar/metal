@@ -52,11 +52,7 @@
                 <script type="text/javascript" src="{{ asset('local/public/themes/default/assets/core/js/main.js') }}"></script>
                 <script type="text/javascript" src="{{ asset('local/public/themes/default/assets/core/js/jquery.easy-ticker.js') }}"></script>
                 <script type="text/javascript" src="https://codeseven.github.io/toastr/build/toastr.min.js"></script>
-                <!-- http://api.metalbaba.local/customer_web_api/category_home_list -->
-
                 <script>
-
-
                 $(function(){
                 	$('.demo1').easyTicker({
                 		direction: 'up',
@@ -130,61 +126,91 @@
                   //product filter
                 //  console.log($('input[name="aj_itemdata"]:checked').serialize());
                     $('input[type="checkbox"]').click(function(){
-                        var favorite_filter_val = [];
-                        $.each($("input[name='aj_itemdata']:checked"), function(){
-                          favorite_filter_val.push($(this).val());
-                        });
-                        var favorite_filter=favorite_filter_val.join("i_A");
-                        console.log(favorite_filter);
-                        var pcatID=$('#txtpidID').val();
-                        var page = $(this).attr("data-page"); //get page number from link
-                        if (typeof(page) == "undefined"){
-                          page =1;
+                        var checkboxType=$(this).attr('id');
+                        switch(checkboxType) {
+                          case 'sellerFilter':
+                            //code seller filter
+                            var favorite_filter_val = [];
+                            $.each($("input[name='seller_itemdata']:checked"), function(){
+                              favorite_filter_val.push($(this).val());
+                            });
+                            var favorite_filter=favorite_filter_val.join("i_A");
+                            var pcatID=$('#txtpidID').val();
+                            var page = $(this).attr("data-page"); //get page number from link
+                            if (typeof(page) == "undefined"){
+                              page =1;
+                            }
+                            var datastring = "_token=" + CSRF_TOKEN + "&filer_items=" + favorite_filter+"&pcatID="+pcatID+"&page="+page;
+                            $.ajax({
+                            type: 'POST',
+                                    url: BASE_URL + "/seller_filter_ajax", //this should be url to your PHP file
+                                    data:datastring,
+                                    beforeSend: function(){
+                                    //alert("wait");
+                                    },
+                                    success: function(data) {
+                                      console.log(data);
+                                    // $("#results" ).html('');
+                                    // $("#results" ).html(data);
+                                  }
+
+                            });
+
+
+
+
+                            alert(favorite_filter);
+
+                            break;
+                          case 'y':
+                            // code block
+                            break;
+                          default:
+                            // code block
+                            var favorite_filter_val = [];
+                            $.each($("input[name='aj_itemdata']:checked"), function(){
+                              favorite_filter_val.push($(this).val());
+                            });
+                            var favorite_filter=favorite_filter_val.join("i_A");
+                          //  console.log(favorite_filter);
+                            var pcatID=$('#txtpidID').val();
+                            var page = $(this).attr("data-page"); //get page number from link
+                            if (typeof(page) == "undefined"){
+                              page =1;
+                            }
+                           //ajax
+                            var datastring = "_token=" + CSRF_TOKEN + "&filer_items=" + favorite_filter+"&pcatID="+pcatID+"&page="+page;
+                            $.ajax({
+                            type: 'POST',
+                                    url: BASE_URL + "/product_filer_ajax", //this should be url to your PHP file
+                                    data:datastring,
+                                    beforeSend: function(){
+                                    //alert("wait");
+                                    },
+                                    success: function(data) {
+                                  //  console.log(data);
+                                    $("#results" ).html('');
+                                    $("#results" ).html(data);
+                                  }
+
+                            });
+                            //ajax
+                              //default
+
                         }
-                       //ajax
-                        var datastring = "_token=" + CSRF_TOKEN + "&filer_items=" + favorite_filter+"&pcatID="+pcatID+"&page="+page;
-                        $.ajax({
-                        type: 'POST',
-                                url: BASE_URL + "/product_filer_ajax", //this should be url to your PHP file
-                                data:datastring,
-                                beforeSend: function(){
-                                //alert("wait");
-                                },
-                                success: function(data) {
-                                console.log(data);
 
-                                $("#results" ).html('');
-                                $("#results" ).html(data);
-
-                              }
-
-                        });
-                        //ajax
-
-
+                        //default
 
                   });
-
-                  //ajitemdata
-
-
-                  //product filter
-
-
                     $.getJSON('http://api.metalbaba.local/customer_web/token', function(data) {
                       document.cookie = "X-CSRF-TOKEN="+data.data.token+"";
 
                     });
                     var getXsrfToken = function() {
                     var cookies_a = document.cookie.split(';');
-
                         var cookies_ab = cookies_a[4].split('=');
-
                         var token = '';
-
-
-
-                      var str1='X-CSRF-TOKEN';
+                        var str1='X-CSRF-TOKEN';
                         var n = str1.localeCompare(cookies_ab[0]);
                           if(n){
                           token = decodeURIComponent(cookies_ab[1]);
@@ -242,113 +268,10 @@
                         }
                     });
 
-
-
-
-                   //  jQuery.ajax({
-                   //  type: "POST",
-                   //  url: 'http://api.metalbaba.local/customer_web/login',
-                   //  data: JSON.stringify(person),
-                   //  dataType: 'json',
-                   //  beforeSend: function(xhr) {
-                   //    xhr.setRequestHeader( "Content-type", "application/json" );
-                   //  },
-                   //  success: function (data) {
-                   //  if (data.error == 'false') {
-                   //    //$('#massage').html(data.msg);
-                   //  }
-                   //  if (data.error == 'true') {
-                   //    //$('#massage').html(data.msg);
-                   //  }
-                   //  },
-                   //  error: function (data) {
-                   //  //var errors = data.responseJSON;
-                   //  //console.log(errors.message);
-                   //    // $('#massage').html(errors.message);
-                   //  },
-                   //  complete: function () {
-                   //
-                   //  }
-                   //  });
-                   // //ajax call
-
-
                   });
                   //login end
 
-
-
-                  $('#btnLoginA').click(function(){
-                   var txtEmailPhone=$('#txtEmailPhone').val();
-                   var txtPassword=$('#txtPassword').val();
-                   if(txtEmailPhone==""){
-                     toastr.error('Invalid Credential.', 'Alert!')
-                     return false;
-                   }
-                   if(txtPassword==""){
-                     toastr.error('Invalid Credential.', 'Alert!')
-                     return false;
-                   }
-                   //ajax call
-                    jQuery.ajax({
-                    type: "POST",
-                    url: BASE_URL + "/api/login",
-                    data: {
-                    _token: CSRF_TOKEN,
-                      username: txtEmailPhone,
-                      password: txtPassword,
-                    },
-                    dataType: 'json',
-                    beforeSend: function () {
-
-                    },
-                    success: function (data) {
-                    if (data.error == 'false') {
-                      //$('#massage').html(data.msg);
-                    }
-                    if (data.error == 'true') {
-                      //$('#massage').html(data.msg);
-                    }
-                    },
-                    error: function (data) {
-                    //var errors = data.responseJSON;
-                    //console.log(errors.message);
-                      // $('#massage').html(errors.message);
-                    },
-                    complete: function () {
-
-                    }
-                    });
-                   //ajax call
-
-
-                  });
-                  //login end
-
-
-
-
-
-        	// $('.demo3').easyTicker({
-        	// 	visible: 1,
-        	// 	interval: 4000
-        	// });
-
-
-        	// $('.demo5').easyTicker({
-        	// 	direction: 'up',
-        	// 	visible: 3,
-        	// 	interval: 2500,
-        	// 	controls: {
-        	// 		up: '.btnUp',
-        	// 		down: '.btnDown',
-        	// 		toggle: '.btnToggle'
-        	// 	}
-        	// });
-
-        });
-
-
+});
 
   $('ul.term-list').each(function(){
 
@@ -361,58 +284,35 @@
 
   });
 
-
-
-
-
-
-
-
   $('ul.term-list').on('click','.more', function(){
-
     if( $(this).hasClass('less') ){
       $(this).text('+ see more').removeClass('less');
     }else{
       $(this).text('-less').addClass('less');
     }
-
     $(this).siblings('li.toggleable').slideToggle();
-
   });
 
   $(document).ready(function() {
-  $("#target-content").load("pagination.php?page=1");
-      $("#pagination li").on('click',function(e){
-  	e.preventDefault();
-  		$("#target-content").html('loading...');
-  		$("#pagination li").removeClass('active');
-  		$(this).addClass('active');
+        $("#target-content").load("pagination.php?page=1");
+        $("#pagination li").on('click',function(e){
+    	 	e.preventDefault();
+    		$("#target-content").html('loading...');
+    		$("#pagination li").removeClass('active');
+    		$(this).addClass('active');
           var pageNum = this.id;
           $("#target-content").load("pagination.php?page=" + pageNum);
+        });
+        var owl = $('.owl-carousel');
+        owl.owlCarousel({
+        items:4,
+        loop:true,
+        margin:10,
+        autoplay:true,
+        autoplayTimeout:1000,
+        autoplayHoverPause:true
+        });
       });
-
-      var owl = $('.owl-carousel');
-     owl.owlCarousel({
-    items:4,
-    loop:true,
-    margin:10,
-    autoplay:true,
-    autoplayTimeout:1000,
-    autoplayHoverPause:true
-});
-
-      });
-
-
-
-      /*
-           * LetterAvatar
-           *
-           * Artur Heinze
-           * Create Letter avatar based on Initials
-           * based on https://gist.github.com/leecrossley/6027780
-           */
-
 
 
         </script>

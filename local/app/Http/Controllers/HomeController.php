@@ -388,6 +388,11 @@ $html='<div class="product_list_card" style="margin-top: 23px; ;background:#FFF;
 
 
      }
+     public function seller_filter_ajax(Request $request){
+       // code for seller filter
+
+     }
+
      public function product_filer_ajax(Request $request){
 
           if($request->filer_items){
@@ -401,14 +406,6 @@ $html='<div class="product_list_card" style="margin-top: 23px; ;background:#FFF;
                      'filter' =>$filter_type_vale,
                    );
             }
-            /*$filter_type_vale[] = array('id' =>'2b');
-             $filter_type[] = array(
-               'id' =>'Bakeware Type',
-               'filter' =>$filter_type_vale,
-             );
-             */
-
-
 
              //Get page number from Ajax
              if(isset($_POST["page"])){
@@ -583,10 +580,69 @@ $html='<div class="product_list_card" style="margin-top: 23px; ;background:#FFF;
        return $theme->scope('seller_list', $data)->render();
 
      }
+   //seller list cat
+   public function seller_list_cat($id,$item_name){
+    $client = new Client();
+    // Grab the client's handler instance.
+    $clientHandler = $client->getConfig('handler');
+    // Create a middleware that echoes parts of the request.
+    $tapMiddleware = Middleware::tap(function ($request) {
+         $request->getHeaderLine('Content-Type');
+        // application/json
+         $request->getBody();
+        // {"foo":"bar"}
+    });
+    $response = $client->request('POST', 'http://api.metalbaba.local/customer_web/product_filter', [
+      'json'    => [
+        'API_TOKEN' => '',
+        'category_id' => $id,
+        'filters' => '[]',
+        'is_gold_supplier' => '0',
+        'is_trade_assurance' => '0',
+        'moq' => '0',
+        'order' => 'asc',
+        'page' => '1',
+        'search_keyword' => '',
+        'sort' => '',
+  ],
+  'handler' => $tapMiddleware($clientHandler)
+]);
+    $product_filter_link_data=json_decode($response->getBody()->getContents());
+    //product list
+    $response = $client->request('POST', 'http://api.metalbaba.local/customer_web/product_list', [
+      'json'    => [
+        'API_TOKEN' => '',
+        'category_id' => $id,
+        'filters' => '[]',
+        'is_gold_supplier' => '0',
+        'is_trade_assurance' => '0',
+        'moq' => '0',
+        'order' => 'asc',
+        'page' => '1',
+        'search_keyword' => '',
+        'sort' => '',
+  ],
+  'handler' => $tapMiddleware($clientHandler)
+]);
+    $product_keyword_data=json_decode($response->getBody()->getContents());
+
+    //product list
+
+
+
+
+     $theme = Theme::uses('default')->layout('layout');
+     $data = [
+       'prodt_data' => $product_filter_link_data,
+       'pro_data_keyword' => $product_keyword_data,
+
+   ];
+    return $theme->scope('seller_list_withlink', $data)->render();
+   }
+
+   //seller list cat
+
      public function product_list_cat($id,$item_name){
-       // print_r($id);
-       // print_r($item_name);
-       // echo "string";
       $client = new Client();
       // Grab the client's handler instance.
       $clientHandler = $client->getConfig('handler');
