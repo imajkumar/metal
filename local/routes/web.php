@@ -35,18 +35,32 @@ Route::post('/seller_filter_ajax', 'HomeController@seller_filter_ajax')->name('s
 
 
 Route::get('/prices', 'HomeController@view_all_prices')->name('view_all_prices');
+Route::get('/about-us', 'HomeController@about_us')->name('about_us');
+
+Route::get('/privacy-policy', 'HomeController@privacy_policy')->name('privacy_policy');
+Route::get('/refund-policy', 'HomeController@refund_policy')->name('refund_policy');
+Route::get('/cancellation-policy', 'HomeController@cancellation_policy')->name('cancellation_policy');
+Route::get('/terms-conditions', 'HomeController@terms_conditions')->name('terms_conditions');
+Route::get('/our-team', 'HomeController@our_team')->name('our_team');
+Route::get('/news', 'HomeController@news')->name('news');
+Route::get('/contact-us', 'HomeController@contact_us')->name('contact_us');
 
 
 
 
 
-Route::group(['middleware' => ['auth']], function() {
-
-    Route::resource('roles','RoleController');
-    Route::resource('users','UserController');
-
-    Route::resource('products','ProductController');
-    Route::get('/{slug}', 'UserController@getUserDashboard')->name('getUserDashboard');
 
 
-});
+
+
+
+// Route::group(['middleware' => ['auth']], function() {
+//
+//     Route::resource('roles','RoleController');
+//     Route::resource('users','UserController');
+//
+//     Route::resource('products','ProductController');
+//     Route::get('/{slug}', 'UserController@getUserDashboard')->name('getUserDashboard');
+//
+//
+// });

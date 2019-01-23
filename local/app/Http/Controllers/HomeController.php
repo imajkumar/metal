@@ -586,6 +586,70 @@ $html='<div class="product_list_card" style="margin-top: 23px; ;background:#FFF;
        $data = ['info' => 'Hello World'];
        return $theme->scope('view_all_prices', $data)->render();
      }
+     // about_us
+     public function about_us(){
+       $theme = Theme::uses('default')->layout('layout');
+        $data = ['info' => 'Hello World'];
+       return $theme->scope('about_us', $data)->render();
+     }
+     // about_us
+     // privacy_policy
+     public function privacy_policy(){
+       $theme = Theme::uses('default')->layout('layout');
+        $data = ['info' => 'Hello World'];
+       return $theme->scope('privacy_policy', $data)->render();
+     }
+     // privacy_policy
+     // refund_policy
+     public function refund_policy(){
+       $theme = Theme::uses('default')->layout('layout');
+        $data = ['info' => 'Hello World'];
+       return $theme->scope('refund_policy', $data)->render();
+     }
+     // refund_policy
+     // cancellation_policy
+     public function cancellation_policy(){
+       $theme = Theme::uses('default')->layout('layout');
+        $data = ['info' => 'Hello World'];
+       return $theme->scope('cancellation_policy', $data)->render();
+     }
+     // cancellation_policy
+     // terms_conditions
+     public function terms_conditions(){
+       $theme = Theme::uses('default')->layout('layout');
+        $data = ['info' => 'Hello World'];
+       return $theme->scope('terms_conditions', $data)->render();
+     }
+     // terms_conditions
+     // our_team
+     public function our_team(){
+       $theme = Theme::uses('default')->layout('layout');
+        $data = ['info' => 'Hello World'];
+       return $theme->scope('our_team', $data)->render();
+     }
+     // our_team
+     // news
+     public function news(){
+       $theme = Theme::uses('default')->layout('layout');
+       $data = ['info' => 'Hello World'];
+       return $theme->scope('news', $data)->render();
+     }
+     // news
+     // contact_us
+     public function contact_us(){
+       $theme = Theme::uses('default')->layout('layout');
+       $data = ['info' => 'Hello World'];
+       return $theme->scope('contact_us', $data)->render();
+     }
+     // contact_us
+
+
+
+
+
+
+
+
      public function product_seller_list(){
 
        $theme = Theme::uses('default')->layout('layout');

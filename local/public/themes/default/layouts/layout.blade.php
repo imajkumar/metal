@@ -5,6 +5,12 @@
 <meta name="keywords" content="@get('keywords')">
 <meta name="description" content="@get('description')">
 <meta name="author" content="@get('author')">
+<meta name="geo.region" content="IN-DL" />
+<meta name="geo.placename" content="Delhi" />
+<meta name="geo.position" content="28.699267;77.161062" />
+<meta name="ICBM" content="28.699267, 77.161062" />
+
+
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="csrf-base" content="{{ URL::to('/') }}">
 <!-- css files -->
@@ -16,11 +22,10 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('local/public/themes/default/assets/core/css/swiper.css') }}" />
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css" />
 
-<!-- this is default skin you can replace that with: dark.css, yellow.css, red.css ect -->
+
 <link id="pagestyle" rel="stylesheet" type="text/css" href="{{ asset('local/public/themes/default/assets/core/css/default.css') }}" />
 
 <link id="pagestyle" rel="stylesheet" type="text/css" href="{{ asset('local/public/themes/default/assets/core/css/custom.css') }}" />
-
 
 <!-- Google fonts -->
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet" />
@@ -34,6 +39,23 @@
 <!--Favicon-->
     <title>@get('title')</title>
     <!-- @styles() -->
+    
+
+
+    <!--Start of Tawk.to Script-->
+       <script type="text/javascript">
+       var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+       (function(){
+       var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+       s1.async=true;
+       s1.src='https://embed.tawk.to/59577e2450fd5105d0c8371b/default';
+       s1.charset='UTF-8';
+       s1.setAttribute('crossorigin','*');
+       s0.parentNode.insertBefore(s1,s0);
+       })();
+       </script>
+
+
     </head>
     <body>
         @partial('header')
@@ -56,67 +78,21 @@
                 <script type="text/javascript" src="{{ asset('local/public/themes/default/assets/core/js/jquery.easy-ticker.js') }}"></script>
                 <script type="text/javascript" src="https://codeseven.github.io/toastr/build/toastr.min.js"></script>
                 <script type="text/javascript" src="{{ asset('local/public/themes/default/assets/core/js/swiper.min.js') }}"></script>
+                <script type="text/javascript" src="{{ asset('local/public/themes/default/assets/core/js/script.js') }}"></script>
 
 
 
-                <script>
-                var swiper = new Swiper('.swiper-container', {
-                  slidesPerView: 6,
-                  spaceBetween: 0,
-                  slidesPerGroup: 3,
-                  loop: true,
-                  loopFillGroupWithBlank: false,
-                  pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                  },
-                  navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                  },
-                });
 
 
 
-              </script>
 
                 <script>
                 $(function(){
-                	$('.demo1').easyTicker({
-                		direction: 'up',
-                		easing: 'swing'
-                	});
+
 
 
                   //ajax for sellers
-                  var txtpidID=$('#txtpidID').val();
-                  if(txtpidID>0){
-                    tpid=txtpidID;
-                  }else{
-                    tpid="";
-                  }
 
-                   $("#results_seller" ).load(BASE_URL+'/api/getSellerList?pid='+tpid);
-                   $("#results_seller").on( "click", ".pagination a", function (e){
-                    e.preventDefault();
-                    var favorite_filter_val = [];
-                    $.each($("input[name='aj_itemdata']:checked"), function(){
-                      favorite_filter_val.push($(this).val());
-                    });
-                    var favorite_filter=favorite_filter_val.join("i_A");
-                  //  console.log(favorite_filter);
-
-                    if(favorite_filter==""){
-                      filer_items=[];
-                    }
-
-                    $(".loading-div").show(); //show loading element
-                    var page = $(this).attr("data-page"); //get page number from link
-                    $("#results_seller").load(BASE_URL+'/api/getSellerList',{"page":page,"pid":tpid,"filer_items":favorite_filter}, function(){ //get content from PHP page
-                      $(".loading-div").hide(); //once done, hide loading element
-                    });
-
-                  });
                 //ajax pagination
 
                   //ajax for sellers

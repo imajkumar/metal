@@ -4547,5 +4547,40 @@ span.ist {
   border-radius: 1px 1px 0 1px;
   background: #fff;
   margin-bottom: 5px;
-  -webkit-box-shadow: 0 10px 20px -20px
+  -webkit-box-shadow: 0 10px 20px -20px;
+}
+.slider_wall {
+    float: left;
+    width: 100%;
+    background: #fff;
+    border-radius: 1px 1px 0 1px;
+    height: 354px;
+    margin-left: 15px;
+    padding: 1px;
+    -webkit-box-shadow: 0 10px 20px -20px;
+}
+.owl-carousel .owl-stage {
+    display: flex !important;
+}
+
+.owl-carousel .owl-item img {
+    width: auto;
+    height: 100%;
+}
+.pr_tranding_img{
+  float: left;
+  width: 100%;
+  margin-top: 5px;
+  background: #fff;
+  border-radius: 1px 1px 0 1px;
+  height: 354px;
+  padding: 1px;
+}
+#slide-4 .bcg {
+    background-image: url('http://metalbaba.local/images/about-us.jpg');
+    height: 300px;
+}
+.btn-group.dropdown.dropdown-select.ajselect {
+    float: left;
+    width: 218px !important;
 }

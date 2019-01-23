@@ -47,7 +47,7 @@ label.css-label {	background-image:url(../images/check-box.png);
                   -ms-user-select: none;
                   user-select: none;
 }
-input[type=radio].css-checkbox {	position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; 
+input[type=radio].css-checkbox {	position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px;
                                  margin:-1px; padding:0; border:0;}
 input[type=radio].css-checkbox + label.css-label1 {	padding-left:26px;	height:24px; display:inline-block;	line-height:18px;	background-repeat:no-repeat;
                                                     background-position: 0 0; font-size:30px;	vertical-align:middle;	cursor:pointer;	font-weight:normal;	}
@@ -74,7 +74,7 @@ label.css-label {	background-image:url(../images/check-box.png);
                   -ms-user-select: none;
                   user-select: none;
 }
-input[type=radio].css-checkfl {	position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px; 
+input[type=radio].css-checkfl {	position:absolute; z-index:-1000; left:-1000px; overflow: hidden; clip: rect(0 0 0 0); height:1px; width:1px;
                                 margin:-1px; padding:0; border:0;}
 input[type=radio].css-checkfl + label.css-label1 {	padding-left:26px;	height:24px; display:inline-block;	line-height:18px;	background-repeat:no-repeat;
                                                    background-position: 0 0; font-size:30px;	vertical-align:middle;	cursor:pointer;	font-weight:normal;	}
@@ -229,7 +229,7 @@ width: 400px; z-index: -1; display: none; }
 #notificationContainer:before {
 content: ''; display: block; position: absolute; width: 0; height: 0; color: transparent; border: 10px solid black;
 border-color: transparent transparent white; margin-top: -20px; margin-left: 188px; }
-#notificationTitle {z-index: 1000; font-weight: bold; padding: 8px; font-size: 13px; background-color: #ffffff; width: 384px; 
+#notificationTitle {z-index: 1000; font-weight: bold; padding: 8px; font-size: 13px; background-color: #ffffff; width: 384px;
 border-bottom: 1px solid #dddddd;}
 #notificationsBody {padding: 33px 0px 0px 0px !important; min-height:300px; }
 #notificationFooter {background-color: #e9eaed; text-align: center; font-weight: bold; padding: 8px; font-size: 12px; border-top: 1px solid #dddddd;}
@@ -575,7 +575,7 @@ box-shadow: 8px 0 5px -6px rgba(0,0,0,0.2); }*/
 .sidem > ul > li > ul > li >  a:hover{background:#448aff; color:#fff; padding:10px 15px; text-decoration:none; }
 .icsize{font-size:20px !important;}
 .nbadge{ position: relative;}
-.nbadge1{ background: #448aff; position: absolute; right: 15px; top: 0; border-radius: 50%; color: #fff; width: 18px; height: 18px; 
+.nbadge1{ background: #448aff; position: absolute; right: 15px; top: 0; border-radius: 50%; color: #fff; width: 18px; height: 18px;
           font-size: 10px; padding: 2px !important;}
 
 .inmenu{ background:#448aff; width:100%; display:block; height:100%; overflow:hidden; }
@@ -714,11 +714,11 @@ box-shadow: 8px 0 5px -6px rgba(0,0,0,0.2); }*/
 .ps-s-l ul{}
 .ps-s-l ul li{ display:inline; }
 .ps-s-l ul li a{ background:#f2f2f2; border:1px solid #e3e2e2; border-right:none; color:#212121; float:left; padding:13px 34px; }
-.ps-s-l ul li a:hover{ background:#fff; text-decoration:none; 
+.ps-s-l ul li a:hover{ background:#fff; text-decoration:none;
                        -webkit-box-shadow: -1px 1px 2px 0px rgba(0,0,0,0.20);
                        -moz-box-shadow: -1px 1px 2px 0px rgba(0,0,0,0.20);
                        box-shadow: -1px 1px 2px 0px rgba(0,0,0,0.20); }
-.ps-s-l ul li .active{ background:#fff; text-decoration:none; 
+.ps-s-l ul li .active{ background:#fff; text-decoration:none;
                        -webkit-box-shadow: -1px 1px 2px 0px rgba(0,0,0,0.20);
                        -moz-box-shadow: -1px 1px 2px 0px rgba(0,0,0,0.20);
                        box-shadow: -1px 1px 2px 0px rgba(0,0,0,0.20); }
@@ -861,7 +861,7 @@ box-shadow: 8px 0 5px -6px rgba(0,0,0,0.2); }*/
 .prpanletxt1{ color: #727272; font-size: 14px; }
 .addtruck{ width: 100%;}
 .showm{ color: #727272;}
-.prpanleline{ border-bottom:1px solid #eeeeee; border-top:1px solid #eeeeee; padding: 12px 0px; margin: 8px 0px; width: 100%; float: left; } 
+.prpanleline{ border-bottom:1px solid #eeeeee; border-top:1px solid #eeeeee; padding: 12px 0px; margin: 8px 0px; width: 100%; float: left; }
 .prpanlelinel{ width: 37%; float: left; border: 1px solid #b6b6b6; border-radius: 3px; padding: 2px 2px;}
 .prpanlelinelin{ width: 70%; float: left;}
 .prpanlelinelin1{ width: 24%; float: left; padding-left: 4%; text-align: right; }
@@ -1122,7 +1122,7 @@ box-shadow: 8px 0 5px -6px rgba(0,0,0,0.2); }*/
 .gcrcl{ background: #ffd700;}
 .plncrclimg{width: 63%; height: 120px; margin: 0 auto; }
 
-.pln-btn1{ font-size:14px; width:87%; text-align: center; transition: background-color 0.5s ease; background-color: #fff; 
+.pln-btn1{ font-size:14px; width:87%; text-align: center; transition: background-color 0.5s ease; background-color: #fff;
            border:1px solid #448aff; color:#448aff; display:block; padding:10px; margin: 20px 14px 6px 14px;}
 .pln-btn1:hover{ background: #448aff; color:#fff; text-decoration: none; }
 .pln-btn2{ font-size:14px; width:87%; text-align: center; border:1px solid #448aff; color:#448aff; display:block; margin: 20px 14px 6px 14px;}
@@ -1228,7 +1228,7 @@ box-shadow: 8px 0 5px -6px rgba(0,0,0,0.2); }*/
 /*All Forms*/
 .form-custom{background-color: #fff; background-image: none; border: 1px solid #ccc;  color: #555;  display: block;  font-size: 14px;  height: 34px; line-height: 1.42857; padding: 6px 12px;  width: 100%;}
 .formtext-custom{background-color: #fff; background-image: none; border: 1px solid #ccc; color: #555; display: block; font-size: 14px; height: 84px;
-                 line-height: 1.42857; padding: 6px 12px; width: 100%;}	
+                 line-height: 1.42857; padding: 6px 12px; width: 100%;}
 .tickbox{ border:1px solid #b6b6b6; padding:5px; margin-right:8px !important;}
 
 /************All Modals*********/
@@ -1339,7 +1339,7 @@ box-shadow: 8px 0 5px -6px rgba(0,0,0,0.2); }*/
 .mquot label{ font-weight:600;}
 .mquot span{ color:#727272;}
 .mquotbtn{ background: transparent; border:none; color:#448aff}
-.mquotbtn .fa-paperclip{ font-size:20px; color:#212121; 
+.mquotbtn .fa-paperclip{ font-size:20px; color:#212121;
                          -ms-transform: rotate(86deg); /* IE 9 */
                          -webkit-transform: rotate(86deg); /* Chrome, Safari, Opera */
                          transform: rotate(86deg);}
@@ -1699,7 +1699,7 @@ box-shadow: 8px 0 5px -6px rgba(0,0,0,0.2); }*/
 .shipinfol p{ font-size:14px; color:#212121; line-height:20px;}
 .shipinfol p span{ color:#727272;}
 .sinfolpad{ margin-right:39px;}
-.plordrarert{ background:#448aff; padding:12px; margin:10px 0 20px 0; float:left; width:100%;} 
+.plordrarert{ background:#448aff; padding:12px; margin:10px 0 20px 0; float:left; width:100%;}
 .plordrarert span{ position:relative; right:0px; float:right; color:#fff; font-size:14px;}
 .plordrarert span a{ color:#fff;  }
 .plordrarert span a:hover{ color:#fff; text-decoration:none; }
@@ -1827,9 +1827,9 @@ box-shadow: 8px 0 5px -6px rgba(0,0,0,0.2); }*/
 .wishlin p a:hover{ color:#448aff; text-decoration:none;}
 .wishlin .fa-inr{ font-size:15px; color:#212121;}
 .wishlin-r{ float: right; position: relative; top: -24px;}
-.btn-checked { color: #fff !important; background-color: #448aff; border-color: #448aff;  font-size: 12px; padding: 8px 24px; 
+.btn-checked { color: #fff !important; background-color: #448aff; border-color: #448aff;  font-size: 12px; padding: 8px 24px;
                margin: 18px 16px 0 0; border-radius: 0; }
-.btn-unchecked { color: #212121 !important;  background-color: #fff; border-color: #b6b6b6; font-size: 12px; border-radius: 0; padding: 8px 24px; 
+.btn-unchecked { color: #212121 !important;  background-color: #fff; border-color: #b6b6b6; font-size: 12px; border-radius: 0; padding: 8px 24px;
                  margin: 18px 12px 0 0; }
 
 .buydeali{position: relative; top: -10px;}
@@ -1844,7 +1844,7 @@ box-shadow: 8px 0 5px -6px rgba(0,0,0,0.2); }*/
 .recdeali1{ font-size:16px; color:#212121; font-weight:600; padding: 26px 0 18px 0; bottom: -10px; position: relative;}
 .swiper-container { /* background: #fff;*/  width: 100%; height: 345px; }
 .swiper-slide { text-align: center; font-size: 18px; /*background: #fff;*/ display: -webkit-box; display: -ms-flexbox; display: -webkit-flex; display: flex;  -webkit-box-pack: center; -ms-flex-pack: center; -webkit-justify-content: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; -webkit-align-items: center; align-items: center; margin-top: 4px; }
-.swiper-slide a{ background: #fff; text-decoration: none; padding:24px 15px; position: relative; width: 100%; border: 1px solid #fff; height: 315px;} 
+.swiper-slide a{ background: #fff; text-decoration: none; padding:24px 15px; position: relative; width: 100%; border: 1px solid #fff; height: 315px;}
 .swiper-slide a:hover{ text-decoration: none; border:1px solid #f3f3f3;
                        -moz-box-shadow: 0px 7px 15px 6px rgba(23, 84, 116, 0.18);
                        -webkit-box-shadow: 0px 7px 15px 6px rgba(23, 84, 116, 0.18);
@@ -1858,7 +1858,7 @@ box-shadow: 8px 0 5px -6px rgba(0,0,0,0.2); }*/
 /*Seller Detail*/
 .selrheadbx{ background:#fff; width:100%; float:left;}
 .selrhead{ width:100%; float:left; border-bottom:1px solid #eeeeee; padding:2% 2% 1% 2%;}
-.selrhead1{ background: #eeeeee; width:8%; float:left; border: 0px solid #b6b6b6; border-radius: 50%; width:64px; height:64px; color: #212121; 
+.selrhead1{ background: #eeeeee; width:8%; float:left; border: 0px solid #b6b6b6; border-radius: 50%; width:64px; height:64px; color: #212121;
             margin-right: 24px; text-align: center; padding-top: 18px; font-size: 18px;}
 .selrhead1in{ width:8%; float:left; border: 0px solid #b6b6b6; border-radius: 50%; width:64px; height:64px; margin-right: 24px; text-align: center; }
 .selrhead1in img{ background: #eeeeee; width:64px; height:64px; object-fit:contain; border: 0px solid #b6b6b6; border-radius: 50%;}
@@ -1956,7 +1956,7 @@ box-shadow: 8px 0 5px -6px rgba(0,0,0,0.2); }*/
 .pteamicon1{color: #727272 !important;}
 .pteamicon2{color: #448aff;}
 
-/*about*/		
+/*about*/
 .abnav{ background: rgba(0, 0, 0, 0.5); }
 .abnav ul{ width:100%; }
 .abnav ul li{ display:inline-block; width:19.5%; text-align:center;}
@@ -1964,7 +1964,7 @@ box-shadow: 8px 0 5px -6px rgba(0,0,0,0.2); }*/
 .abnav ul li a:hover{ border-bottom:2px solid #448aff; padding-bottom:10px; text-decoration:none; }
 .abhead{ background: rgba(0, 0, 0, 0.5); width: 80%; margin: 0 auto;}
 .abhead h2{ font-size: 28px !important;}
-.absec{ background:#fff; margin:0 auto; width:60%; position: relative; top: -50px; padding:30px 40px; display: table;}
+.absec{ background:#fff; margin:0 auto; width:69%; position: relative; top: -50px; padding:30px 40px; display: table;}
 .absec h3{text-align: center; font-size:14px; line-height:22px; }
 .absec p{font-size:14px; line-height:22px; }
 .mile{ width:100%; border-bottom:1px solid #eeeeee; padding:40px; margin-bottom:40px; float:left;}
@@ -2274,17 +2274,17 @@ box-shadow: 8px 0 5px -6px rgba(0,0,0,0.2); }*/
 
 .teambx{ width:148px; float:left; text-align:center; margin-right:6%;}
 .teambxin1{  float:left; border-radius:50%; border:1px solid #448aff; padding:10px; }
-.teambxin1 img{ width:123px; height:123px; border-radius:50%; }	
-.teambxin2{ width:100%; float:left; margin-top:12px;}	
+.teambxin1 img{ width:123px; height:123px; border-radius:50%; }
+.teambxin2{ width:100%; float:left; margin-top:12px;}
 .teambxin2 h3{ font-size:14px; font-weight:600;}
 .teambxin2 h4{ font-size:12px; margin-top:6px;}
 .teambxin2h3{ font-size:14px; font-weight:600;}
 .teambxin2h4{ font-size:12px; margin-top:6px;}
-.teambxin2 p{ font-size:10px; margin-top:6px;}	
+.teambxin2 p{ font-size:10px; margin-top:6px;}
 .teambx:nth-last-child(1){ margin-right:0px;}
 
 /*Site Map*/
-.smap{ width:100%; background:#fff; display:block; overflow:hidden;  }	
+.smap{ width:100%; background:#fff; display:block; overflow:hidden;  }
 .smapin{ width:80%; margin: 0 auto; margin-bottom:30px;  margin-top:20px; display: table; }
 .smapscroll{ background: #eeeeee; color: #fff; font-size: 14px; width:80%; margin: 0 auto; margin-bottom:40px; top: 80px;
              -webkit-box-shadow: 0 6px 6px -6px #959494;
@@ -2304,9 +2304,9 @@ box-shadow: 8px 0 5px -6px rgba(0,0,0,0.2); }*/
 .smapinsub h3{ font-size:13px; font-weight: bold; margin-bottom: 12px; }
 .smapinsub h3 a{ color:#212121; }
 .smapinsub h3 a:hover{ color:#448aff; }
-.smapin ul{ display:block; }	
-.smapin ul li{ font-size:13px; margin-bottom: 10px;}	
-.smapin ul li a{ color:#212121; text-decoration:none; }	
+.smapin ul{ display:block; }
+.smapin ul li{ font-size:13px; margin-bottom: 10px;}
+.smapin ul li a{ color:#212121; text-decoration:none; }
 .smapin ul li a:hover{ color:#448aff; text-decoration:none; }
 .smapin ul li:nth-last-child(4n+1){ margin-right: 0px;}
 .smapinsub:nth-last-child(4n+2){ margin-right: 0px;}
@@ -2610,29 +2610,29 @@ ul.rating {display: inline-block;}
   border: 1px solid #456254;
 }
 
-.chat-sender h1{ 
+.chat-sender h1{
     margin-top: 5px;
-    background:#448aff; 
-    width:60px; 
-    height:60px; 
-    border-radius:50%; 
+    background:#448aff;
+    width:60px;
+    height:60px;
+    border-radius:50%;
     text-align:center;
     padding:10px 0 0 0;
-    color:#fff; 
-    font-size:36px; 
+    color:#fff;
+    font-size:36px;
     float:left;
 }
 
-.chat-sender h5{ 
+.chat-sender h5{
     margin-top: 5px;
     text-align:right;
-    font-size:12px; 
+    font-size:12px;
     color:#448aff;
 }
 
-.chat-sender p{ 
+.chat-sender p{
     text-align:left;
-    font-size:14px; 
+    font-size:14px;
     float:left;
 }
 
@@ -2645,28 +2645,28 @@ ul.rating {display: inline-block;}
   border: 1px solid #456254;
 }
 
-.chat-reciver h1{ 
+.chat-reciver h1{
     margin-top: 5px;
-    background:#448aff; 
-    width:60px; 
-    height:60px; 
-    border-radius:50%; 
+    background:#448aff;
+    width:60px;
+    height:60px;
+    border-radius:50%;
     text-align:center;
     padding:10px 0 0 0;
-    color:#fff; 
-    font-size:36px; 
+    color:#fff;
+    font-size:36px;
     float:left;
 }
 
-.chat-reciver h5{ 
+.chat-reciver h5{
     margin-top: 5px;
     text-align:left;
-    font-size:12px; 
+    font-size:12px;
     color:#448aff;
 }
 
-.chat-reciver p{ 
+.chat-reciver p{
     text-align:left;
-    font-size:14px; 
+    font-size:14px;
     float:left;
 }

@@ -1,42 +1,4 @@
 
-<!-- banner link -->
-<hr>
- <div class="row" style="backgorund-color:#EDEDED;">
-   <div class="col-md-4">
-    <i class="fa fa-desktop fa-ftr"  style="color: #b6b6b6;   font-size: 45px;    float: left;    margin: 0 15px 0 0;   }" aria-hidden="true"></i>
-    <b style="color:#212121;">Live Metal Prices</b><br>
-    <span>Procurement Manager</span>
-
-   </div>
-   <div class="col-md-4">
-    <i class="fa fa-lock fa-ftr"  style="color: #b6b6b6;   font-size: 45px;    float: left;    margin: 0 15px 0 0;   }" aria-hidden="true"></i>
-    <b style="color:#212121;">MB Safetrade</b><br>
-    <span>Buy through MB for 100% Payment & Quality Protection</span>
-
-   </div>
-
-   <div class="col-md-4">
-
-    <b style="color:#212121;">Download Our App</b><br>
-    <span>
-      <a style="color: #b6b6b6;font-size: 36px; margin: 4px 10px 0 0;" href="https://itunes.apple.com/us/app/metalbaba/id1116385170?mt=8" target="blank"><i class="fa fa-apple" aria-hidden="true"></i></a>
-    </span>
-    <span>
-      <a style="color: #b6b6b6;font-size: 36px; margin: 4px 10px 0 0;" href="https://play.google.com/store/apps/details?id=com.app.metalbaba" target="blank"><i class="fa fa-android" aria-hidden="true"></i></a>
-    </span>
-   </div>
-
-
-
- </div>
-<!-- banner link -->
-</div><!-- end container -->
-</section>
-<!-- end section -->
-
-
-
-
 <!-- start section -->
 <section>
 <div class="container">
