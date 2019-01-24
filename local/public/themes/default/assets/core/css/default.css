@@ -422,7 +422,7 @@ body {
     .topBar a:hover, .topBar a:active, .topBar a:focus {
       color: #35404f; }
   .topBar.inverse {
-    background-color: #35404f; }
+    background-color: #FFF; }
     .topBar.inverse a {
       color: #878c94; }
       .topBar.inverse a:hover, .topBar.inverse a:active, .topBar.inverse a:focus {
@@ -4583,4 +4583,7 @@ span.ist {
 .btn-group.dropdown.dropdown-select.ajselect {
     float: left;
     width: 218px !important;
+}
+.middleBar {
+    background: #FFF;
 }

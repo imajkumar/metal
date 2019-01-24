@@ -1,11 +1,12 @@
 <!-- start topBar -->
-       <div class="middleBar">
+       <div class="middleBar" >
            <div class="container">
                <div class="row display-table">
                    <div class="col-sm-3 vertical-align text-left hidden-xs">
-                       <a href="{{ URL::to('/')}}">
-                           <h1 style="color:#2F57AF">Metalbaba</h1>
-                       </a>
+
+                       <div class="logo">
+                                    <a href="/">Metalbaba</a>
+                                </div>
                    </div><!-- end col -->
                    <div class="col-sm-9 vertical-align text-center">
                        <form>
@@ -31,13 +32,131 @@
 
                                   </div>
                                </div><!-- end col -->
-                               <div class="col-sm-5">
+                               <div class="col-sm-4">
                                    <input type="text" name="keyword" class="form-control input-lg" placeholder="Search">
                                </div><!-- end col -->
-                               <div class="col-sm-4">
-                                  <!-- need to code  -->
-                                  code pending
-                                  <!-- need to code  -->
+                               <div class="col-sm-5">
+                                  <!-- notify-lead-login  -->
+                                  <div class="topBar inverse">
+                <ul class="topBarNav pull-right">
+                  <li class="linkdown">
+                      <a href="javascript:void(0);">
+                            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                          <span class="hidden-xs">
+                            Buy Leads
+
+                          </span>
+                      </a>
+
+                  </li>
+
+                    <li class="linkdown">
+                        <a href="javascript:void(0);">
+                          <i class="fa fa-bell" aria-hidden="true"></i>
+                            <span class="hidden-xs">
+                                Notifications<sup class="text-primary">(3)</sup>
+                                <i class="fa fa-angle-down ml-5"></i>
+                            </span>
+                        </a>
+                        <ul class="cart w-250">
+                            <li>
+                                <div class="cart-items">
+                                    <ol class="items">
+                                        <li>
+                                            <a href="shop-single-product-v1.html" class="product-image">
+                                                <img src="img/logo-icon.png" alt="product-img">
+                                            </a>
+                                            <div class="product-details">
+
+                                                <p class="product-name">
+                                                    <a href="shop-single-product-v1.html">Lorem Ipsum dolor sit</a>
+                                                </p>
+                                                 <i class="fa fa-inr" aria-hidden="true"></i> <span class="price text-primary">59.99</span>
+                                            </div><!-- end product-details -->
+                                        </li><!-- end item -->
+                                        <li>
+                                            <a href="shop-single-product-v1.html" class="product-image">
+                                                <img src="img/logo-icon.png" alt="product-img">
+                                            </a>
+                                            <div class="product-details">
+
+                                                <p class="product-name">
+                                                    <a href="shop-single-product-v1.html">Lorem Ipsum dolor sit</a>
+                                                </p>
+                                                 <i class="fa fa-inr" aria-hidden="true"></i> <span class="price text-primary">59.99</span>
+                                            </div><!-- end product-details -->
+                                        </li><!-- end item -->
+                                        <li>
+                                            <a href="shop-single-product-v1.html" class="product-image">
+                                                <img src="img/logo-icon.png" alt="product-img">
+                                            </a>
+                                            <div class="product-details">
+
+                                                <p class="product-name">
+                                                    <a href="shop-single-product-v1.html">Lorem Ipsum dolor sit</a>
+                                                </p>
+                                                 <i class="fa fa-inr" aria-hidden="true"></i> <span class="price text-primary">59.99</span>
+                                            </div><!-- end product-details -->
+                                        </li><!-- end item -->
+                                        <li>
+                                            <a href="shop-single-product-v1.html" class="product-image">
+                                                <img src="img/logo-icon.png" alt="product-img">
+                                            </a>
+                                            <div class="product-details">
+
+                                                <p class="product-name">
+                                                    <a href="shop-single-product-v1.html">Lorem Ipsum dolor sit</a>
+                                                </p>
+                                                 <i class="fa fa-inr" aria-hidden="true"></i> <span class="price text-primary">59.99</span>
+                                            </div><!-- end product-details -->
+                                        </li><!-- end item -->
+                                        <li>
+                                            <a href="shop-single-product-v1.html" class="product-image">
+                                                <img src="img/logo-icon.png" alt="product-img">
+                                            </a>
+                                            <div class="product-details">
+
+                                                <p class="product-name">
+                                                    <a href="shop-single-product-v1.html">Lorem Ipsum dolor sit</a>
+                                                </p>
+                                                 <i class="fa fa-inr" aria-hidden="true"></i> <span class="price text-primary">59.99</span>
+                                            </div><!-- end product-details -->
+                                        </li><!-- end item -->
+
+
+                                    </ol>
+                                </div>
+                            </li>
+                            <!-- <li>
+                                <div class="cart-footer">
+                                    <a href="cart.html" class="pull-left"><i class="fa fa-cart-plus mr-5"></i>View Cart</a>
+                                    <a href="checkout.html" class="pull-right"><i class="fa fa-shopping-basket mr-5"></i>Checkout</a>
+                                </div>
+                            </li> -->
+
+                        </ul>
+                    </li>
+
+                    <li class="linkdown">
+                        <a href="javascript:void(0);">
+                            <i class="fa fa-user mr-5"></i>
+                            <span class="hidden-xs">
+                              Account
+                                <i class="fa fa-angle-down ml-5"></i>
+                            </span>
+                        </a>
+                        <ul class="w-150">
+                            <li><a href="javascript:void(0)" data-toggle="modal" data-target="#loginModel">Login</a></li>
+                            <li><a href="javascript:void(0)" data-toggle="modal" data-target="#loginModel">Create Account</a></li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+
+        </div>
+
+                                  <!-- notify-lead-login  -->
                                </div><!-- end col -->
                            </div><!-- end row -->
                        </form>
@@ -61,22 +180,4 @@
            </div><!-- end container -->
        </div><!-- end middleBar -->
 
-       <!-- start navbar -->
-       <div class="navbar yamm navbar-default">
-           <div class="container">
-               <div class="navbar-header">
-                   <button type="button" data-toggle="collapse" data-target="#navbar-collapse-3" class="navbar-toggle">
-                       <span class="icon-bar"></span>
-                       <span class="icon-bar"></span>
-                       <span class="icon-bar"></span>
-                   </button>
-                   <a href="javascript:void(0);" class="navbar-brand visible-xs">
-                         <h1 style="color:#2F57AF">Metalbaba</h1>
-                   </a>
-               </div>
-               <div id="navbar-collapse-3" class="navbar-collapse collapse">
-
-                 dd
-               </div><!-- end navbar collapse -->
-           </div><!-- end container -->
-       </div><!-- end navbar -->
+       
