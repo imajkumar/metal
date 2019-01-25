@@ -26,8 +26,7 @@ Route::get('/seller-list', 'HomeController@product_seller_list')->name('product_
 Route::get('/seller-list/{id}/{productname}', 'HomeController@seller_list_cat')->name('seller_list_cat');
 
 Route::get('/product-detail/{id}/{productname}', 'HomeController@getProductDetail')->name('getProductDetail');
-
-
+Route::get('/seller-catalogue/{id}/{company}', 'HomeController@getSeller_catalogue')->name('getSeller_catalogue');
 
 Route::post('/product_filer_ajax', 'HomeController@product_filer_ajax')->name('product_filer_ajax');
 Route::post('/seller_filter_ajax', 'HomeController@seller_filter_ajax')->name('seller_filter_ajax');
@@ -44,6 +43,10 @@ Route::get('/terms-conditions', 'HomeController@terms_conditions')->name('terms_
 Route::get('/our-team', 'HomeController@our_team')->name('our_team');
 Route::get('/news', 'HomeController@news')->name('news');
 Route::get('/contact-us', 'HomeController@contact_us')->name('contact_us');
+Route::get('/enquiry-buylead-list', 'HomeController@enquiry_buylead_list')->name('enquiry_buylead_list');
+
+
+
 
 
 

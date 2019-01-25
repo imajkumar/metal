@@ -3,19 +3,15 @@
            <div class="container">
                <div class="row display-table">
                    <div class="col-sm-3 vertical-align text-left hidden-xs">
-
-                       <div class="logo">
-                                    <a href="/">Metalbaba</a>
-                                </div>
+                   <div class="logo">
+                                <a href="/">Metalbaba</a>
+                    </div>
                    </div><!-- end col -->
                    <div class="col-sm-9 vertical-align text-center">
-                       <form>
+
                            <div class="row grid-space-1">
                                <div class="col-sm-3">
-
-
                                  <div class="btn-group dropdown dropdown-select" style="width: 218px">
-
                                   <button class="form-control btn btn-default dropdown-toggle ajitems" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                                         <i class="fa fa-th-large ng-scope" aria-hidden="true" ></i>SELECT <span class="caret"></span>
 
@@ -38,146 +34,119 @@
                                <div class="col-sm-5">
                                   <!-- notify-lead-login  -->
                                   <div class="topBar inverse">
-                <ul class="topBarNav pull-right">
-                  <li class="linkdown">
-                      <a href="javascript:void(0);">
-                            <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                          <span class="hidden-xs">
-                            Buy Leads
+                                    <ul class="topBarNav pull-right">
+                                      <li class="linkdown">
+                                          <a href="{{ URL::to('/enquiry-buylead-list')}}">
+                                                <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                                              <span class="hidden-xs">
+                                                Buy Leads
+                                              </span>
+                                          </a>
 
-                          </span>
-                      </a>
+                                      </li>
 
-                  </li>
-
-                    <li class="linkdown">
-                        <a href="javascript:void(0);">
-                          <i class="fa fa-bell" aria-hidden="true"></i>
-                            <span class="hidden-xs">
-                                Notifications<sup class="text-primary">(3)</sup>
-                                <i class="fa fa-angle-down ml-5"></i>
-                            </span>
-                        </a>
-                        <ul class="cart w-250">
-                            <li>
-                                <div class="cart-items">
-                                    <ol class="items">
-                                        <li>
-                                            <a href="shop-single-product-v1.html" class="product-image">
-                                                <img src="img/logo-icon.png" alt="product-img">
+                                        <li class="linkdown">
+                                            <a href="javascript:void(0);">
+                                              <i class="fa fa-bell" aria-hidden="true"></i>
+                                                <span class="hidden-xs">
+                                                    Notifications<sup class="text-primary">(3)</sup>
+                                                    <i class="fa fa-angle-down ml-5"></i>
+                                                </span>
                                             </a>
-                                            <div class="product-details">
+                                            <ul class="cart w-250" style="background:#EDEDED;">
+                                                <li>
+                                                    <div class="cart-items">
+                                                        <ol class="items">
 
-                                                <p class="product-name">
-                                                    <a href="shop-single-product-v1.html">Lorem Ipsum dolor sit</a>
-                                                </p>
-                                                 <i class="fa fa-inr" aria-hidden="true"></i> <span class="price text-primary">59.99</span>
-                                            </div><!-- end product-details -->
-                                        </li><!-- end item -->
-                                        <li>
-                                            <a href="shop-single-product-v1.html" class="product-image">
-                                                <img src="img/logo-icon.png" alt="product-img">
-                                            </a>
-                                            <div class="product-details">
+                                                        <?php
+                                                          //show notification
+                                                              use GuzzleHttp\Client;
+                                                               $client = new Client();
 
-                                                <p class="product-name">
-                                                    <a href="shop-single-product-v1.html">Lorem Ipsum dolor sit</a>
-                                                </p>
-                                                 <i class="fa fa-inr" aria-hidden="true"></i> <span class="price text-primary">59.99</span>
-                                            </div><!-- end product-details -->
-                                        </li><!-- end item -->
-                                        <li>
-                                            <a href="shop-single-product-v1.html" class="product-image">
-                                                <img src="img/logo-icon.png" alt="product-img">
-                                            </a>
-                                            <div class="product-details">
+                                                               $response = $client->post(Config::get('ayra.apiList.NOTIFICATION_LIST'));
+                                                               $login_data=json_decode($response->getBody()->getContents());
+                                                               $notification_arr=$login_data->data->data;
+                                                               foreach ($notification_arr as $key => $value) {
+                                                               $created_at = date("d F,y H:iA", strtotime($value->created_at));
 
-                                                <p class="product-name">
-                                                    <a href="shop-single-product-v1.html">Lorem Ipsum dolor sit</a>
-                                                </p>
-                                                 <i class="fa fa-inr" aria-hidden="true"></i> <span class="price text-primary">59.99</span>
-                                            </div><!-- end product-details -->
-                                        </li><!-- end item -->
-                                        <li>
-                                            <a href="shop-single-product-v1.html" class="product-image">
-                                                <img src="img/logo-icon.png" alt="product-img">
-                                            </a>
-                                            <div class="product-details">
+                                                               $message = $value->message;
+                                                               $img_url=URL::to('/local/public/themes/default/assets/core/img/logo-icon.png');
+                                                               ?>
+                                                               <li>
+                                                                 <div class="product-details_notify">
+                                                                   <a href="shop-single-product-v1.html" class="product-image">
+                                                                      <img src="{{$img_url}}" alt="{{$message}}">
+                                                                   </a>
+                                                                 </div>
+                                                                   <div class="product-details_notify">
+                                                                    <div class="product-date_notify">
+                                                                      {{$created_at}}
+                                                                    </div>
+                                                                    <div class="product-item_notify">
+                                                                    {{$message}}
+                                                                    </div>
 
-                                                <p class="product-name">
-                                                    <a href="shop-single-product-v1.html">Lorem Ipsum dolor sit</a>
-                                                </p>
-                                                 <i class="fa fa-inr" aria-hidden="true"></i> <span class="price text-primary">59.99</span>
-                                            </div><!-- end product-details -->
-                                        </li><!-- end item -->
-                                        <li>
-                                            <a href="shop-single-product-v1.html" class="product-image">
-                                                <img src="img/logo-icon.png" alt="product-img">
-                                            </a>
-                                            <div class="product-details">
+                                                                   </div><!-- end product-details -->
+                                                               </li><!-- end item -->
+                                                               <?php
+                                                               }
+                                                               //show notification
+                                                               ?>
+                                                            </ol>
+                                                          </div>
+                                                        </li>
+                                                       </ul>
+                                                      </li>
 
-                                                <p class="product-name">
-                                                    <a href="shop-single-product-v1.html">Lorem Ipsum dolor sit</a>
-                                                </p>
-                                                 <i class="fa fa-inr" aria-hidden="true"></i> <span class="price text-primary">59.99</span>
-                                            </div><!-- end product-details -->
-                                        </li><!-- end item -->
+                                                      <li class="linkdown">
+                                                          <a href="javascript:void(0);">
+                                                              <i class="fa fa-user mr-5"></i>
+                                                              <span class="hidden-xs">
+                                                                Account
+                                                                  <i class="fa fa-angle-down ml-5"></i>
+                                                              </span>
+                                                          </a>
+                                                          <ul class="w-150" style="background:#008FF9">
+                                                            <div class="inmenu">
+                                                              <li>
+                                                                  <div class="inuer">
+                                                                      <!-- <img alt="Profile Image" title="Profile Image" src="#" data-ng-src="" data-ng-show="getProfile().image != ''" class="ng-hide"> -->
+
+                                                                      <i class="fa fa-user icsize1" aria-hidden="true"></i>
+                                                                  </div>
+                                                              </li>
+                                                              <li class="prfnme ng-binding ng-hide" data-ng-show="is_user_login == true">
+
+                                                              </li>
+                                                              <li class="prfnme prfnme1 ng-hide" data-ng-show="is_user_login == true">
+                                                                <span data-ng-if="getProfile().company != ''" class="ng-binding ng-scope">
+                                                                </span>
+
+                                                              </li>
+                                                              <li data-ng-show="is_user_login == false">
+                                                                  <button class="inbtn" href="#" onclick="showLogin();">Login</button>
+                                                              </li>
+                                                              <li data-ng-show="is_user_login == false">
+                                                                  New User? <a href="#" onclick="showSignup();">Register</a>
+                                                              </li>
+                                                </div>
 
 
-                                    </ol>
-                                </div>
-                            </li>
-                            <!-- <li>
-                                <div class="cart-footer">
-                                    <a href="cart.html" class="pull-left"><i class="fa fa-cart-plus mr-5"></i>View Cart</a>
-                                    <a href="checkout.html" class="pull-right"><i class="fa fa-shopping-basket mr-5"></i>Checkout</a>
-                                </div>
-                            </li> -->
 
-                        </ul>
-                    </li>
+                                                          </ul>
+                                                      </li>
 
-                    <li class="linkdown">
-                        <a href="javascript:void(0);">
-                            <i class="fa fa-user mr-5"></i>
-                            <span class="hidden-xs">
-                              Account
-                                <i class="fa fa-angle-down ml-5"></i>
-                            </span>
-                        </a>
-                        <ul class="w-150">
-                            <li><a href="javascript:void(0)" data-toggle="modal" data-target="#loginModel">Login</a></li>
-                            <li><a href="javascript:void(0)" data-toggle="modal" data-target="#loginModel">Create Account</a></li>
+                                                      </ul>
 
-                        </ul>
-                    </li>
-
-                </ul>
-
-        </div>
+                                                    </div>
 
                                   <!-- notify-lead-login  -->
                                </div><!-- end col -->
                            </div><!-- end row -->
-                       </form>
+
                    </div><!-- end col -->
-                   <!-- <div class="col-sm-2 vertical-align header-items hidden-xs">
-                       <div class="header-item mr-5">
-                           <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Buy Leads">
-                             <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                               <sub>32</sub>
-                           </a>
-                       </div>
-                       <div class="header-item">
-                           <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Notifications">
-                             <i class="fa fa-bell" aria-hidden="true"></i>
-                               <sub>10</sub>
-                           </a>
-                       </div>
-                   </div> -->
+
                    <!-- end col -->
                </div><!-- end  row -->
            </div><!-- end container -->
        </div><!-- end middleBar -->
-
-       

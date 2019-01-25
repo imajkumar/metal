@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\User;
 use Theme;
@@ -20,6 +18,14 @@ class HomeController extends Controller
     {
         //$this->middleware('guest');
     }
+    // getSeller_catalogue
+    public function getSeller_catalogue(){
+      $theme = Theme::uses('default')->layout('layout');
+      $data = ['info' => 'Hello World'];
+      return $theme->scope('getSeller_catalogue', $data)->render();
+    }
+    // getSeller_catalogue
+
 
     public function getProductDetail(Request $request){
       $theme = Theme::uses('default')->layout('layout');

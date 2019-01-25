@@ -119,7 +119,7 @@ $home_data=json_decode($response->getBody()->getContents());
 																</li>
 																<li>
 																		<div class="menuleft">
-																				<img src="images/menu-add.jpg" alt="Menu Add" title="Menu Add">
+																				<img src="http://metalbaba.com/images/menu-add.jpg" alt="Menu Add" title="Menu Add">
 																		</div>
 																</li>
 														</ul>
