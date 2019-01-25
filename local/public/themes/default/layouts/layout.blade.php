@@ -31,7 +31,8 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800&amp;subset=latin-ext" rel="stylesheet" />
-<link href="https://codeseven.github.io/toastr/build/toastr.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+
 
 <!--Favicon-->
 <link rel="shortcut icon" href="{{ asset('local/public/themes/default/assets/core/img/favicon.ico') }}" type="image/x-icon" />
@@ -76,9 +77,10 @@
 
                 <script type="text/javascript" src="{{ asset('local/public/themes/default/assets/core/js/main.js') }}"></script>
                 <script type="text/javascript" src="{{ asset('local/public/themes/default/assets/core/js/jquery.easy-ticker.js') }}"></script>
-                <script type="text/javascript" src="https://codeseven.github.io/toastr/build/toastr.min.js"></script>
+                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
                 <script type="text/javascript" src="{{ asset('local/public/themes/default/assets/core/js/swiper.min.js') }}"></script>
                 <script type="text/javascript" src="{{ asset('local/public/themes/default/assets/core/js/script.js') }}"></script>
+
 
 
 <div class="modal fade in" id="loginModel" tabindex="-1" role="dialog" style="display: none;">
@@ -119,12 +121,7 @@
                                           </span>
 
 
-                                        <!-- <span class="input input--haruki top-spc3" id="login-username" style="display: none;">
-                                            <input data-ng-model="login_username" id="login-username-input" type="text" class="input__field input__field--haruki ng-pristine ng-untouched ng-valid ng-empty">
-                                            <label class="input__label input__label--haruki" for="login-username-input">
-                                                <span class="input__label-content input__label-content--haruki">Enter Mobile Or Email</span>
-                                            </label>
-                                        </span> -->
+                                        
                                         <span id="login-name">
                                           <div class="form-group">
                                             <label for="email">Enter Your Name</label>
@@ -133,12 +130,7 @@
                                         </span>
 
 
-                                        <!-- <span class="input input--haruki top-spc3" id="login-name" style="display: inline-block;">
-                                            <input data-ng-model="login_name" id="login-name-input" type="text" class="input__field input__field--haruki ng-pristine ng-untouched ng-valid ng-empty">
-                                            <label class="input__label input__label--haruki" for="login-name-input">
-                                                <span class="input__label-content input__label-content--haruki">Enter Your Name</span>
-                                            </label>
-                                        </span> -->
+
                                         <span id="login-company">
                                           <div class="form-group">
                                             <label for="email">Enter Your Company Name</label>
@@ -147,12 +139,7 @@
                                         </span>
 
 
-                                        <!-- <span class="input input--haruki top-spc3" id="login-company" style="display: inline-block;">
-                                            <input data-ng-model="login_company" id="login-company-input" type="text" class="input__field input__field--haruki ng-pristine ng-untouched ng-valid ng-empty">
-                                            <label class="input__label input__label--haruki" for="login-company-input">
-                                                <span class="input__label-content input__label-content--haruki">Enter Your Company Name</span>
-                                            </label>
-                                        </span> -->
+
 
                                         <span id="login-mobile">
                                           <div class="form-group">
@@ -162,12 +149,6 @@
                                         </span>
 
 
-                                        <!-- <span class="input input--haruki top-spc3" id="login-mobile" style="display: inline-block;">
-                                            <input data-ng-model="login_mobile" id="login-mobile-input" type="text" class="input__field input__field--haruki ng-pristine ng-untouched ng-valid ng-empty">
-                                            <label class="input__label input__label--haruki" for="login-mobile-input">
-                                                <span class="input__label-content input__label-content--haruki">Enter Mobile</span>
-                                            </label>
-                                        </span> -->
 
                                         <span id="login-email">
                                           <div class="form-group">
@@ -177,12 +158,7 @@
                                         </span>
 
 
-                                        <!-- <span class="input input--haruki top-spc3" id="login-email" style="display: inline-block;">
-                                            <input data-ng-model="login_email" id="login-email-input" type="text" class="input__field input__field--haruki ng-pristine ng-untouched ng-valid ng-empty">
-                                            <label class="input__label input__label--haruki" for="login-email-input">
-                                                <span class="input__label-content input__label-content--haruki">Enter Email</span>
-                                            </label>
-                                        </span> -->
+
                                         <span id="login-password">
                                           <div class="form-group">
                                             <label for="email">Enter Password</label>
@@ -190,12 +166,7 @@
                                           </div>
                                         </span>
 
-                                        <!-- <span class="input input--haruki top-spc3" id="login-password" style="display: inline-block;">
-                                            <input data-ng-model="login_password" id="login-password-input" type="password" class="input__field input__field--haruki ng-pristine ng-untouched ng-valid ng-empty" ng-enter="loginEnter()">
-                                            <label class="input__label input__label--haruki" for="login-password-input">
-                                                <span class="input__label-content input__label-content--haruki">Password</span>
-                                            </label>
-                                        </span> -->
+
 
                                         <div class="otpboxin" id="login-otp" style="display: none;">
                                             <span class="lock2 sprite"></span>
@@ -239,19 +210,13 @@
                 $('#login-reset-btn').hide();
                 $('#login-signin-btn').show();
                 $('#login-password-btn').show();
-
                 $('#login-signup-link').show();
                 $('#login-login-link').hide();
                 $('#login-username').show();
-
-
-
-
                 function showLogin() {
                   $('#loginModel').modal('show');
                   $('#login-heading').html('LOGIN');
                   $('#login-title').html('Please provide your mobile number or email to login on metalbaba!');
-
 
                   $('#login-name').hide();
                   $('#login-company').hide();
@@ -266,8 +231,6 @@
 
                   $('#login-signup-link').show();
                   $('#login-login-link').hide();
-
-
                 }
                 function showSignup() {
                   $('#loginModel').modal('show');
@@ -287,11 +250,45 @@
 
                   $('#login-signup-link').hide();
                   $('#login-login-link').show();
-
-
                 }
                 function login(){
-                    alert('login clicked');
+                    var username=$('#login-username-input').val();
+                    var password=$('#login-password-input').val();
+                    if(username==""){
+                      toastr.error('Email or Username Invalid', 'Alert!');
+                      return false;
+                    }
+                    if(password==""){
+                      toastr.error('Invalid password', 'Alert!');
+                      return false;
+                    }
+
+                  var datastring = "_token=" + CSRF_TOKEN + "&username=" + username + '&password=' + password + '&type=' + '2';
+                  $.ajax({
+                    type: 'POST',
+                    url: BASE_URL + "/user_login", //this should be url to your PHP file
+                    data:datastring,
+                    beforeSend: function(){
+
+                      $('.login-container').css('pointer-event','none');
+
+
+                       alert("wait");
+
+                    },
+                    success: function(data) {
+                      console.log(data);
+                    }
+                  });
+
+
+
+
+
+
+
+
+
 
                 }
                 function signup(){
@@ -301,6 +298,8 @@
                 BASE_URL=$('meta[name="csrf-base"]').attr('content');
                 CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
                 </script>
+
+
 
 
 

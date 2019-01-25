@@ -1,4 +1,36 @@
 <!-- start topBar -->
+<?php
+use GuzzleHttp\Client;
+use GuzzleHttp\Middleware;
+$client = new Client();
+$data_session = Session::get('MYTOKEN');
+
+ if(!empty($data_session)){
+   $clientHandler = $client->getConfig('handler');
+   $tapMiddleware = Middleware::tap(function ($request) {
+        $request->getHeaderLine('Content-Type');
+        $request->getBody();
+   });
+   $response = $client->request('POST', 'http://api.metalbaba.local/customer_web/profile_detail', [
+             'json'    => [
+               'API_TOKEN' => $data_session
+               ],
+         'handler' => $tapMiddleware($clientHandler)
+     ]);
+   $user_profile=json_decode($response->getBody()->getContents());
+   $usr_data=$user_profile->data;
+   // echo "<pre>";
+   // print_r($usr_data);
+   // die;
+
+
+ }
+
+
+
+
+
+?>
        <div class="middleBar" >
            <div class="container">
                <div class="row display-table">
@@ -60,8 +92,8 @@
 
                                                         <?php
                                                           //show notification
-                                                              use GuzzleHttp\Client;
-                                                               $client = new Client();
+                                                              // use GuzzleHttp\Client;
+                                                              //  $client = new Client();
 
                                                                $response = $client->post(Config::get('ayra.apiList.NOTIFICATION_LIST'));
                                                                $login_data=json_decode($response->getBody()->getContents());
@@ -107,33 +139,77 @@
                                                               </span>
                                                           </a>
                                                           <ul class="w-150" style="background:#008FF9">
-                                                            <div class="inmenu">
-                                                              <li>
-                                                                  <div class="inuer">
-                                                                      <!-- <img alt="Profile Image" title="Profile Image" src="#" data-ng-src="" data-ng-show="getProfile().image != ''" class="ng-hide"> -->
+                                                            <?php
+                                                            if(!empty($data_session)){
+                                                          
+                                                              ?>
 
-                                                                      <i class="fa fa-user icsize1" aria-hidden="true"></i>
-                                                                  </div>
-                                                              </li>
-                                                              <li class="prfnme ng-binding ng-hide" data-ng-show="is_user_login == true">
+                                                  <div class="inmenu">
+                                                  <li>
+                                                      <div class="inuer">
+                                                        <i class="fa fa-user icsize1" aria-hidden="true"></i>
+                                                      </div>
+                                                  </li>
+                                                    <li class="prfnme ng-binding" data-ng-show="is_user_login == true">
 
-                                                              </li>
-                                                              <li class="prfnme prfnme1 ng-hide" data-ng-show="is_user_login == true">
-                                                                <span data-ng-if="getProfile().company != ''" class="ng-binding ng-scope">
-                                                                </span>
+                                                    </li>
+                                                    <li class="prfnme prfnme1" data-ng-show="is_user_login == true">
+                                                        <span data-ng-if="getProfile().company != ''" class="ng-binding ng-scope">
 
-                                                              </li>
-                                                              <li data-ng-show="is_user_login == false">
-                                                                  <button class="inbtn" href="#" onclick="showLogin();">Login</button>
-                                                              </li>
-                                                              <li data-ng-show="is_user_login == false">
-                                                                  New User? <a href="#" onclick="showSignup();">Register</a>
-                                                              </li>
+                                                        </span>
+                                                    </li>
+                                                </div>
+                                                <div class="profile_panel" style="background:#FFF">
+                                                  <li data-ng-show="is_user_login == true" class="">
+                                                      <a href="#" data-ng-click="viewCart();">My Truck</a>
+                                                  </li>
+                                                  <li data-ng-show="is_user_login == true" class="">
+                                                      <a href="/order-list">My Order</a>
+                                                  </li>
+                                                                                                  <li data-ng-show="is_user_login == true" class="">
+                                                      <a href="#" data-ng-click="showDashboard('manage_products');">My Products</a>
+                                                  </li>
+                                                  <li data-ng-show="is_user_login == true" class="">
+                                                      <a href="#" data-ng-click="showDashboard('company_profile');">Company Profile</a>
+                                                  </li>
+                                                  <li data-ng-show="is_user_login == true" class="">
+                                                      <a href="#" data-ng-click="logout();">Logout</a>
+                                                  </li>
                                                 </div>
 
 
 
-                                                          </ul>
+
+                                                              <?php
+                                                            }else{
+                                                              ?>
+                                                              <div class="inmenu">
+                                                                <li>
+                                                                    <div class="inuer">
+                                                                      <i class="fa fa-user icsize1" aria-hidden="true"></i>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="prfnme ng-binding ng-hide" data-ng-show="is_user_login == true">
+
+                                                                </li>
+                                                                <li class="prfnme prfnme1 ng-hide" data-ng-show="is_user_login == true">
+                                                                  <span data-ng-if="getProfile().company != ''" class="ng-binding ng-scope">
+                                                                  </span>
+
+                                                                </li>
+                                                                <li data-ng-show="is_user_login == false">
+                                                                    <button class="inbtn" href="#" onclick="showLogin();">Login</button>
+                                                                </li>
+                                                                <li data-ng-show="is_user_login == false">
+                                                                    New User? <a href="#" onclick="showSignup();">Register</a>
+                                                                </li>
+                                                                </div>
+
+                                                              <?php
+                                                            }
+                                                            ?>
+
+                                                            </ul>
                                                       </li>
 
                                                       </ul>

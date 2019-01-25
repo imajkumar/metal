@@ -33,6 +33,7 @@ Route::post('/seller_filter_ajax', 'HomeController@seller_filter_ajax')->name('s
 
 
 
+
 Route::get('/prices', 'HomeController@view_all_prices')->name('view_all_prices');
 Route::get('/about-us', 'HomeController@about_us')->name('about_us');
 
@@ -46,7 +47,11 @@ Route::get('/contact-us', 'HomeController@contact_us')->name('contact_us');
 Route::get('/enquiry-buylead-list', 'HomeController@enquiry_buylead_list')->name('enquiry_buylead_list');
 
 
+//login
+Route::post('/user_login', 'HomeController@getUserLogin')->name('getUserLogin');
 
+
+//login
 
 
 

@@ -18,6 +18,47 @@ class HomeController extends Controller
     {
         //$this->middleware('guest');
     }
+
+// getUserLogin
+public function getUserLogin(Request $request){
+  $username=$request->username;
+  $password=$request->password;
+  $type=$request->type;
+  if($username!==""){
+
+    $client = new Client();
+    $clientHandler = $client->getConfig('handler');
+    $tapMiddleware = Middleware::tap(function ($request) {
+         $request->getHeaderLine('Content-Type');
+         $request->getBody();
+    });
+    $response = $client->request('POST', 'http://api.metalbaba.local/customer_web/login', [
+              'json'    => [
+                'API_TOKEN' => '',
+                'type' =>'2',
+                'username' =>$username,
+                'password' =>$password
+
+          ],
+          'handler' => $tapMiddleware($clientHandler)
+      ]);
+  $user_arr=json_decode($response->getBody()->getContents());
+
+  if($user_arr->status==1){
+     session(['MYTOKEN' => $user_arr->api_token]);
+     return json_encode($user_arr);
+  }else{
+  return json_encode($user_arr);
+  }
+
+  }
+
+
+
+}
+// getUserLogin
+
+
     // getSeller_catalogue
     public function getSeller_catalogue(){
       $theme = Theme::uses('default')->layout('layout');
