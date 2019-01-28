@@ -121,7 +121,7 @@
                                           </span>
 
 
-                                        
+
                                         <span id="login-name">
                                           <div class="form-group">
                                             <label for="email">Enter Your Name</label>
@@ -176,7 +176,7 @@
                                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                                 </button>
                                             </div>
-                                            <input data-ng-model="login_otp" type="text" placeholder="OTP" class="otpfield top-spc2 ng-pristine ng-untouched ng-valid ng-empty">
+                                            <input data-ng-model="login_otp" id="login_otp" type="text" placeholder="OTP" class="otpfield top-spc2 ng-pristine ng-untouched ng-valid ng-empty">
                                             <div class="otphad2">Not received your code? <a href="#" onclick="resendOtp();">Resend</a></div>
                                         </div>
 
@@ -214,6 +214,7 @@
                 $('#login-login-link').hide();
                 $('#login-username').show();
                 function showLogin() {
+                  $('#login-otp').hide();
                   $('#loginModel').modal('show');
                   $('#login-heading').html('LOGIN');
                   $('#login-title').html('Please provide your mobile number or email to login on metalbaba!');
@@ -251,6 +252,28 @@
                   $('#login-signup-link').hide();
                   $('#login-login-link').show();
                 }
+                //logout
+                function logout(){
+                  var datastring = "_token=" + CSRF_TOKEN+"&user_logout=1"
+                  //ajax class
+                  $.ajax({
+                    type: 'POST',
+                    url: BASE_URL + "/user_logout", //this should be url to your PHP file
+                    data:datastring,
+                    beforeSend: function(){
+
+                    },
+                    success: function(data) {
+                      console.log(data);
+                      if(data.status==0){
+                        location.reload();
+                      }
+                    },
+                    dataType: "json",
+
+                  });
+                  //ajax class
+                } //end of logout
                 function login(){
                     var username=$('#login-username-input').val();
                     var password=$('#login-password-input').val();
@@ -271,29 +294,139 @@
                     beforeSend: function(){
 
                       $('.login-container').css('pointer-event','none');
-
-
-                       alert("wait");
-
                     },
                     success: function(data) {
                       console.log(data);
-                    }
+                      if(data.status==1){
+                          location.reload();
+                      }else{
+                        toastr.error(data.message, 'Alert!');
+                        return false;
+                      }
+                    },
+                    dataType: "json",
                   });
-
-
-
-
-
-
-
-
-
 
                 }
                 function signup(){
-                    alert('signup clicked');
-                }
+
+                  var login_otp=$('#login-signup-btn').html();
+                  var name=$('#login-name-input').val();
+                  var company=$('#login-company-input').val();
+                  var mobile=$('#login-mobile-input').val();
+                  var email=$('#login-email-input').val();
+                  var password=$('#login-password-input').val();
+
+                  if(login_otp=='Continue'){                   //step 1
+
+
+                    if(name==""){
+                      toastr.error('Please enter valid name', 'Alert!');
+                      return false;
+                    }
+                    if(mobile==""){
+                      toastr.error('Please enter valid Mobile no.', 'Alert!');
+                      return false;
+                    }
+                    phone = mobile.replace(/[^0-9]/g,'');
+                    if (phone.length != 10)
+                    {
+                        toastr.error('Please enter valid Mobile no.', 'Alert!');
+                        $('#login-mobile-input').val(" ");
+                        $('#login-mobile-input').focus();
+                          return false;
+                    }
+
+                    if(email==""){
+                      toastr.error('Please enter valid email', 'Alert!');
+                      return false;
+                    }
+                    if(IsEmail(email)==false){
+                    toastr.error('Please enter valid email', 'Alert!');
+                      return false;
+                    }
+
+                    if(password==""){
+                      toastr.error('Please enter password', 'Alert!');
+                      return false;
+                    }
+                    var datastring = "_token=" + CSRF_TOKEN + "&name=" + name + '&company=' + company + '&mobile=' + mobile+'&email='+email+'&password='+password+'&step=1';
+                    //ajax class
+                    $.ajax({
+                      type: 'POST',
+                      url: BASE_URL + "/user_register", //this should be url to your PHP file
+                      data:datastring,
+                      beforeSend: function(){
+                      $('.login-container').css('pointer-event','none');
+                      },
+                      success: function(data) {
+
+                        if(data.status==1){
+                            $('#login-name').hide();
+                            $('#login-company').hide();
+                            $('#login-mobile').hide();
+                            $('#login-email').hide();
+                            $('#login-password').hide();
+                            $('#login-signup-btn').html('Verify');
+                            $('#login-otp').show();
+
+
+                        }
+                      },
+                      dataType: "json",
+
+                    });
+                    //ajax class
+
+
+                    function IsEmail(email) {
+                      var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                      if(!regex.test(email)) {
+                        return false;
+                      }else{
+                        return true;
+                      }
+                    }
+
+
+                  }else{
+                    //step 2
+                      var login_otp=$('#login_otp').val();
+                      if(login_otp==""){
+                        toastr.error('Invalid OTP', 'Alert!');
+                        return false;
+                      }
+
+                      var datastring = "_token=" + CSRF_TOKEN + "&name=" + name + '&company=' + company + '&mobile=' + mobile+'&email='+email+'&password='+password+'&login_otp='+login_otp+'&step=2';;
+
+                      //ajax class
+                      $.ajax({
+                        type: 'POST',
+                        url: BASE_URL + "/user_register", //this should be url to your PHP file
+                        data:datastring,
+                        beforeSend: function(){
+                        $('.login-container').css('pointer-event','none');
+                        },
+                        success: function(data) {
+                          console.log(data);
+                        },
+                        dataType: "json",
+
+                      });
+                      //ajax class
+
+
+
+
+                  }
+
+
+
+
+
+
+
+                }//end of signup
 
                 BASE_URL=$('meta[name="csrf-base"]').attr('content');
                 CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');

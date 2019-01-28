@@ -49,6 +49,8 @@ Route::get('/enquiry-buylead-list', 'HomeController@enquiry_buylead_list')->name
 
 //login
 Route::post('/user_login', 'HomeController@getUserLogin')->name('getUserLogin');
+Route::post('/user_register', 'HomeController@getUserRegister')->name('getUserRegister');
+Route::post('/user_logout', 'HomeController@getUserLogout')->name('getUserLogout');
 
 
 //login

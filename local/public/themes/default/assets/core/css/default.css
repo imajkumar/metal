@@ -4590,3 +4590,7 @@ span.ist {
 .topBar ul.topBarNav li ul.cart .cart-items .items li {
     background: #FFF;
 }
+.sprite {
+    background: url('http://metalbaba.local/images/sprite-image.png') no-repeat;
+    display: inline-block;
+}

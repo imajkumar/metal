@@ -5,6 +5,7 @@ use App\User;
 use Theme;
 use Auth;
 use GuzzleHttp\Client;
+use Config;
 use GuzzleHttp\Middleware;
 use YoHang88\LetterAvatar\LetterAvatar;
 class HomeController extends Controller
@@ -19,12 +20,97 @@ class HomeController extends Controller
         //$this->middleware('guest');
     }
 
+    // getUserLogout
+    public function getUserLogout(Request $request){
+      $client = new Client();
+      $clientHandler = $client->getConfig('handler');
+      $tapMiddleware = Middleware::tap(function ($request) {
+           $request->getHeaderLine('Content-Type');
+           $request->getBody();
+
+      });
+      $response = $client->request('POST', Config::get('ayra.apiList.APP_LOGOUT'), [
+              'json'    => [
+                'API_TOKEN' => ''
+
+
+
+          ],
+          'handler' => $tapMiddleware($clientHandler)
+      ]);
+      $request->session()->flush();
+      echo $response->getBody()->getContents();
+
+
+    }
+    //getUserLogout
+
+// getUserRegister
+public function getUserRegister(Request $request){
+  $name=$request->name;
+  $company=$request->company;
+  $mobile=$request->mobile;
+  $email=$request->email;
+  $password=$request->password;
+  if(!empty($name)){
+    $client = new Client();
+    $clientHandler = $client->getConfig('handler');
+    $tapMiddleware = Middleware::tap(function ($request) {
+         $request->getHeaderLine('Content-Type');
+         $request->getBody();
+
+    });
+
+    if($request->step=='1'){
+      $response = $client->request('POST', Config::get('ayra.apiList.APP_REGISTER'), [
+              'json'    => [
+                'API_TOKEN' => '',
+                'company' =>$company,
+                'email' =>$email,
+                'password' =>$password,
+                'name' =>$name,
+                'mobile' =>$mobile,
+                'step' =>'1'
+
+
+          ],
+          'handler' => $tapMiddleware($clientHandler)
+      ]);
+    echo $response->getBody()->getContents();
+    }else{
+      $response = $client->request('POST', Config::get('ayra.apiList.APP_REGISTER'), [
+              'json'    => [
+                'API_TOKEN' => '',
+                'company' =>$company,
+                'email' =>$email,
+                'password' =>$password,
+                'name' =>$name,
+                'mobile' =>$mobile,
+                'otp' =>$request->login_otp,
+                'step' =>'2'
+
+
+          ],
+          'handler' => $tapMiddleware($clientHandler)
+      ]);
+    echo $response->getBody()->getContents();
+
+    }
+
+
+
+
+  }
+
+}
+// getUserRegister
+
 // getUserLogin
 public function getUserLogin(Request $request){
   $username=$request->username;
   $password=$request->password;
   $type=$request->type;
-  if($username!==""){
+  if($username!=""){
 
     $client = new Client();
     $clientHandler = $client->getConfig('handler');
@@ -32,7 +118,7 @@ public function getUserLogin(Request $request){
          $request->getHeaderLine('Content-Type');
          $request->getBody();
     });
-    $response = $client->request('POST', 'http://api.metalbaba.local/customer_web/login', [
+      $response = $client->request('POST', Config::get('ayra.apiList.APP_LOGIN'), [
               'json'    => [
                 'API_TOKEN' => '',
                 'type' =>'2',

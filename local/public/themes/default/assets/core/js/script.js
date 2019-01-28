@@ -6,6 +6,7 @@ CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
 // login process
 // login process
 
+
 var swiper = new Swiper('.swiper-container', {
   slidesPerView: 5,
   spaceBetween: 0,

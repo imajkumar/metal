@@ -11,7 +11,7 @@ $data_session = Session::get('MYTOKEN');
         $request->getHeaderLine('Content-Type');
         $request->getBody();
    });
-   $response = $client->request('POST', 'http://api.metalbaba.local/customer_web/profile_detail', [
+   $response = $client->request('POST', Config::get('ayra.apiList.USER_PROFILE'), [
              'json'    => [
                'API_TOKEN' => $data_session
                ],
@@ -141,7 +141,7 @@ $data_session = Session::get('MYTOKEN');
                                                           <ul class="w-150" style="background:#008FF9">
                                                             <?php
                                                             if(!empty($data_session)){
-                                                          
+
                                                               ?>
 
                                                   <div class="inmenu">
@@ -161,19 +161,19 @@ $data_session = Session::get('MYTOKEN');
                                                 </div>
                                                 <div class="profile_panel" style="background:#FFF">
                                                   <li data-ng-show="is_user_login == true" class="">
-                                                      <a href="#" data-ng-click="viewCart();">My Truck</a>
+                                                      <a href="#" onclick="viewCart();">My Truck</a>
                                                   </li>
                                                   <li data-ng-show="is_user_login == true" class="">
                                                       <a href="/order-list">My Order</a>
                                                   </li>
-                                                                                                  <li data-ng-show="is_user_login == true" class="">
-                                                      <a href="#" data-ng-click="showDashboard('manage_products');">My Products</a>
+                                                  <li data-ng-show="is_user_login == true" class="">
+                                                      <a href="#" onclick="showDashboard('manage_products');">My Products</a>
                                                   </li>
                                                   <li data-ng-show="is_user_login == true" class="">
-                                                      <a href="#" data-ng-click="showDashboard('company_profile');">Company Profile</a>
+                                                      <a href="#" onclick="showDashboard('company_profile');">Company Profile</a>
                                                   </li>
                                                   <li data-ng-show="is_user_login == true" class="">
-                                                      <a href="#" data-ng-click="logout();">Logout</a>
+                                                      <a href="#" onclick="logout();">Logout</a>
                                                   </li>
                                                 </div>
 

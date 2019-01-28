@@ -27,6 +27,10 @@ return [
         'CATEGORY_HOME_LIST' => env('APP_BASEURL', 'localhost').'category_home_list',
         'SELLER_LIST' => env('APP_BASEURL', 'localhost').'seller_list',
         'SELLER_FILTER' => env('APP_BASEURL', 'localhost').'seller_filter',
+        'APP_LOGIN' => env('APP_BASEURL', 'localhost').'login',
+        'APP_REGISTER' => env('APP_BASEURL', 'localhost').'signup',
+        'USER_PROFILE' => env('APP_BASEURL', 'localhost').'profile_detail',
+        'APP_LOGOUT' => env('APP_BASEURL', 'localhost').'logout',
 
         'en' => 'www.domain.us'.env('APP_BASEURL', 'localhost')
         // etc

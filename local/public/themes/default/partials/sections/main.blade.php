@@ -246,6 +246,10 @@ $home_data=json_decode($response->getBody()->getContents());
 							<div class="slider_wall">
 								<div class="owl-carousel slider owl-theme">
 								 <?php
+								 // echo "<pre>";
+								 // print_r($home_data->data->data[0]->card_data);
+								 // die;
+
 								 foreach ($home_data->data->data[0]->card_data as $key => $value) {
 										 ?>
 										 <div class="item">

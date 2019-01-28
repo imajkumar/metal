@@ -491,7 +491,7 @@ box-shadow: 8px 0 5px -6px rgba(0,0,0,0.2); }*/
 
 
 
-.sprite{ background:url(../images/sprite-image.png) no-repeat; display: inline-block;}
+.sprite{ background:url('http://metalbaba.com/images/sprite-image.png') no-repeat; display: inline-block;}
 .logedicon{ background-position:-455px -7px; width:34px; height:26px; position: absolute;}
 .gsicon{ background-position:-9px -10px; width:21px; height:21px; position: absolute;}
 .tradeicon{ background-position:-41px -12px; width:21px; height:26px; position: absolute;}
