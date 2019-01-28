@@ -6,6 +6,7 @@ use Theme;
 use Auth;
 use GuzzleHttp\Client;
 use Config;
+use URL;
 use GuzzleHttp\Middleware;
 use YoHang88\LetterAvatar\LetterAvatar;
 class HomeController extends Controller
@@ -19,9 +20,57 @@ class HomeController extends Controller
     {
         //$this->middleware('guest');
     }
+    //seller_detail
+    public function seller_detail(Request $request){
+      $theme = Theme::uses('default')->layout('layout');
+      $data = ['info' => 'Hello World'];
+      return $theme->scope('seller_detail', $data)->render();
+    }
+    //seller_detail
+
+    // buylead_action
+    public function buylead_action(Request $request){
+
+        $client = new Client();
+        $clientHandler = $client->getConfig('handler');
+        $tapMiddleware = Middleware::tap(function ($request) {
+             $request->getHeaderLine('Content-Type');
+             $request->getBody();
+
+        });
+        $response = $client->request('POST', Config::get('ayra.apiList.BUY_LEAD_ADD'), [
+                'json'    => [
+                  'API_TOKEN' => '',
+                  'is_buy_from_metalbaba' => '1',
+                  'message' => '',
+                  'price' => '0',
+                  'quantity' => '1',
+                  'product_detail' => 'this is nice',
+                  'payment_term_id' => '1',
+                  'is_international' => '0',
+                  'unit_id' => '4'
+            ],
+            'handler' => $tapMiddleware($clientHandler)
+        ]);
+
+        echo $response->getBody()->getContents();
+
+
+    }
+  // buylead_action
+
+// enquiry_buylead_list
+  public function enquiry_buylead_list(Request $request){
+    $theme = Theme::uses('default')->layout('layout');
+    $data = ['info' => 'Hello World'];
+    return $theme->scope('enquiry_buylead_list', $data)->render();
+  }
+// enquiry_buylead_list
 
     // getUserLogout
     public function getUserLogout(Request $request){
+
+
       $client = new Client();
       $clientHandler = $client->getConfig('handler');
       $tapMiddleware = Middleware::tap(function ($request) {
@@ -309,6 +358,10 @@ foreach ($data_arr->data->data as $key => $value) {
         foreach ($value->main_products as $key => $mp_value) {
           // echo "<pre>";
           // print_r($mp_value);
+          $pname1=str_replace('/', '-',  $mp_value->name);
+            $pname=str_replace(' ', '-',  $pname1);
+
+          $urllink=route('seller-detail', ['id' => $mp_value->id,'name' => $pname]);
 
           $html .='<li><a href="#">
             <img src="'.$mp_value->image.'" width="110%" style="min-height:110px;">
@@ -327,7 +380,7 @@ foreach ($data_arr->data->data as $key => $value) {
    <span class="comp_img_tag_img">
      <img src="'.$value->group_image.'" alt"" width="75px">
    </span>
-     <button type="button" class="btn btn-primary btn-ms aj_button_req" name="button">View Details</button>                   </div>
+     <a href="'.$urllink.'" class="btn btn-primary btn-ms aj_button_req" name="button">View Details</a>                   </div>
   </div>
   </div>';
 
@@ -472,7 +525,7 @@ $P_URL=route('getProductDetail', ['productid' => 1, 'product_name' => str_replac
          <img src="http://res.cloudinary.com/metb/image/upload/ABGLIM472338483" alt"" width="75px">
        </span>
        <span>
-         <button type="button" class="btn btn-primary btn-md" name="button">PLACE ENQUIRY</button>
+         <button type="button" class="btn btn-primary btn-md" name="button" onclick="mb_enq()">PLACE ENQUIRY</button>
        </span>
     </div>
   </div>

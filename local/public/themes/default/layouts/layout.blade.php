@@ -203,9 +203,154 @@
 
 <!-- new login register -->
 
+<!-- for submit request form -->
+<div class="modal fade ng-scope in" id="buyleadModal" tabindex="-1" role="dialog" style="z-index: 999; display: none;background:#7f7f7f;
+  background:rgba(0,0,0,0.5);">
+    <div class="modal-dialog byen-o" role="document">
+        <div style="margin-top: 12%;">
+            <div class="byen-cont">
+                <!--<a data-dismiss="modal">Close</a>-->
+                <div class="row">
+                    <div class="col-lg-6 r-padd">
+                        <div class="byen-box">
+                            <label>Product</label>
+                            <input id="buylead_product" type="text" placeholder="Product" class="fcfield ng-pristine ng-valid ng-empty ng-touched">
+                            <label class="top-spc2">Quantity</label>
+                            <div class="rupeelf-field2 rupeelf-field2-left">
+                                <span class="faicon">kg</span>
+                                <input id="buylead_quantity" type="text" placeholder="Quantity" class="rupeelf-custom ng-pristine ng-valid ng-empty ng-touched">
+                            </div>
+                            <div class="clr"></div>
+                            <!--<input data-ng-model="buylead_quantity" type="text" placeholder="Quantity" class="fcfield" />-->
+                            <label class="top-spc2">Bid Price</label>
+                            <div class="rupeelf-field1 rupeelf-field1-left">
+                                <span class="fa faicon1 fa-inr"></span>
+                                <span class="faicon">/kg</span>
+                                <input id="buylead_price" type="text" placeholder="Bid Price" class="rupeelf-custom ng-pristine ng-valid ng-empty ng-touched">
+
+                            </div>
+                            <div class="clr"></div>
+                            <input type="file" id="file" ng-model="file" onchange="angular.element(this).scope().fileChanged(this)" class="top-spc2 ng-pristine ng-valid ng-empty ng-touched">
+                            <div class="clr"></div>
+                            <label class="top-spc2">Description</label>
+                            <textarea id="buylead_description" class="top-spc-min fctextarea ng-pristine ng-untouched ng-valid ng-empty" placeholder="Write here product description"></textarea>
+                            <div class="top-spc l-padd1">
+                                <input type="checkbox" id="buylead_is_buy_from_metalbaba" class="css-checkbox ng-pristine ng-untouched ng-valid ng-empty" data-ng-model="buylead_is_buy_from_metalbaba" data-ng-checked="buylead_is_buy_from_metalbaba == 1" checked="checked">
+                                <label for="buylead_is_buy_from_metalbaba" class="css-label">Buy through Metalbaba Tradesafe.</label>
+                            </div>
+                            <button class="login-btn top-spc2" onclick="submitBuylead()">Submit  Enquiry</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 byen-boxr">
+                        <div class="uniqcen"><img src="http://metalbaba.com/images/time-cost.png" alt="Time Cost" title="Time Cost"></div>
+                        <div class="postmsg top-spc6">
+                            <p>
+                                After you submit your requirement, <span>Metalbaba Procurement Team </span> will call you and get you the best deal from the market
+                            </p>
+
+                        </div>
+                        <div class="clr"></div>
+                        <div class="postmsg1 top-spc"><i class="fa fa-phone" aria-hidden="true"></i> 9555-066-066</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- for submit request form -->
+
+<!-- for enquiry for  -->
+<div class="modal fade ng-scope in" id="placeEnquiryModal" tabindex="-1" role="dialog" style="display:none;">
+    <div class="modal-dialog placeenquiry" role="document">
+        <div style="margin-top: 18%;">
+            <div class="byen-cont">
+                <!--<a data-dismiss="modal">Close</a>-->
+                <div class="row">
+                    <div class="col-lg-6 r-padd">
+                        <div class="byen-box">
+                            <label>Quantity</label>
+                            <input data-ng-model="enquiry_quantity" type="text" placeholder="Quantity" class="fcfield ng-pristine ng-untouched ng-valid ng-not-empty">
+
+                            <label class="top-spc2">Bid Price</label>
+                            <div class="rupeelf-field rupeelf-field-left">
+                                <span data-ng-show="enquiryProduct.is_international == 1" class="fa faicon fa-dollar ng-hide"></span>
+                                <span data-ng-show="enquiryProduct.is_international == 0" class="fa faicon fa-inr"></span>
+                                <input data-ng-model="enquiry_price" type="text" placeholder="Bid Price" class="rupeelf-custom ng-pristine ng-untouched ng-valid ng-not-empty">
+                            </div>
+
+                            <div class="clr"></div>
+                            <!-- ngRepeat: payment_term in enquiryProduct.payment_terms --><button data-ng-repeat="payment_term in enquiryProduct.payment_terms" data-ng-click="paymentTerm(this);" data-ng-class="{'btn btn-checked': payment_term.is_checked == true , 'btn btn-unchecked': payment_term.is_checked == false }" class="ng-binding ng-scope btn btn-checked">
+                                Cash
+                            </button><!-- end ngRepeat: payment_term in enquiryProduct.payment_terms --><button data-ng-repeat="payment_term in enquiryProduct.payment_terms" data-ng-click="paymentTerm(this);" data-ng-class="{'btn btn-checked': payment_term.is_checked == true , 'btn btn-unchecked': payment_term.is_checked == false }" class="ng-binding ng-scope btn btn-unchecked">
+                                RTGS
+                            </button><!-- end ngRepeat: payment_term in enquiryProduct.payment_terms --><button data-ng-repeat="payment_term in enquiryProduct.payment_terms" data-ng-click="paymentTerm(this);" data-ng-class="{'btn btn-checked': payment_term.is_checked == true , 'btn btn-unchecked': payment_term.is_checked == false }" class="ng-binding ng-scope btn btn-unchecked">
+                                Cheque
+                            </button><!-- end ngRepeat: payment_term in enquiryProduct.payment_terms -->
+                            <div class="clr"></div>
+                            <label class="top-spc2">Description</label>
+                            <textarea data-ng-model="enquiry_description" class="top-spc-min fctextarea ng-pristine ng-untouched ng-valid ng-empty" placeholder="Write here product description"></textarea>
+                            <div class="top-spc l-padd">
+                                <input type="checkbox" id="enquiry_is_buy_from_metalbaba" class="css-checkbox ng-pristine ng-untouched ng-valid ng-empty" data-ng-model="enquiry_is_buy_from_metalbaba" data-ng-checked="enquiry_is_buy_from_metalbaba == 1" checked="checked">
+                                <label for="enquiry_is_buy_from_metalbaba" class="css-label">Buy through Metalbaba Tradesafe.</label>
+                            </div>
+                            <button class="login-btn top-spc2" data-ng-click="submitEnquiry(this);">Submit  Enquiry</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 place-boxr">
+                        <img src="http://res.cloudinary.com/metb/image/upload/c_fit,h_173,w_247/Stainless-Steel-Circle-2012B-AOD-027mm76204" title="http://res.cloudinary.com/metb/image/upload/c_fit,h_173,w_247/Stainless-Steel-Circle-2012B-AOD-027mm76204" alt="http://res.cloudinary.com/metb/image/upload/c_fit,h_173,w_247/Stainless-Steel-Circle-2012B-AOD-027mm76204" class="place-boxrimg" data-ng-src="http://res.cloudinary.com/metb/image/upload/c_fit,h_173,w_247/Stainless-Steel-Circle-2012B-AOD-027mm76204">
+                        <h3 class="ng-binding">Stainless Steel Circle 201/2B AOD 0.27mm</h3>
+                        <h3>
+                            <!-- ngRepeat: attribute in enquiryProduct.attribute_list --><span data-ng-repeat="attribute in enquiryProduct.attribute_list" class="ng-binding ng-scope">
+                                Grade: 201
+                            </span><!-- end ngRepeat: attribute in enquiryProduct.attribute_list --><span data-ng-repeat="attribute in enquiryProduct.attribute_list" class="ng-binding ng-scope">
+                                Thickness: 0.27 mm
+                            </span><!-- end ngRepeat: attribute in enquiryProduct.attribute_list --><span data-ng-repeat="attribute in enquiryProduct.attribute_list" class="ng-binding ng-scope">
+                                Surface: 2B
+                            </span><!-- end ngRepeat: attribute in enquiryProduct.attribute_list --><span data-ng-repeat="attribute in enquiryProduct.attribute_list" class="ng-binding ng-scope">
+                                Brand:
+                            </span><!-- end ngRepeat: attribute in enquiryProduct.attribute_list --><span data-ng-repeat="attribute in enquiryProduct.attribute_list" class="ng-binding ng-scope">
+                                Sizes: 6 - 17 Inch
+                            </span><!-- end ngRepeat: attribute in enquiryProduct.attribute_list -->
+                        </h3>
+                        <div class="byen-boxrin5 ng-binding">
+                            <i data-ng-show="enquiryProduct.is_international == 1" class="fa faicon fa-dollar ng-hide" aria-hidden="true"></i>
+                            <i data-ng-show="enquiryProduct.is_international == 0" class="fa faicon fa-inr" aria-hidden="true"></i>
+                            126.00/Kilogram
+                        </div>
+                        <div class="byen-boxrin4 ng-binding">Vanish Ind.</div>
+                        <div class="byen-boxrin6 ng-binding">
+                            New Delhi, India
+                        </div>
+                        <div class="top-spc5 bqtext">
+                            <i class="quotes"></i>
+                            <p>Best Quotes</p>
+                        </div>
+                        <div class="clr"></div>
+                        <div class="top-spc bqtext">
+                            <i class="buying"></i>
+                            <p>Convenience of Buying</p>
+                        </div>
+                        <div class="clr"></div>
+                        <div class="top-spc bqtext">
+                            <i class="quick"></i>
+                            <p>Quick Access to Suppliers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- for enquiry for  -->
+
+
 
 
                 <script type="text/javascript">
+                $('#buyleadModal').hide();
+                $('#placeEnquiryModal').hide();
                 $('#login-signup-btn').hide();
                 $('#login-reset-btn').hide();
                 $('#login-signin-btn').show();
@@ -213,6 +358,65 @@
                 $('#login-signup-link').show();
                 $('#login-login-link').hide();
                 $('#login-username').show();
+
+                function mb_enq(){
+                  $('#placeEnquiryModal').modal('show');
+                }
+
+                //submit ENQUIRY
+                function submitBuylead(){
+                  var bl_product=$('#buylead_product').val();
+                  var bl_quantity=$('#buylead_quantity').val();
+                  var bl_price=$('#buylead_price').val();
+                  var bl_description=$('#buylead_description').val();
+
+                  if(buylead_product==""){
+                    toastr.error('Please provide Product name', 'Alert!');
+                    return false;
+                  }
+                  if(buylead_quantity==""){
+                    toastr.error('Please enter quantity', 'Alert!');
+                    return false;
+                  }
+                  if(buylead_price==""){
+                    toastr.error('Please enter bid price', 'Alert!');
+                    return false;
+                  }
+                  if(buylead_description==""){
+                    toastr.error('Please enter discription', 'Alert!');
+                    return false;
+                  }
+
+                  var datastring = "_token=" + CSRF_TOKEN+"&bl_product="+bl_product+'&bl_quantity='+bl_quantity+'&bl_price='+bl_price+'&bl_description='+bl_description;
+                  //ajax class
+                  $.ajax({
+                    type: 'POST',
+                    url: BASE_URL + "/buylead_action", //this should be url to your PHP file
+                    data:datastring,
+                    beforeSend: function(){
+                    },
+                    success: function(data) {
+                      console.log(data);
+                      if(data.status==0){
+                        location.reload();
+                      }
+                    },
+                    dataType: "json",
+                  });
+                  //ajax class
+
+
+
+
+
+
+                }
+                //submit ENQUIRY
+
+
+                function placeBuylead(){
+                    $('#buyleadModal').show();
+                }
                 function showLogin() {
                   $('#login-otp').hide();
                   $('#loginModel').modal('show');
@@ -270,6 +474,7 @@
                       }
                     },
                     dataType: "json",
+
 
                   });
                   //ajax class

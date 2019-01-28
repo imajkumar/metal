@@ -26,11 +26,13 @@ return [
         'PRODUCT_FILTER' => env('APP_BASEURL', 'localhost').'product_filter',
         'CATEGORY_HOME_LIST' => env('APP_BASEURL', 'localhost').'category_home_list',
         'SELLER_LIST' => env('APP_BASEURL', 'localhost').'seller_list',
+        'SELLER_DETAIL' => env('APP_BASEURL', 'localhost').'seller_detail',
         'SELLER_FILTER' => env('APP_BASEURL', 'localhost').'seller_filter',
         'APP_LOGIN' => env('APP_BASEURL', 'localhost').'login',
         'APP_REGISTER' => env('APP_BASEURL', 'localhost').'signup',
         'USER_PROFILE' => env('APP_BASEURL', 'localhost').'profile_detail',
         'APP_LOGOUT' => env('APP_BASEURL', 'localhost').'logout',
+        'BUY_LEAD_ADD' => env('APP_BASEURL', 'localhost').'buylead_add',
 
         'en' => 'www.domain.us'.env('APP_BASEURL', 'localhost')
         // etc

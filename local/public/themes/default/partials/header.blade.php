@@ -19,10 +19,6 @@ $data_session = Session::get('MYTOKEN');
      ]);
    $user_profile=json_decode($response->getBody()->getContents());
    $usr_data=$user_profile->data;
-   // echo "<pre>";
-   // print_r($usr_data);
-   // die;
-
 
  }
 
@@ -39,13 +35,34 @@ $data_session = Session::get('MYTOKEN');
                                 <a href="/">Metalbaba</a>
                     </div>
                    </div><!-- end col -->
+                   <!-- code for option selected -->
+                   <?php
+
+                    switch (Request::segment(1)) {
+                      case 'product-list':
+                      $selected_option="PRODUCT";
+                        break;
+                      case 'seller-list':
+                      $selected_option="SUPPLIERS";
+                        break;
+                      case 'enquiry-buylead-list':
+                      $selected_option="BUY LEADS";
+                      break;
+                      default:
+                        $selected_option="SELECT";
+                        break;
+                    }
+
+                   ?>
+                   <!-- code for option selected -->
+
                    <div class="col-sm-9 vertical-align text-center">
 
                            <div class="row grid-space-1">
                                <div class="col-sm-3">
                                  <div class="btn-group dropdown dropdown-select" style="width: 218px">
                                   <button class="form-control btn btn-default dropdown-toggle ajitems" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                        <i class="fa fa-th-large ng-scope" aria-hidden="true" ></i>SELECT <span class="caret"></span>
+                                        <i class="fa fa-th-large ng-scope" aria-hidden="true" ></i>{{$selected_option}} <span class="caret"></span>
 
                                    </button>
 

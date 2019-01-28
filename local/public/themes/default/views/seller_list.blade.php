@@ -90,8 +90,10 @@ span.list_attribute_itemname_a {
                     </div>
                     <div class="col-md-6">
                       <div class="p_list_item_withrequest_layour">
-                        <a href="#" class="btn btn-primary buy_leads">Latest Buy Leads</a>
-                        <a href="#" class="btn btn-primary submit_form">SUBMIT BUYING REQUEST</a>
+                          <a href="{{ URL::to('/enquiry-buylead-list')}}" class="btn btn-primary buy_leads">Latest Buy Leads</a>
+
+                        <a href="javascript:void(0)" onclick="placeBuylead()" class="btn btn-primary submit_form">SUBMIT BUYING REQUEST</a>
+                        
                       </div>
 
 
