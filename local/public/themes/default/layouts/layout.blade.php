@@ -601,10 +601,7 @@
                         toastr.error('Invalid OTP', 'Alert!');
                         return false;
                       }
-
-                      var datastring = "_token=" + CSRF_TOKEN + "&name=" + name + '&company=' + company + '&mobile=' + mobile+'&email='+email+'&password='+password+'&login_otp='+login_otp+'&step=2';;
-
-                      //ajax class
+                      var datastring = "_token=" + CSRF_TOKEN + "&name=" + name + '&company=' + company + '&mobile=' + mobile+'&email='+email+'&password='+password+'&login_otp='+login_otp+'&step=2';                      //ajax class
                       $.ajax({
                         type: 'POST',
                         url: BASE_URL + "/user_register", //this should be url to your PHP file
@@ -619,23 +616,26 @@
 
                       });
                       //ajax class
-
-
-
-
                   }
-
-
-
-
-
-
 
                 }//end of signup
 
+                //search_keyword
+                $('#btnLookUp').on('keypress',function(e) {
+
+                      if(e.which == 13) {
+                          keyword=$('#btnLookUp').val();
+                          window.location.href = BASE_URL+"/product-list?s="+keyword;             
+
+                        }
+                });
+
+
+                //search_keyword
+
                 BASE_URL=$('meta[name="csrf-base"]').attr('content');
                 CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                </script>
+              </script>
 
 
 

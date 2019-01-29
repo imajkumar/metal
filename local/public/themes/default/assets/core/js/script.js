@@ -40,6 +40,7 @@ if(txtpidID>0){
   tpid="";
 }
  $("#results_seller" ).load(BASE_URL+'/api/getSellerList?pid='+tpid);
+
  $("#results_seller").on( "click", ".pagination a", function (e){
   e.preventDefault();
   var favorite_filter_val = [];
@@ -60,7 +61,13 @@ if(txtpidID>0){
 //script for seller
 
 //script for product
-$("#results" ).load(BASE_URL+'/api/getProductList?pid='+tpid);
+var s_key=$('#s_key').val();
+
+
+
+
+
+$("#results" ).load(BASE_URL+'/api/getProductList?pid='+tpid+'&s_key='+s_key);
 $("#results").on( "click", ".pagination a", function (e){
    e.preventDefault();
    var favorite_filter_val = [];
@@ -77,6 +84,7 @@ $("#results").on( "click", ".pagination a", function (e){
      $(".loading-div").hide(); //once done, hide loading element
    });
 });
+
 
 //script for product
 
@@ -217,8 +225,10 @@ $('ul.term-list').on('click','.more', function(){
 // script for product filter
 
 
+
 // script for target
 $(document).ready(function() {
+
       $("#target-content").load("pagination.php?page=1");
       $("#pagination li").on('click',function(e){
       e.preventDefault();

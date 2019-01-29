@@ -20,6 +20,7 @@ class HomeController extends Controller
     {
         //$this->middleware('guest');
     }
+
     //seller_detail
     public function seller_detail(Request $request){
       $theme = Theme::uses('default')->layout('layout');
@@ -403,6 +404,8 @@ echo '</div>';
      */
 public function getProductList(Request $request){
 $pid=$request->pid;
+$s_key=$request->s_key;
+
  if(!empty($pid)){
    $pid_val=$pid;
  }else{
@@ -459,7 +462,7 @@ foreach ($data as $key => $value) {
                    'moq' => '0',
                    'order' => 'asc',
                    'page' => $page_number,
-                   'search_keyword' => '',
+                   'search_keyword' => $s_key,
                    'sort' => '',
              ],
              'handler' => $tapMiddleware($clientHandler)
@@ -967,6 +970,11 @@ $html='<div class="product_list_card" style="margin-top: 23px; ;background:#FFF;
        $theme = Theme::uses('default')->layout('layout');
        $data = ['info' => 'Hello World'];
        return $theme->scope('product_list', $data)->render();
+     }
+     public function product_list_app(){
+       $theme = Theme::uses('default')->layout('layout');
+       $data = ['info' => 'Hello World'];
+       return $theme->scope('product_list_search', $data)->render();
      }
     public function index()
     {

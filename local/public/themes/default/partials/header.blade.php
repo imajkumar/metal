@@ -78,7 +78,7 @@ $data_session = Session::get('MYTOKEN');
                                   </div>
                                </div><!-- end col -->
                                <div class="col-sm-4">
-                                   <input type="text" name="keyword" class="form-control input-lg" placeholder="Search">
+                                   <input type="text" name="keyword" class="form-control input-lg" id="btnLookUp" placeholder="Search">
                                </div><!-- end col -->
                                <div class="col-sm-5">
                                   <!-- notify-lead-login  -->

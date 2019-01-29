@@ -33,14 +33,6 @@ span.list_attribute_itemname_a {
     margin-top: 5px;
 }
 </style>
-<?php
-if(isset($_GET['s'])){
-$skey=$_GET['s'];
-}else{
-  $skey="";
-}
-?>
-<input type="text" name="s_key" id="s_key" value="<?php echo $skey; ?>">
 <section class="section light-backgorund">
     <div class="container">
         <div class="row">
@@ -114,7 +106,7 @@ $skey=$_GET['s'];
                .loading-div img {margin-top: 20%;margin-left: 50%;}
                 </style>
                  <div class="loading-div"><img src="{{ asset('local/public/themes/default/assets/core/img/ajax-loader.gif') }}" ></div>
-                 <div id="results">
+                 <div id="results-app">
 
                  </div>
 
