@@ -583,7 +583,6 @@
                     });
                     //ajax class
 
-
                     function IsEmail(email) {
                       var regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
                       if(!regex.test(email)) {
@@ -592,7 +591,6 @@
                         return true;
                       }
                     }
-
 
                   }else{
                     //step 2
@@ -625,7 +623,7 @@
 
                       if(e.which == 13) {
                           keyword=$('#btnLookUp').val();
-                          window.location.href = BASE_URL+"/product-list?s="+keyword;             
+                          window.location.href = BASE_URL+"/product-list?s="+keyword;
 
                         }
                 });
