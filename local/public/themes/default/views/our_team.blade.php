@@ -4,7 +4,7 @@
     <div class="col-md-12">
       <!-- our team -->
       <div id="content" class="ng-view ng-scope" autoscroll="true"><div class="ng-scope">
-    
+
     <main>
         <section id="slide-4" class="homeSlide" style="height: 300px;">
             <div class="bcg">
@@ -24,6 +24,7 @@
                 </div>
             </div>
         </section>
+        <center align="center">
         <div class="absec">
 		<div class="teambx">
 			<div class="teambxin1">
@@ -67,7 +68,7 @@
 			</div>
 		</div>
 
-		<div class="teambx">
+		<!-- <div class="teambx">
 			<div class="teambxin1">
 				<img src="http://metalbaba.com/images/sameer-gupta.png" alt="Sameer Gupta" title="Sameer Gupta">
 			</div>
@@ -79,9 +80,10 @@
                                     <img src="http://metalbaba.com/images/linkedin-logo.png" alt="Sameer Gupta" title="Sameer Gupta">
                                 </a>
 			</div>
-		</div>
+		</div> -->
 
 	</div>
+</div>
     </main>
 </div>
 </div>

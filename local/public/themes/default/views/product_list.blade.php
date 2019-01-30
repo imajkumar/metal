@@ -40,7 +40,7 @@ $skey=$_GET['s'];
   $skey="";
 }
 ?>
-<input type="text" name="s_key" id="s_key" value="<?php echo $skey; ?>">
+<input type="hidden" name="s_key" id="s_key" value="<?php echo $skey; ?>">
 <section class="section light-backgorund">
     <div class="container">
         <div class="row">
@@ -53,11 +53,8 @@ $skey=$_GET['s'];
                      $client = new Client();
                      $response = $client->post(Config::get('ayra.apiList.PRODUCT_FILTER'));
                      $product_data=json_decode($response->getBody()->getContents());
-                    // echo "<pre>";
-
 
                      $related_cat_data=$product_data->data->parent_category->name;
-                    // echo "<pre>";
 
                      $main_category_name=$related_cat=$product_data->data->main_category->name;
                      $main_category_child=$related_cat=$product_data->data->main_category->child;

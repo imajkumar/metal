@@ -730,7 +730,7 @@ body {
       .navbar-vertical .nav li.headeraj{
         padding: 16px 13px;
         color: #ffffff;
-        background:#008FF9;
+        background:#FFF;
         -webkit-box-shadow: 0 10px 6px -6px #777 !important;
         -moz-box-shadow: 0 10px 6px -6px #777 ! important;
         box-shadow: 0 10px 6px -6px #777 !important;
@@ -4594,3 +4594,9 @@ span.ist {
     background: url('http://metalbaba.local/images/sprite-image.png') no-repeat;
     display: inline-block;
 }
+li.headeraj {
+    background-color: #008FF9 !important;
+}
+/* media query for  */
+
+/* media query for  */

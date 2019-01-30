@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\HourlyUpdate::class
     ];
 
     /**
@@ -24,11 +24,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+      $schedule->command('hour:update')
+             ->everyMinute();
     }
-
-    /**
+    
      * Register the commands for the application.
      *
      * @return void

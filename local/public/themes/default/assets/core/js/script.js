@@ -62,12 +62,10 @@ if(txtpidID>0){
 
 //script for product
 var s_key=$('#s_key').val();
-
-
-
-
-
-$("#results" ).load(BASE_URL+'/api/getProductList?pid='+tpid+'&s_key='+s_key);
+if (typeof(s_key) == "undefined"){
+s_key="";
+}
+$("#results" ).load(BASE_URL+'/api/getProductList?pid='+tpid+'&s_key5='+s_key);
 $("#results").on( "click", ".pagination a", function (e){
    e.preventDefault();
    var favorite_filter_val = [];
@@ -156,6 +154,10 @@ $('ul.term-list').on('click','.more', function(){
 //product filter
 //  console.log($('input[name="aj_itemdata"]:checked').serialize());
   $('input[type="checkbox"]').click(function(){
+    //code to hide
+    $('ul.term-list li', this).eq(2).nextAll().hide().addClass('toggleable');
+    $(this).append('<li class="more">+see more</li>');
+    //code for hide
       var checkboxType=$(this).attr('id');
       switch(checkboxType) {
         case 'sellerFilter':

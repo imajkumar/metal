@@ -9,8 +9,6 @@
 <meta name="geo.placename" content="Delhi" />
 <meta name="geo.position" content="28.699267;77.161062" />
 <meta name="ICBM" content="28.699267, 77.161062" />
-
-
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="csrf-base" content="{{ URL::to('/') }}">
 <!-- css files -->
@@ -21,17 +19,15 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('local/public/themes/default/assets/core/css/animate.css') }}" />
 <link rel="stylesheet" type="text/css" href="{{ asset('local/public/themes/default/assets/core/css/swiper.css') }}" />
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css" />
-
-
 <link id="pagestyle" rel="stylesheet" type="text/css" href="{{ asset('local/public/themes/default/assets/core/css/default.css') }}" />
-
 <link id="pagestyle" rel="stylesheet" type="text/css" href="{{ asset('local/public/themes/default/assets/core/css/custom.css') }}" />
 
-<!-- Google fonts -->
-<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet" />
+<!-- <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700" rel="stylesheet" />
-<link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800&amp;subset=latin-ext" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800&amp;subset=latin-ext" rel="stylesheet" /> -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+
+<!-- Google fonts -->
 
 
 <!--Favicon-->
@@ -40,9 +36,6 @@
 <!--Favicon-->
     <title>@get('title')</title>
     <!-- @styles() -->
-
-
-
     <!--Start of Tawk.to Script-->
        <script type="text/javascript">
        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -55,8 +48,6 @@
        s0.parentNode.insertBefore(s1,s0);
        })();
        </script>
-
-
     </head>
     <body>
         @partial('header')
@@ -349,6 +340,9 @@
 
 
                 <script type="text/javascript">
+
+
+
                 $('#buyleadModal').hide();
                 $('#placeEnquiryModal').hide();
                 $('#login-signup-btn').hide();

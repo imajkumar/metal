@@ -33,6 +33,7 @@ return [
         'USER_PROFILE' => env('APP_BASEURL', 'localhost').'profile_detail',
         'APP_LOGOUT' => env('APP_BASEURL', 'localhost').'logout',
         'BUY_LEAD_ADD' => env('APP_BASEURL', 'localhost').'buylead_add',
+        'NEWS_LIST' => env('APP_BASEURL', 'localhost').'news_list',
 
         'en' => 'www.domain.us'.env('APP_BASEURL', 'localhost')
         // etc

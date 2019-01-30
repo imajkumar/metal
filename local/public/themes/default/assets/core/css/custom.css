@@ -94,7 +94,7 @@ input[type=radio   ]:not(old){
     width   : 13px;
     margin  : 0;
     padding : 0;
-    opacity : 0;
+    /* opacity : 0; */
 }
 
 input[type=checkbox]:not(old) + label,
@@ -1964,7 +1964,7 @@ box-shadow: 8px 0 5px -6px rgba(0,0,0,0.2); }*/
 .abnav ul li a:hover{ border-bottom:2px solid #448aff; padding-bottom:10px; text-decoration:none; }
 .abhead{ background: rgba(0, 0, 0, 0.5); width: 80%; margin: 0 auto;}
 .abhead h2{ font-size: 28px !important;}
-.absec{ background:#fff; margin:0 auto; width:69%; position: relative; top: -50px; padding:30px 40px; display: table;}
+.absec{ background:#fff; margin:0 auto; width:52%; position: relative; top: -50px; padding:30px 40px; display: table;}
 .absec h3{text-align: center; font-size:14px; line-height:22px; }
 .absec p{font-size:14px; line-height:22px; }
 .mile{ width:100%; border-bottom:1px solid #eeeeee; padding:40px; margin-bottom:40px; float:left;}

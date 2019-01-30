@@ -21,16 +21,37 @@ $data_session = Session::get('MYTOKEN');
    $usr_data=$user_profile->data;
 
  }
+ if($data_session){
+   $h_over="display:block";
+ }else{
+   $h_over="display:none";
+ }
 
 
 
 
 
 ?>
+<!-- after login -->
+<div class="afl" data-ng-show="after_login_bar == 1" style="<?php echo $h_over;?>">
+            <div class="aflin">
+                <button type="button" class="aflcl" onclick="closeAfterLoginBar()">x</button>
+                <div class="aflinh1">Increase your business with metalbaba</div>
+                <ul>
+                    <li><span class="sprite aflinlist"></span><a href="#" data-ng-click="showDashboard('company_profile');">Improve business profile</a></li>
+                    <li>|</li>
+                    <li><span class="sprite aflinpro"></span><a href="#" data-ng-click="showDashboard('manage_products');">Upload products</a></li>
+                </ul>
+            </div>
+      </div>
+<!-- after login -->
+
+
+
        <div class="middleBar" >
            <div class="container">
                <div class="row display-table">
-                   <div class="col-sm-3 vertical-align text-left hidden-xs">
+                   <div class="col-sm-3 vertical-align text-center">
                    <div class="logo">
                                 <a href="/">Metalbaba</a>
                     </div>
@@ -61,7 +82,7 @@ $data_session = Session::get('MYTOKEN');
                            <div class="row grid-space-1">
                                <div class="col-sm-3">
                                  <div class="btn-group dropdown dropdown-select" style="width: 218px">
-                                  <button class="form-control btn btn-default dropdown-toggle ajitems" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                  <button class="form-control btn btn-default dropdown-toggle ajitems btn-lg btn-block" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                                         <i class="fa fa-th-large ng-scope" aria-hidden="true" ></i>{{$selected_option}} <span class="caret"></span>
 
                                    </button>
@@ -87,7 +108,7 @@ $data_session = Session::get('MYTOKEN');
                                       <li class="linkdown">
                                           <a href="{{ URL::to('/enquiry-buylead-list')}}">
                                                 <i class="fa fa-shopping-bag" aria-hidden="true"></i>
-                                              <span class="hidden-xs">
+                                              <span class="3hidden-xs">
                                                 Buy Leads
                                               </span>
                                           </a>
@@ -97,7 +118,7 @@ $data_session = Session::get('MYTOKEN');
                                         <li class="linkdown">
                                             <a href="javascript:void(0);">
                                               <i class="fa fa-bell" aria-hidden="true"></i>
-                                                <span class="hidden-xs">
+                                                <span class="2hidden-xs">
                                                     Notifications<sup class="text-primary">(3)</sup>
                                                     <i class="fa fa-angle-down ml-5"></i>
                                                 </span>
@@ -150,7 +171,7 @@ $data_session = Session::get('MYTOKEN');
                                                       <li class="linkdown">
                                                           <a href="javascript:void(0);">
                                                               <i class="fa fa-user mr-5"></i>
-                                                              <span class="hidden-xs">
+                                                              <span class="3hidden-xs">
                                                                 Account
                                                                   <i class="fa fa-angle-down ml-5"></i>
                                                               </span>
